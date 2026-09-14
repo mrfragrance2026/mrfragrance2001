@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR Fragrance - Scents That Speak You</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #0b0b0b;
+            color: #d4af37;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        header {
+            padding: 30px 20px;
+            border-bottom: 1px solid #222;
+        }
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 2.3rem;
+            letter-spacing: 4px;
+            color: #d4af37;
+            margin-bottom: 5px;
+        }
+        .tagline {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+        .hero {
+            padding: 100px 20px; /* Thoda aur bada kiya taaki bottle dikhein */
+            /* Yahan change kiya hai: Ab ek luxury perfume ki photo hai background mein */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1594035910387-fea47794261f?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+            background-attachment: fixed; /* Scroll karte waqt photo ek jagah rahegi */
+        }
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            color: #f3e5ab;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        .collection-section {
+            padding: 50px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: #f3e5ab;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #222;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        .perfume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .perfume-card {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            padding: 30px 20px;
+            transition: 0.3s ease;
+        }
+        .perfume-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+        .perfume-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #f3e5ab;
+            margin-bottom: 10px;
+        }
+        .perfume-card p {
+            font-size: 0.95rem;
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+        .notes {
+            font-size: 0.85rem;
+            color: #d4af37;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+        .social-box {
+            padding: 40px 20px;
+            background: #111;
+        }
+        .social-btn {
+            display: inline-block;
+            color: #0b0b0b;
+            background-color: #d4af37;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 14px 35px;
+            border-radius: 30px;
+            transition: 0.3s ease;
+            text-transform: uppercase;
+        }
+        .social-btn:hover {
+            background-color: #f3e5ab;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+        footer {
+            padding: 20px;
+            font-size: 0.85rem;
+            color: #555;
+            border-top: 1px solid #1a1a1a;
+        }
+        @media(max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .hero { padding: 60px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text">MR FRAGRANCE</div>
+        <div class="tagline">Scents That Speak You</div>
+    </header>
+
+    <section class="hero">
+        <h1>OPENING SOON</h1>
+        <p>Discover the art of luxury perfumery.</p>
+    </section>
+
+    <section class="collection-section">
+        <h2 class="section-title">Signature Collection</h2>
+        
+        <div class="perfume-grid">
+            <div class="perfume-card">
+                <h3>Oud Al Sahra</h3>
+                <p>A mystical journey into the desert with deep, woody, and resinous notes.</p>
+                <div class="notes">Notes: Bergamot, Oud Wood, Frankincense</div>
+            </div>
+
+            <div class="perfume-card">
+                <h3>Rose Nuit</h3>
+                <p>An elegant and mysterious blend of velvety rose and warm spices.</p>
+                <div class="notes">Notes: Saffron, Taif Rose, Ambergris</div>
+            </div>
+
+            <div class="perfume-card">
+                <h3>Citrus Breeze</h3>
+                <p>A refreshing burst of Mediterranean sunlight to invigorate your senses.</p>
+                <div class="notes">Notes: Lemon, Verbena, Vetiver</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="social-box">
+        <p style="margin-bottom: 20px; color: #ccc; letter-spacing: 1px;">Be the first to experience our launch:</p>
+        <a href="https://instagram.com/mrfragrance2026" target="_blank" class="social-btn">Follow on Instagram</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MR Fragrance. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
