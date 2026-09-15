@@ -4,310 +4,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MR Fragrance - Scents That Speak You</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap');
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #050505;
-            color: #e5e5e5;
-        }
-        .brand-font {
-            font-family: 'Cinzel', serif;
-        }
-        .gold-gradient {
-            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .gold-border {
-            border-color: rgba(191, 149, 63, 0.3);
-        }
-        .gold-bg {
-            background: linear-gradient(135deg, #bf953f 0%, #aa771c 100%);
-        }
-        .gold-bg:hover {
-            background: linear-gradient(135deg, #d4af37 0%, #c59b27 100%);
-        }
+        body { background-color: #050505; color: #e5e5e5; font-family: sans-serif; }
+        .gold-gradient { background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #aa771c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gold-border { border-color: rgba(191, 149, 63, 0.4); }
+        .gold-bg { background: linear-gradient(135deg, #bf953f 0%, #aa771c 100%); color: black; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+<body class="p-4 md:p-8 max-w-5xl mx-auto min-h-screen flex flex-col justify-between">
 
-    <!-- Header / Navbar -->
-    <header class="border-b gold-border py-4 px-6 md:px-12 flex justify-between items-center max-w-7xl mx-auto w-full bg-black/40 backdrop-blur-md sticky top-0 z-40">
-        <div class="flex items-center gap-3">
-            <img src="logo.png" alt="MR Fragrance Logo" class="w-10 h-10 object-contain rounded-full border gold-border">
-            <div>
-                <h1 class="brand-font text-lg md:text-xl font-bold tracking-widest gold-gradient">MR FRAGRANCE</h1>
-                <p class="text-[9px] tracking-[0.2em] text-amber-200/70 uppercase">Scents That Speak You</p>
-            </div>
+    <!-- Header -->
+    <header class="flex justify-between items-center border-b gold-border pb-4 mb-8">
+        <div>
+            <h1 class="text-xl md:text-2xl font-bold gold-gradient tracking-wider">MR FRAGRANCE</h1>
+            <p class="text-[10px] text-amber-200/70 uppercase">Scents That Speak You</p>
         </div>
-        <!-- Cart Button -->
-        <button id="cartBtn" class="gold-bg text-black font-semibold px-5 py-2 rounded-full text-sm transition shadow-lg shadow-amber-900/20 flex items-center gap-2 cursor-pointer">
+        <button id="cartBtn" class="gold-bg px-5 py-2.5 rounded-full font-bold text-sm shadow-lg cursor-pointer">
             🛒 Cart (<span id="cartCount">0</span>)
         </button>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-6 md:px-12 py-12 flex-grow w-full">
-        
-        <!-- Hero Banner -->
-        <div class="border gold-border rounded-3xl p-8 md:p-16 text-center mb-16 relative overflow-hidden bg-gradient-to-b from-neutral-950 via-neutral-900 to-black shadow-2xl">
-            <div class="max-w-2xl mx-auto relative z-10">
-                <span class="border gold-border text-amber-300 text-xs font-semibold px-4 py-1.5 rounded-full uppercase tracking-[0.3em] bg-amber-500/5">Exclusive Collection</span>
-                <h2 class="brand-font text-3xl md:text-5xl font-extrabold mt-6 mb-4 gold-gradient tracking-wide">Something Majestic Is Coming Soon</h2>
-                <p class="text-neutral-400 text-sm md:text-base mb-8 font-light leading-relaxed">Crafting rare and luxurious essences designed to leave an unforgettable signature.</p>
-                <div class="rounded-2xl overflow-hidden border gold-border shadow-2xl max-h-96 flex justify-center bg-neutral-900">
-                    <img src="coming-soon.jpg" alt="MR Fragrance Coming Soon" class="object-cover w-full h-full">
-                </div>
+    <!-- Products Grid -->
+    <main class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+        <div class="bg-neutral-900 border gold-border p-5 rounded-2xl flex flex-col justify-between">
+            <div>
+                <h3 class="text-lg font-bold text-amber-200 mb-1">Royal Oud Noir</h3>
+                <p class="text-xs text-neutral-400 mb-4">A deep, rich oriental blend with warm amber and smoky wood notes.</p>
+            </div>
+            <div class="flex justify-between items-center border-t border-neutral-800 pt-4">
+                <span class="font-bold gold-gradient text-lg">₹2,499</span>
+                <button onclick="addToCart('Royal Oud Noir', 2499)" class="gold-bg px-4 py-2 rounded-xl font-bold text-xs uppercase cursor-pointer">Add To Cart</button>
             </div>
         </div>
 
-        <!-- Featured Products Section -->
-        <div class="mb-12">
-            <div class="text-center mb-10">
-                <h3 class="brand-font text-2xl md:text-3xl font-bold gold-gradient mb-2">Signature Masterpieces</h3>
-                <p class="text-neutral-500 text-sm tracking-wider">Explore our preview line of luxury fragrances</p>
-                <div class="w-16 h-[1px] bg-amber-500/40 mx-auto mt-4"></div>
+        <div class="bg-neutral-900 border gold-border p-5 rounded-2xl flex flex-col justify-between">
+            <div>
+                <h3 class="text-lg font-bold text-amber-200 mb-1">Golden Amber Elixir</h3>
+                <p class="text-xs text-neutral-400 mb-4">An intoxicating fusion of sweet floral honey and rich golden resins.</p>
             </div>
-            
-            <!-- Products Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                
-                <!-- Product 1 -->
-                <div class="bg-neutral-900/60 border gold-border rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between">
-                    <div class="cursor-pointer product-card" data-name="Royal Oud Noir" data-price="2499" data-image="product1.jpg" data-desc="A deep, rich oriental blend with warm amber and smoky wood notes." data-size="100ml / 3.4 fl oz">
-                        <div class="overflow-hidden h-64 bg-neutral-950">
-                            <img src="product1.jpg" alt="Royal Oud" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="brand-font font-bold text-lg mb-1 text-amber-100">Royal Oud Noir</h4>
-                            <p class="text-neutral-400 text-xs leading-relaxed mb-4 font-light">A deep, rich oriental blend with warm amber and smoky wood notes.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0 flex items-center justify-between border-t border-neutral-800/60 mt-4">
-                        <span class="text-lg font-bold gold-gradient">₹2,499</span>
-                        <button class="gold-bg text-black px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md cursor-pointer add-to-cart-btn" data-name="Royal Oud Noir" data-price="2499" data-image="product1.jpg">
-                          Add To Cart
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="bg-neutral-900/60 border gold-border rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between">
-                    <div class="cursor-pointer product-card" data-name="Golden Amber Elixir" data-price="2999" data-image="product2.jpg" data-desc="An intoxicating fusion of sweet floral honey and rich golden resins." data-size="100ml / 3.4 fl oz">
-                        <div class="overflow-hidden h-64 bg-neutral-950">
-                            <img src="product2.jpg" alt="Golden Amber" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="brand-font font-bold text-lg mb-1 text-amber-100">Golden Amber Elixir</h4>
-                            <p class="text-neutral-400 text-xs leading-relaxed mb-4 font-light">An intoxicating fusion of sweet floral honey and rich golden resins.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0 flex items-center justify-between border-t border-neutral-800/60 mt-4">
-                        <span class="text-lg font-bold gold-gradient">₹2,999</span>
-                        <button class="gold-bg text-black px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md cursor-pointer add-to-cart-btn" data-name="Golden Amber Elixir" data-price="2999" data-image="product2.jpg">
-                          Add To Cart
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="bg-neutral-900/60 border gold-border rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between">
-                    <div class="cursor-pointer product-card" data-name="Velvet Musk Intense" data-price="1999" data-image="product3.jpg" data-desc="Sensual, smooth, and captivating with a long-lasting velvet trail." data-size="100ml / 3.4 fl oz">
-                        <div class="overflow-hidden h-64 bg-neutral-950">
-                            <img src="product3.jpg" alt="Velvet Musk" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="brand-font font-bold text-lg mb-1 text-amber-100">Velvet Musk Intense</h4>
-                            <p class="text-neutral-400 text-xs leading-relaxed mb-4 font-light">Sensual, smooth, and captivating with a long-lasting velvet trail.</p>
-                        </div>
-                    </div>
-                    <div class="p-6 pt-0 flex items-center justify-between border-t border-neutral-800/60 mt-4">
-                        <span class="text-lg font-bold gold-gradient">₹1,999</span>
-                        <button class="gold-bg text-black px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md cursor-pointer add-to-cart-btn" data-name="Velvet Musk Intense" data-price="1999" data-image="product3.jpg">
-                          Add To Cart
-                        </button>
-                    </div>
-                </div>
-
+            <div class="flex justify-between items-center border-t border-neutral-800 pt-4">
+                <span class="font-bold gold-gradient text-lg">₹2,999</span>
+                <button onclick="addToCart('Golden Amber Elixir', 2999)" class="gold-bg px-4 py-2 rounded-xl font-bold text-xs uppercase cursor-pointer">Add To Cart</button>
             </div>
         </div>
-
     </main>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/966561026351?text=Hi%20MR%20Fragrance,%20I%20want%20to%20know%20more%20about%20your%20perfumes." target="_blank" class="fixed bottom-6 right-6 z-30 bg-green-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center cursor-pointer">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    <a href="https://wa.me/966561026351?text=Hi%20MR%20Fragrance,%20I%20want%20to%20know%20more." target="_blank" class="fixed bottom-6 right-6 z-30 bg-green-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center cursor-pointer hover:bg-green-500">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
     </a>
 
-    <!-- Product Details Modal -->
-    <div id="productModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-neutral-900 border gold-border rounded-3xl max-w-2xl w-full overflow-hidden relative shadow-2xl">
-            <button id="closeModalBtn" class="absolute top-4 right-4 text-neutral-400 hover:text-white bg-neutral-800 rounded-full w-8 h-8 flex items-center justify-center font-bold z-10 cursor-pointer">&times;</button>
-            <div class="grid grid-cols-1 md:grid-cols-2">
-                <div class="h-64 md:h-full bg-neutral-950">
-                    <img id="modalImage" src="" alt="Product" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 md:p-8 flex flex-col justify-between">
-                    <div>
-                        <span class="text-amber-400 text-[10px] uppercase tracking-widest border gold-border px-3 py-1 rounded-full">Luxury Perfume</span>
-                        <h3 id="modalTitle" class="brand-font text-2xl font-bold mt-3 mb-1 text-amber-100"></h3>
-                        <p id="modalSize" class="text-neutral-400 text-xs mb-3"></p>
-                        <p id="modalPrice" class="text-2xl font-bold gold-gradient mb-4"></p>
-                        <p id="modalDesc" class="text-neutral-300 text-xs leading-relaxed mb-6 font-light"></p>
-                        
-                        <!-- Quantity -->
-                        <div class="flex items-center gap-4 mb-6">
-                            <span class="text-xs text-neutral-400 uppercase tracking-wider">Quantity:</span>
-                            <div class="flex items-center border gold-border rounded-xl bg-neutral-950 overflow-hidden">
-                                <button id="qtyMinus" class="px-3 py-1 text-amber-300 hover:bg-neutral-800 cursor-pointer">-</button>
-                                <span id="modalQty" class="px-4 py-1 text-sm font-bold text-white">1</span>
-                                <button id="qtyPlus" class="px-3 py-1 text-amber-300 hover:bg-neutral-800 cursor-pointer">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-3">
-                        <button id="modalAddToCartBtn" class="flex-1 border gold-border text-amber-300 hover:bg-amber-500/10 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer">
-                            Add To Cart
-                        </button>
-                        <button id="modalBuyNowBtn" class="flex-1 gold-bg text-black py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-lg cursor-pointer">
-                            Buy Now
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Cart Drawer & Checkout Form -->
-    <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex justify-end">
-        <div class="bg-neutral-900 border-l gold-border w-full max-w-md h-full flex flex-col justify-between p-6 overflow-y-auto">
+    <div id="cartDrawer" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden flex justify-end z-50">
+        <div class="bg-neutral-900 border-l gold-border w-full max-w-md h-full p-6 flex flex-col justify-between overflow-y-auto">
             <div>
-                <div class="flex justify-between items-center mb-6 border-b border-neutral-800 pb-4">
-                    <h3 class="brand-font text-xl font-bold gold-gradient">Your Shopping Cart</h3>
-                    <button id="closeCartBtn" class="text-neutral-400 hover:text-white text-xl font-bold cursor-pointer">&times;</button>
+                <div class="flex justify-between items-center mb-6 border-b border-neutral-800 pb-3">
+                    <h3 class="font-bold text-lg gold-gradient">Your Cart</h3>
+                    <button onclick="closeCart()" class="text-white text-xl font-bold cursor-pointer">&times;</button>
                 </div>
-                
-                <div id="cartItemsList" class="space-y-4 mb-6">
-                    <!-- Dynamic Cart Items -->
+                <div id="cartItemsList" class="space-y-3 mb-6">
+                    <p class="text-xs text-neutral-500 text-center py-6">Cart is empty</p>
                 </div>
             </div>
 
-            <div id="checkoutSection" class="border-t border-neutral-800 pt-6 hidden">
-                <div class="flex justify-between items-center mb-4 text-lg font-bold">
-                    <span>Total Amount:</span>
-                    <span id="cartTotalPrice" class="gold-gradient">₹0</span>
+            <div id="checkoutSection" class="border-t border-neutral-800 pt-4 hidden">
+                <div class="flex justify-between font-bold mb-4">
+                    <span>Total:</span>
+                    <span id="cartTotal" class="gold-gradient">₹0</span>
                 </div>
-                
-                <h4 class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-3">Shipping & COD Details</h4>
-                <div class="space-y-3 mb-6">
-                    <input type="text" id="custName" placeholder="Full Name" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white placeholder-neutral-500 focus:outline-none">
-                    <input type="tel" id="custPhone" placeholder="Phone Number" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white placeholder-neutral-500 focus:outline-none">
-                    <textarea id="custAddress" placeholder="Complete Delivery Address (House No, Street, City, Pincode)" rows="3" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white placeholder-neutral-500 focus:outline-none"></textarea>
+                <div class="space-y-3 mb-4">
+                    <input type="text" id="custName" placeholder="Full Name" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white">
+                    <input type="tel" id="custPhone" placeholder="Phone Number" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white">
+                    <textarea id="custAddress" placeholder="Full Delivery Address & Pincode" rows="3" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white"></textarea>
                 </div>
-
-                <button id="whatsappCheckoutBtn" class="w-full gold-bg text-black py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest transition shadow-lg cursor-pointer flex items-center justify-center gap-2">
-                    <span>Place Order via WhatsApp (COD)</span> 🚀
+                <button onclick="checkoutWhatsApp()" class="w-full gold-bg py-3 rounded-xl font-bold text-xs uppercase tracking-wider cursor-pointer">
+                    Place Order via WhatsApp (COD) 🚀
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="border-t gold-border py-8 text-center bg-black/60">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="brand-font text-lg font-bold gold-gradient mb-1">MR FRAGRANCE</h2>
-            <p class="text-neutral-500 text-xs tracking-[0.25em] uppercase mb-4">Scents That Speak You</p>
-            <p class="text-neutral-600 text-xs">&copy; 2026 MR Fragrance. All rights reserved.</p>
-        </div>
+    <footer class="border-t gold-border pt-6 text-center text-xs text-neutral-500">
+        <p>&copy; 2026 MR Fragrance. All rights reserved.</p>
     </footer>
 
-    <!-- Safe JavaScript Execution Logic -->
+    <!-- JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            let cart = [];
-            let currentProduct = null;
-            let modalQty = 1;
+        let cart = [];
 
-            // Elements
-            const cartBtn = document.getElementById('cartBtn');
-            const cartDrawer = document.getElementById('cartDrawer');
-            const closeCartBtn = document.getElementById('closeCartBtn');
-            const productModal = document.getElementById('productModal');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            
-            const modalTitle = document.getElementById('modalTitle');
-            const modalPrice = document.getElementById('modalPrice');
-            const modalImage = document.getElementById('modalImage');
-            const modalDesc = document.getElementById('modalDesc');
-            const modalSize = document.getElementById('modalSize');
-            const modalQtyEl = document.getElementById('modalQty');
-            
-            const qtyMinus = document.getElementById('qtyMinus');
-            const qtyPlus = document.getElementById('qtyPlus');
-            const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
-            const modalBuyNowBtn = document.getElementById('modalBuyNowBtn');
-            const whatsappCheckoutBtn = document.getElementById('whatsappCheckoutBtn');
+        document.getElementById('cartBtn').addEventListener('click', () => {
+            document.getElementById('cartDrawer').classList.remove('hidden');
+        });
 
-            // Open Cart Drawer
-            cartBtn.addEventListener('click', function() {
-                cartDrawer.classList.remove('hidden');
-                updateCartUI();
+        function closeCart() {
+            document.getElementById('cartDrawer').classList.add('hidden');
+        }
+
+        function addToCart(name, price) {
+            let item = cart.find(i => i.name === name);
+            if (item) {
+                item.qty++;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCart();
+            alert(name + " added to cart!");
+        }
+
+        function updateCart() {
+            let count = 0;
+            let total = 0;
+            let html = '';
+
+            cart.forEach((item, index) => {
+                count += item.qty;
+                total += item.price * item.qty;
+                html += `
+                    <div class="flex justify-between items-center bg-neutral-950 p-3 rounded-xl border gold-border text-xs">
+                        <div>
+                            <p class="font-bold text-amber-100">${item.name}</p>
+                            <p class="text-neutral-400">₹${item.price} x ${item.qty}</p>
+                        </div>
+                        <button onclick="removeItem(${index})" class="text-red-400 font-bold cursor-pointer">Remove</button>
+                    </div>
+                `;
             });
 
-            // Close Cart Drawer
-            closeCartBtn.addEventListener('click', function() {
-                cartDrawer.classList.add('hidden');
-            });
+            document.getElementById('cartCount').textContent = count;
+            document.getElementById('cartItemsList').innerHTML = html || '<p class="text-xs text-neutral-500 text-center py-6">Cart is empty</p>';
+            document.getElementById('cartTotal').textContent = '₹' + total;
 
-            // Close Modal
-            closeModalBtn.addEventListener('click', function() {
-                productModal.classList.add('hidden');
-            });
+            if (cart.length > 0) {
+                document.getElementById('checkoutSection').classList.remove('hidden');
+            } else {
+                document.getElementById('checkoutSection').classList.add('hidden');
+            }
+        }
 
-            // Product Card Click -> Open Modal
-            document.querySelectorAll('.product-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    currentProduct = {
-                        name: this.getAttribute('data-name'),
-                        price: Number(this.getAttribute('data-price')),
-                        image: this.getAttribute('data-image'),
-                        desc: this.getAttribute('data-desc'),
-                        size: this.getAttribute('data-size')
-                    };
-                    modalQty = 1;
-                    modalQtyEl.textContent = modalQty;
-                    modalTitle.textContent = currentProduct.name;
-                    modalPrice.textContent = '₹' + currentProduct.price.toLocaleString('en-IN');
-                    modalImage.src = currentProduct.image;
-                    modalDesc.textContent = currentProduct.desc;
-                    modalSize.textContent = currentProduct.size;
-                    
-                    productModal.classList.remove('hidden');
-                });
-            });
+        function removeItem(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
 
-            // Direct Add to Cart from Grid Button
-            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation(); // Prevent opening modal
-                    const name = this.getAttribute('data-name');
-                    const price = Number(this.getAttribute('data-price'));
-                    const image = this.getAttribute('data-image');
-                    addToCart(name, price, image, 1);
-                });
-            });
+        function checkoutWhatsApp() {
+            let name = document.getElementById('custName').value.trim();
+            let phone = document.getElementById('custPhone').value.trim();
+            let address = document.getElementById('custAddress').value.trim();
 
-            // Quantity Buttons in Modal
-            qtyMinus.addEventListener('click', function() {
-                if (modalQty > 1) {
-                    modalQty--;
-                    modalQtyEl.textContent = modalQty;
-                }
-            });
+            if (!name || !phone || !address) {
+                alert("Please fill in Name, Phone, and Address!");
+                return;
+            }
 
-            qtyPlus.addEventL
+            let msg = `*NEW ORDER - MR FRAGRANCE*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A%0A*Items:*%0A`;
+            let total = 0;
+            cart.forEach(i => {
+                msg += `- ${i.name} (Qty: ${i.qty}) - ₹${i.price * i.qty}%0A`;
+                total += i.price * i.qty;
+            });
+            msg += `%0A*Total:* ₹${total}%0A*Payment:* COD`;
+
+            // Yahan apna WhatsApp number daalein (jaise 919876543210)
+            let myWhatsApp = "966561026351"; 
+
+            window.open(`https://wa.me/${myWhatsApp}?text=${msg}`, '_blank');
+        }
+    </script>
+</body>
+</html>
