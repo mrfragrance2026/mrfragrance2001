@@ -65,10 +65,10 @@
         <!-- Products Grid Header -->
         <div class="text-center mb-6">
             <h3 class="text-lg font-bold brand-font gold-gradient mb-1">Signature Collection</h3>
-            <p class="text-xs text-neutral-400">Explore our exclusive luxury perfumes</p>
+            <p class="text-xs text-neutral-400">Explore full details and select your quantity</p>
         </div>
 
-        <!-- Products Grid (3 Products with real images) -->
+        <!-- Products Grid (3 Products with full details & quantity selector) -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             
             <!-- Product 1 -->
@@ -77,11 +77,23 @@
                 <div class="p-4 flex flex-col flex-grow justify-between">
                     <div>
                         <h4 class="text-sm font-bold text-amber-100 mb-1">Royal Oud Noir</h4>
-                        <p class="text-[11px] text-neutral-400 mb-4">Rich oriental blend with warm amber and smoky wood notes.</p>
+                        <p class="text-[11px] text-neutral-400 mb-2">Rich oriental blend with warm amber and smoky wood notes. Long-lasting luxury projection.</p>
+                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 100ml | EDP</p>
                     </div>
-                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                        <span class="font-bold gold-gradient text-sm">₹2,499</span>
-                        <button onclick="addToCart('Royal Oud Noir', 2499)" class="gold-bg px-3.5 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add</button>
+                    <div>
+                        <!-- Quantity Controller -->
+                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
+                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="changeQty('p1', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                                <span id="qty-p1" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                                <button onclick="changeQty('p1', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                            <span class="font-bold gold-gradient text-sm">₹2,499</span>
+                            <button onclick="addWithQty('Royal Oud Noir', 2499, 'p1')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -92,11 +104,23 @@
                 <div class="p-4 flex flex-col flex-grow justify-between">
                     <div>
                         <h4 class="text-sm font-bold text-amber-100 mb-1">Golden Amber Elixir</h4>
-                        <p class="text-[11px] text-neutral-400 mb-4">Intoxicating fusion of sweet floral honey and golden resins.</p>
+                        <p class="text-[11px] text-neutral-400 mb-2">Intoxicating fusion of sweet floral honey and golden resins. Premium evening wear.</p>
+                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 100ml | EDP</p>
                     </div>
-                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                        <span class="font-bold gold-gradient text-sm">₹2,999</span>
-                        <button onclick="addToCart('Golden Amber Elixir', 2999)" class="gold-bg px-3.5 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add</button>
+                    <div>
+                        <!-- Quantity Controller -->
+                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
+                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="changeQty('p2', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                                <span id="qty-p2" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                                <button onclick="changeQty('p2', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                            <span class="font-bold gold-gradient text-sm">₹2,999</span>
+                            <button onclick="addWithQty('Golden Amber Elixir', 2999, 'p2')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -107,11 +131,23 @@
                 <div class="p-4 flex flex-col flex-grow justify-between">
                     <div>
                         <h4 class="text-sm font-bold text-amber-100 mb-1">Velvet Musk Royal</h4>
-                        <p class="text-[11px] text-neutral-400 mb-4">Smooth velvet touch with deep sensuous musk and spices.</p>
+                        <p class="text-[11px] text-neutral-400 mb-2">Smooth velvet touch with deep sensuous musk and royal spices.</p>
+                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 100ml | EDP</p>
                     </div>
-                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                        <span class="font-bold gold-gradient text-sm">₹3,499</span>
-                        <button onclick="addToCart('Velvet Musk Royal', 3499)" class="gold-bg px-3.5 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add</button>
+                    <div>
+                        <!-- Quantity Controller -->
+                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
+                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                            <div class="flex items-center gap-2">
+                                <button onclick="changeQty('p3', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                                <span id="qty-p3" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                                <button onclick="changeQty('p3', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                            <span class="font-bold gold-gradient text-sm">₹3,499</span>
+                            <button onclick="addWithQty('Velvet Musk Royal', 3499, 'p3')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -163,6 +199,15 @@
     <script>
         let cart = [];
 
+        function changeQty(productId, amount) {
+            let qtyElem = document.getElementById('qty-' + productId);
+            let currentQty = parseInt(qtyElem.textContent);
+            let newQty = currentQty + amount;
+            if (newQty >= 1) {
+                qtyElem.textContent = newQty;
+            }
+        }
+
         document.getElementById('cartBtn').addEventListener('click', () => {
             document.getElementById('cartDrawer').classList.remove('hidden');
         });
@@ -171,15 +216,18 @@
             document.getElementById('cartDrawer').classList.add('hidden');
         }
 
-        function addToCart(name, price) {
+        function addWithQty(name, price, productId) {
+            let qty = parseInt(document.getElementById('qty-' + productId).textContent);
             let item = cart.find(i => i.name === name);
             if (item) {
-                item.qty++;
+                item.qty += qty;
             } else {
-                cart.push({ name, price, qty: 1 });
+                cart.push({ name, price, qty });
             }
             updateCart();
-            alert(name + " added to cart!");
+            alert(qty + " x " + name + " added to cart!");
+            // Reset quantity back to 1
+            document.getElementById('qty-' + productId).textContent = '1';
         }
 
         function updateCart() {
@@ -194,7 +242,7 @@
                     <div class="flex justify-between items-center bg-neutral-950 p-3 rounded-xl border gold-border text-xs">
                         <div>
                             <p class="font-bold text-amber-100">${item.name}</p>
-                            <p class="text-neutral-400">₹${item.price} x ${item.qty}</p>
+                            <p class="text-neutral-400">₹${item.price} x ${item.qty} = <span class="text-amber-300">₹${item.price * item.qty}</span></p>
                         </div>
                         <button onclick="removeItem(${index})" class="text-red-400 font-bold cursor-pointer">Remove</button>
                     </div>
@@ -227,13 +275,13 @@
                 return;
             }
 
-            let msg = `*NEW ORDER - MR FRAGRANCE*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A%0A*Items:*%0A`;
+            let msg = `*NEW ORDER - MR FRAGRANCE*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A%0A*Items Ordered:*%0A`;
             let total = 0;
             cart.forEach(i => {
                 msg += `- ${i.name} (Qty: ${i.qty}) - ₹${i.price * i.qty}%0A`;
                 total += i.price * i.qty;
             });
-            msg += `%0A*Total:* ₹${total}%0A*Payment:* COD`;
+            msg += `%0A*Total Amount:* ₹${total}%0A*Payment Mode:* Cash on Delivery (COD)`;
 
             let myWhatsApp = "966561026351"; // Apna WhatsApp number yahan daalein
             window.open(`https://wa.me/${myWhatsApp}?text=${msg}`, '_blank');
