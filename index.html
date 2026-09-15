@@ -35,11 +35,6 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
 
-    <!-- Snipcart Configuration & Styles -->
-    <script async src="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.js"></script>
-    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.1/default/snipcart.css" />
-    <div id="snipcart" data-api-key="OWYxOGMwYjEtOGU1OS00ZmZiLWIzMzktMTQ2ZGJmNDNjZjc3NjM5MjUwMTk5MTk2ODMxNTQx" data-currency="inr" hidden></div>
-
     <!-- Header / Navbar -->
     <header class="border-b gold-border py-4 px-6 md:px-12 flex justify-between items-center max-w-7xl mx-auto w-full bg-black/40 backdrop-blur-md sticky top-0 z-50">
         <div class="flex items-center gap-3">
@@ -50,8 +45,8 @@
             </div>
         </div>
         <!-- Cart Button -->
-        <button class="snipcart-checkout gold-bg text-black font-semibold px-5 py-2 rounded-full text-sm transition shadow-lg shadow-amber-900/20 flex items-center gap-2 cursor-pointer">
-            🛒 Cart (<span class="snipcart-items-count">0</span>)
+        <button onclick="openCartDrawer()" class="gold-bg text-black font-semibold px-5 py-2 rounded-full text-sm transition shadow-lg shadow-amber-900/20 flex items-center gap-2 cursor-pointer">
+            🛒 Cart (<span id="cartCount">0</span>)
         </button>
     </header>
 
@@ -85,59 +80,59 @@
             <!-- Products Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 
-                <!-- Product Card 1 -->
+                <!-- Product 1 -->
                 <div class="bg-neutral-900/60 border gold-border rounded-2xl overflow-hidden shadow-xl hover:border-amber-500/60 transition duration-300 flex flex-col justify-between group">
-                    <div class="cursor-pointer" onclick="openProductModal('Royal Oud Noir', '2499', 'product1.jpg', 'A deep, rich oriental blend with warm amber and smoky wood notes. Handcrafted for long-lasting sophistication and royal aura.', '100ml / 3.4 fl oz')">
+                    <div class="cursor-pointer" onclick="openProductModal('Royal Oud Noir', 2499, 'product1.jpg', 'A deep, rich oriental blend with warm amber and smoky wood notes.', '100ml / 3.4 fl oz')">
                         <div class="overflow-hidden h-64 bg-neutral-950">
                             <img src="product1.jpg" alt="Royal Oud Perfume" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         </div>
                         <div class="p-6">
-                            <h4 class="brand-font font-bold text-lg mb-1 text-amber-100 hover:text-amber-400 transition">Royal Oud Noir</h4>
+                            <h4 class="brand-font font-bold text-lg mb-1 text-amber-100">Royal Oud Noir</h4>
                             <p class="text-neutral-400 text-xs leading-relaxed mb-4 font-light">A deep, rich oriental blend with warm amber and smoky wood notes.</p>
                         </div>
                     </div>
                     <div class="p-6 pt-0 flex items-center justify-between border-t border-neutral-800/60 mt-4">
                         <span class="text-lg font-bold gold-gradient">₹2,499</span>
-                        <button onclick="openProductModal('Royal Oud Noir', '2499', 'product1.jpg', 'A deep, rich oriental blend with warm amber and smoky wood notes. Handcrafted for long-lasting sophistication and royal aura.', '100ml / 3.4 fl oz')" class="gold-bg text-black px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md cursor-pointer">
-                          View Details
+                        <button onclick="addToCart('Royal Oud Noir', 2499, 'product1.jpg')" class="gold-bg text-black px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md cursor-pointer">
+                          Add To Cart
                         </button>
                     </div>
                 </div>
 
-                <!-- Product Card 2 -->
+                <!-- Product 2 -->
                 <div class="bg-neutral-900/60 border gold-border rounded-2xl overflow-hidden shadow-xl hover:border-amber-500/60 transition duration-300 flex flex-col justify-between group">
-                    <div class="cursor-pointer" onclick="openProductModal('Golden Amber Elixir', '2999', 'product2.jpg', 'An intoxicating fusion of sweet floral honey and rich golden resins designed for unforgettable evenings.', '100ml / 3.4 fl oz')">
+                    <div class="cursor-pointer" onclick="openProductModal('Golden Amber Elixir', 2999, 'product2.jpg', 'An intoxicating fusion of sweet floral honey and rich golden resins.', '100ml / 3.4 fl oz')">
                         <div class="overflow-hidden h-64 bg-neutral-950">
                             <img src="product2.jpg" alt="Golden Amber Perfume" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         </div>
                         <div class="p-6">
-                            <h4 class="brand-font font-bold text-lg mb-1 text-amber-100 hover:text-amber-400 transition">Golden Amber Elixir</h4>
+                            <h4 class="brand-font font-bold text-lg mb-1 text-amber-100">Golden Amber Elixir</h4>
                             <p class="text-neutral-400 text-xs leading-relaxed mb-4 font-light">An intoxicating fusion of sweet floral honey and rich golden resins.</p>
                         </div>
                     </div>
                     <div class="p-6 pt-0 flex items-center justify-between border-t border-neutral-800/60 mt-4">
                         <span class="text-lg font-bold gold-gradient">₹2,999</span>
-                        <button onclick="openProductModal('Golden Amber Elixir', '2999', 'product2.jpg', 'An intoxicating fusion of sweet floral honey and rich golden resins designed for unforgettable evenings.', '100ml / 3.4 fl oz')" class="gold-bg text-black px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md cursor-pointer">
-                          View Details
+                        <button onclick="addToCart('Golden Amber Elixir', 2999, 'product2.jpg')" class="gold-bg text-black px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md cursor-pointer">
+                          Add To Cart
                         </button>
                     </div>
                 </div>
 
-                <!-- Product Card 3 -->
+                <!-- Product 3 -->
                 <div class="bg-neutral-900/60 border gold-border rounded-2xl overflow-hidden shadow-xl hover:border-amber-500/60 transition duration-300 flex flex-col justify-between group">
-                    <div class="cursor-pointer" onclick="openProductModal('Velvet Musk Intense', '1999', 'product3.jpg', 'Sensual, smooth, and captivating with a long-lasting velvet trail that stays close to your skin all day.', '100ml / 3.4 fl oz')">
+                    <div class="cursor-pointer" onclick="openProductModal('Velvet Musk Intense', 1999, 'product3.jpg', 'Sensual, smooth, and captivating with a long-lasting velvet trail.', '100ml / 3.4 fl oz')">
                         <div class="overflow-hidden h-64 bg-neutral-950">
                             <img src="product3.jpg" alt="Velvet Musk Perfume" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
                         </div>
                         <div class="p-6">
-                            <h4 class="brand-font font-bold text-lg mb-1 text-amber-100 hover:text-amber-400 transition">Velvet Musk Intense</h4>
+                            <h4 class="brand-font font-bold text-lg mb-1 text-amber-100">Velvet Musk Intense</h4>
                             <p class="text-neutral-400 text-xs leading-relaxed mb-4 font-light">Sensual, smooth, and captivating with a long-lasting velvet trail.</p>
                         </div>
                     </div>
                     <div class="p-6 pt-0 flex items-center justify-between border-t border-neutral-800/60 mt-4">
                         <span class="text-lg font-bold gold-gradient">₹1,999</span>
-                        <button onclick="openProductModal('Velvet Musk Intense', '1999', 'product3.jpg', 'Sensual, smooth, and captivating with a long-lasting velvet trail that stays close to your skin all day.', '100ml / 3.4 fl oz')" class="gold-bg text-black px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md cursor-pointer">
-                          View Details
+                        <button onclick="addToCart('Velvet Musk Intense', 1999, 'product3.jpg')" class="gold-bg text-black px-4 py-2 rounded-xl text-xs font-bold tracking-wider uppercase transition shadow-md cursor-pointer">
+                          Add To Cart
                         </button>
                     </div>
                 </div>
@@ -147,9 +142,14 @@
 
     </main>
 
-    <!-- Product Details Modal (Popup for full details & quantity) -->
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/966561026351?text=Hi%20MR%20Fragrance,%20I%20want%20to%20know%20more%20about%20your%20perfumes." target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-600 hover:bg-green-500 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition transform hover:scale-110">
+        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </a>
+
+    <!-- Product Details Modal -->
     <div id="productModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
-        <div class="bg-neutral-900 border gold-border rounded-3xl max-w-2xl w-full overflow-hidden relative shadow-2xl animate-fade-in">
+        <div class="bg-neutral-900 border gold-border rounded-3xl max-w-2xl w-full overflow-hidden relative shadow-2xl">
             <button onclick="closeProductModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white bg-neutral-800 rounded-full w-8 h-8 flex items-center justify-center font-bold z-10">&times;</button>
             <div class="grid grid-cols-1 md:grid-cols-2">
                 <div class="h-72 md:h-full bg-neutral-950">
@@ -163,7 +163,7 @@
                         <p id="modalPrice" class="text-2xl font-bold gold-gradient mb-4"></p>
                         <p id="modalDesc" class="text-neutral-300 text-xs leading-relaxed mb-6 font-light"></p>
                         
-                        <!-- Quantity Selector -->
+                        <!-- Quantity -->
                         <div class="flex items-center gap-4 mb-6">
                             <span class="text-xs text-neutral-400 uppercase tracking-wider">Quantity:</span>
                             <div class="flex items-center border gold-border rounded-xl bg-neutral-950 overflow-hidden">
@@ -175,16 +175,48 @@
                     </div>
 
                     <div class="flex gap-3">
-                        <!-- Add to Cart Button via JavaScript -->
-                        <button id="modalAddToCartBtn" class="flex-1 border gold-border text-amber-300 hover:bg-amber-500/10 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer">
+                        <button onclick="addModalToCart()" class="flex-1 border gold-border text-amber-300 hover:bg-amber-500/10 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer">
                             Add To Cart
                         </button>
-                        <!-- Buy Now Button -->
-                        <button id="modalBuyNowBtn" class="flex-1 gold-bg text-black py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-lg cursor-pointer">
+                        <button onclick="buyNowModal()" class="flex-1 gold-bg text-black py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-lg cursor-pointer">
                             Buy Now
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer & Checkout Form -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex justify-end">
+        <div class="bg-neutral-900 border-l gold-border w-full max-w-md h-full flex flex-col justify-between p-6 overflow-y-auto">
+            <div>
+                <div class="flex justify-between items-center mb-6 border-b border-neutral-800 pb-4">
+                    <h3 class="brand-font text-xl font-bold gold-gradient">Your Shopping Cart</h3>
+                    <button onclick="closeCartDrawer()" class="text-neutral-400 hover:text-white text-xl font-bold">&times;</button>
+                </div>
+                
+                <div id="cartItemsList" class="space-y-4 mb-6">
+                    <!-- Dynamic Cart Items -->
+                </div>
+            </div>
+
+            <div id="checkoutSection" class="border-t border-neutral-800 pt-6 hidden">
+                <div class="flex justify-between items-center mb-4 text-lg font-bold">
+                    <span>Total Amount:</span>
+                    <span id="cartTotalPrice" class="gold-gradient">₹0</span>
+                </div>
+                
+                <h4 class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-3">Shipping & COD Details</h4>
+                <div class="space-y-3 mb-6">
+                    <input type="text" id="custName" placeholder="Full Name" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white placeholder-neutral-500 focus:outline-none">
+                    <input type="tel" id="custPhone" placeholder="Phone Number" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white placeholder-neutral-500 focus:outline-none">
+                    <textarea id="custAddress" placeholder="Complete Delivery Address (House No, Street, City, Pincode)" rows="3" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white placeholder-neutral-500 focus:outline-none"></textarea>
+                </div>
+
+                <button onclick="checkoutWhatsApp()" class="w-full gold-bg text-black py-3.5 rounded-xl text-xs font-bold uppercase tracking-widest transition shadow-lg cursor-pointer flex items-center justify-center gap-2">
+                    <span>Place Order via WhatsApp (COD)</span> 🚀
+                </button>
             </div>
         </div>
     </div>
@@ -198,22 +230,21 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Modal & Snipcart dynamic handling -->
+    <!-- JavaScript Logic -->
     <script>
-        let currentProduct = {};
-        let quantity = 1;
+        let cart = [];
+        let currentModalProduct = {};
+        let modalQty = 1;
 
         function openProductModal(name, price, image, desc, size) {
-            currentProduct = { name, price, image, desc, size };
-            quantity = 1;
-            document.getElementById('modalQty').innerText = quantity;
+            currentModalProduct = { name, price, image };
+            modalQty = 1;
+            document.getElementById('modalQty').innerText = modalQty;
             document.getElementById('modalTitle').innerText = name;
-            document.getElementById('modalPrice').innerText = '₹' + Number(price).toLocaleString('en-IN');
+            document.getElementById('modalPrice').innerText = '₹' + price.toLocaleString('en-IN');
             document.getElementById('modalImage').src = image;
             document.getElementById('modalDesc').innerText = desc;
             document.getElementById('modalSize').innerText = size;
-
-            updateButtons();
             document.getElementById('productModal').classList.remove('hidden');
         }
 
@@ -221,38 +252,63 @@
             document.getElementById('productModal').classList.add('hidden');
         }
 
-        function changeQty(amount) {
-            quantity += amount;
-            if (quantity < 1) quantity = 1;
-            document.getElementById('modalQty').innerText = quantity;
-            updateButtons();
+        function changeQty(amt) {
+            modalQty += amt;
+            if (modalQty < 1) modalQty = 1;
+            document.getElementById('modalQty').innerText = modalQty;
         }
 
-        function updateButtons() {
-            const idSlug = currentProduct.name ? currentProduct.name.toLowerCase().replace(/ /g, '-') : 'item';
-            
-            // Update Add to Cart Button with Snipcart attributes
-            const cartBtn = document.getElementById('modalAddToCartBtn');
-            cartBtn.className = "snipcart-add-item flex-1 border gold-border text-amber-300 hover:bg-amber-500/10 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition cursor-pointer";
-            cartBtn.setAttribute('data-item-id', idSlug);
-            cartBtn.setAttribute('data-item-name', currentProduct.name);
-            cartBtn.setAttribute('data-item-price', currentProduct.price);
-            cartBtn.setAttribute('data-item-url', '/');
-            cartBtn.setAttribute('data-item-image', currentProduct.image);
-            cartBtn.setAttribute('data-item-quantity', quantity);
-
-            // Update Buy Now Button (Snipcart checkout shortcut)
-            const buyBtn = document.getElementById('modalBuyNowBtn');
-            buyBtn.className = "snipcart-add-item gold-bg text-black flex-1 py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-lg cursor-pointer";
-            buyBtn.setAttribute('data-item-id', idSlug);
-            buyBtn.setAttribute('data-item-name', currentProduct.name);
-            buyBtn.setAttribute('data-item-price', currentProduct.price);
-            buyBtn.setAttribute('data-item-url', '/');
-            buyBtn.setAttribute('data-item-image', currentProduct.image);
-            buyBtn.setAttribute('data-item-quantity', quantity);
+        function addToCart(name, price, image, qty = 1) {
+            let existing = cart.find(item => item.name === name);
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                cart.push({ name, price, image, qty });
+            }
+            updateCartUI();
+            alert(name + " added to cart successfully!");
         }
-    </script>
 
-</body>
-                            </html>
-                            
+        function addModalToCart() {
+            addToCart(currentModalProduct.name, currentModalProduct.price, currentModalProduct.image, modalQty);
+            closeProductModal();
+        }
+
+        function buyNowModal() {
+            addToCart(currentModalProduct.name, currentModalProduct.price, currentModalProduct.image, modalQty);
+            closeProductModal();
+            openCartDrawer();
+        }
+
+        function openCartDrawer() {
+            document.getElementById('cartDrawer').classList.remove('hidden');
+            updateCartUI();
+        }
+
+        function closeCartDrawer() {
+            document.getElementById('cartDrawer').classList.add('hidden');
+        }
+
+        function updateCartUI() {
+            let totalCount = 0;
+            let totalPrice = 0;
+            let listHTML = '';
+
+            cart.forEach((item, index) => {
+                totalCount += item.qty;
+                totalPrice += item.price * item.qty;
+                listHTML += `
+                    <div class="flex items-center justify-between bg-neutral-950 p-3 rounded-xl border gold-border">
+                        <div class="flex items-center gap-3">
+                            <img src="${item.image}" class="w-12 h-12 object-cover rounded-lg">
+                            <div>
+                                <h5 class="text-xs font-bold text-amber-100">${item.name}</h5>
+                                <p class="text-[10px] text-neutral-400">₹${item.price} x ${item.qty}</p>
+                            </div>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 text-xs font-bold px-2">Remove</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById('cartCount').innerText
