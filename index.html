@@ -33,11 +33,14 @@
 
     <!-- Header -->
     <header class="w-full border-b gold-border px-4 py-4 md:px-12 flex justify-between items-center bg-neutral-950/80 backdrop-blur-md sticky top-0 z-40">
-        <div>
-            <h1 class="text-xl md:text-2xl font-bold brand-font gold-gradient tracking-wider">MR FRAGRANCE</h1>
-            <p class="text-[9px] text-amber-200/70 uppercase tracking-widest">Scents That Speak You</p>
+        <div class="flex items-center gap-3">
+            <img src="logo.png" alt="Logo" class="w-9 h-9 rounded-full border gold-border object-cover shadow-md">
+            <div>
+                <h1 class="text-lg md:text-xl font-bold brand-font gold-gradient tracking-wider">MR FRAGRANCE</h1>
+                <p class="text-[8px] text-amber-200/70 uppercase tracking-widest">Scents That Speak You</p>
+            </div>
         </div>
-        <button id="cartBtn" class="gold-bg px-4.5 py-2 rounded-full font-bold text-xs shadow-lg cursor-pointer flex items-center gap-1.5 transition transform active:scale-95">
+        <button id="cartBtn" class="gold-bg px-4 py-2 rounded-full font-bold text-xs shadow-lg cursor-pointer flex items-center gap-1.5 transition transform active:scale-95">
             🛒 Cart (<span id="cartCount">0</span>)
         </button>
     </header>
@@ -45,50 +48,74 @@
     <!-- Main Content -->
     <main class="w-full max-w-4xl mx-auto px-4 py-8 flex-grow">
         
-        <!-- Opening Soon / Hero Banner -->
+        <!-- Coming Soon Banner -->
         <div class="relative rounded-3xl overflow-hidden border gold-border mb-10 bg-neutral-900 shadow-2xl">
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent z-10"></div>
-            <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1000&auto=format&fit=crop" alt="Luxury Perfume" class="w-full h-72 md:h-96 object-cover opacity-60 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
+            <img src="coming-soon.jpg" alt="Opening Soon" class="w-full h-72 md:h-96 object-cover opacity-90">
             
-            <div class="absolute inset-0 z-20 flex flex-col justify-end p-6 md:p-10 text-center">
-                <span class="inline-block bg-amber-500/20 border gold-border text-amber-300 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full mb-3 mx-auto backdrop-blur-md">
-                    ✨ Opening Soon ✨
+            <div class="absolute inset-0 z-20 flex flex-col justify-end p-6 md:p-8 text-center">
+                <span class="inline-block bg-amber-500/20 border gold-border text-amber-300 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full mb-2 mx-auto backdrop-blur-md">
+                    ✨ Coming Soon ✨
                 </span>
-                <h2 class="text-2xl md:text-4xl font-bold brand-font gold-gradient mb-2">The Essence of Royalty</h2>
-                <p class="text-xs md:text-sm text-neutral-300 max-w-lg mx-auto">Crafted with rare ingredients for those who leave an unforgettable presence behind.</p>
+                <h2 class="text-2xl md:text-3xl font-bold brand-font gold-gradient mb-1">The Essence of Royalty</h2>
+                <p class="text-xs text-neutral-300">Crafted with rare ingredients for an unforgettable presence.</p>
             </div>
         </div>
 
-        <!-- Products Grid -->
+        <!-- Products Grid Header -->
         <div class="text-center mb-6">
             <h3 class="text-lg font-bold brand-font gold-gradient mb-1">Signature Collection</h3>
-            <p class="text-xs text-neutral-400">Tap below to add items to your cart</p>
+            <p class="text-xs text-neutral-400">Explore our exclusive luxury perfumes</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- Products Grid (3 Products with real images) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            
             <!-- Product 1 -->
-            <div class="bg-neutral-900 border gold-border p-5 rounded-2xl flex flex-col justify-between shadow-xl">
-                <div>
-                    <h4 class="text-base font-bold text-amber-100 mb-1">Royal Oud Noir</h4>
-                    <p class="text-xs text-neutral-400 mb-4">A deep, rich oriental blend with warm amber and smoky wood notes.</p>
-                </div>
-                <div class="flex justify-between items-center border-t border-neutral-800 pt-4">
-                    <span class="font-bold gold-gradient text-base">₹2,499</span>
-                    <button onclick="addToCart('Royal Oud Noir', 2499)" class="gold-bg px-4 py-2 rounded-xl font-bold text-xs uppercase cursor-pointer hover:opacity-90 transition">Add To Cart</button>
+            <div class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
+                <img src="product1.jpg" alt="Royal Oud Noir" class="w-full h-48 object-cover border-b gold-border">
+                <div class="p-4 flex flex-col flex-grow justify-between">
+                    <div>
+                        <h4 class="text-sm font-bold text-amber-100 mb-1">Royal Oud Noir</h4>
+                        <p class="text-[11px] text-neutral-400 mb-4">Rich oriental blend with warm amber and smoky wood notes.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹2,499</span>
+                        <button onclick="addToCart('Royal Oud Noir', 2499)" class="gold-bg px-3.5 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add</button>
+                    </div>
                 </div>
             </div>
 
             <!-- Product 2 -->
-            <div class="bg-neutral-900 border gold-border p-5 rounded-2xl flex flex-col justify-between shadow-xl">
-                <div>
-                    <h4 class="text-base font-bold text-amber-100 mb-1">Golden Amber Elixir</h4>
-                    <p class="text-xs text-neutral-400 mb-4">An intoxicating fusion of sweet floral honey and rich golden resins.</p>
-                </div>
-                <div class="flex justify-between items-center border-t border-neutral-800 pt-4">
-                    <span class="font-bold gold-gradient text-base">₹2,999</span>
-                    <button onclick="addToCart('Golden Amber Elixir', 2999)" class="gold-bg px-4 py-2 rounded-xl font-bold text-xs uppercase cursor-pointer hover:opacity-90 transition">Add To Cart</button>
+            <div class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
+                <img src="product2.jpg" alt="Golden Amber Elixir" class="w-full h-48 object-cover border-b gold-border">
+                <div class="p-4 flex flex-col flex-grow justify-between">
+                    <div>
+                        <h4 class="text-sm font-bold text-amber-100 mb-1">Golden Amber Elixir</h4>
+                        <p class="text-[11px] text-neutral-400 mb-4">Intoxicating fusion of sweet floral honey and golden resins.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹2,999</span>
+                        <button onclick="addToCart('Golden Amber Elixir', 2999)" class="gold-bg px-3.5 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add</button>
+                    </div>
                 </div>
             </div>
+
+            <!-- Product 3 -->
+            <div class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl sm:col-span-2 md:col-span-1">
+                <img src="product3.jpg" alt="Velvet Musk Royal" class="w-full h-48 object-cover border-b gold-border">
+                <div class="p-4 flex flex-col flex-grow justify-between">
+                    <div>
+                        <h4 class="text-sm font-bold text-amber-100 mb-1">Velvet Musk Royal</h4>
+                        <p class="text-[11px] text-neutral-400 mb-4">Smooth velvet touch with deep sensuous musk and spices.</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹3,499</span>
+                        <button onclick="addToCart('Velvet Musk Royal', 3499)" class="gold-bg px-3.5 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -208,7 +235,7 @@
             });
             msg += `%0A*Total:* ₹${total}%0A*Payment:* COD`;
 
-            let myWhatsApp = "966561026351"; // Apna WhatsApp number yahan badal sakte hain
+            let myWhatsApp = "966561026351"; // Apna WhatsApp number yahan daalein
             window.open(`https://wa.me/${myWhatsApp}?text=${msg}`, '_blank');
         }
     </script>
