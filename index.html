@@ -176,39 +176,26 @@
                     <span id="cartTotal" class="gold-gradient">₹0</span>
                 </div>
 
-                <!-- Payment Method Selection -->
-                <div class="mb-4">
-                    <label class="block text-xs font-bold text-amber-200 mb-2">Select Payment Method:</label>
-                    <div class="grid grid-cols-2 gap-2">
-                        <label id="upiTab" onclick="setPaymentMethod('upi')" class="bg-neutral-950 border gold-border p-2.5 rounded-xl text-center text-xs font-bold cursor-pointer transition border-amber-400 text-amber-300">
-                            ⚡ Online UPI
-                        </label>
-                        <label id="codTab" onclick="setPaymentMethod('cod')" class="bg-neutral-950 border border-neutral-800 p-2.5 rounded-xl text-center text-xs font-bold cursor-pointer transition text-neutral-400">
-                            💵 Cash on Delivery
-                        </label>
-                    </div>
-                </div>
-
-                <!-- UPI QR Code & Payment Section (Shows only when UPI is selected) -->
-                <div id="upiContainer" class="bg-neutral-950 border gold-border p-3 rounded-xl text-center mb-4">
+                <!-- UPI QR Code & Payment Section -->
+                <div class="bg-neutral-950 border gold-border p-3 rounded-xl text-center mb-4">
                     <p class="text-xs font-bold text-amber-200 mb-2">Scan & Pay via UPI (GPay / PhonePe / Paytm)</p>
+                    <!-- Yahan apni QR image ka naam 'upi-qr.jpg' rakh dena ya URL daal dena -->
                     <img src="upi-qr.jpg" alt="UPI QR Code" class="w-32 h-32 mx-auto rounded-lg border gold-border mb-2 object-contain bg-white">
                     <p class="text-[10px] text-neutral-400 mb-3">Payment karke screenshot WhatsApp par bhejein.</p>
                     
+                    <!-- Direct UPI App Pay Button -->
                     <a id="upiPayBtn" href="#" target="_blank" class="w-full bg-blue-600 hover:bg-blue-500 text-white text-center py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider block transition">
                         Pay via UPI App ⚡
                     </a>
                 </div>
 
-                <!-- Customer Details Form -->
                 <div class="space-y-3 mb-4">
                     <input type="text" id="custName" placeholder="Full Name" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white">
                     <input type="tel" id="custPhone" placeholder="Phone Number" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white">
                     <textarea id="custAddress" placeholder="Full Delivery Address & Pincode" rows="3" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white"></textarea>
                 </div>
-                
                 <button onclick="checkoutWhatsApp()" class="w-full gold-bg py-3 rounded-xl font-bold text-xs uppercase tracking-wider cursor-pointer hover:opacity-95 transition">
-                    Place Order on WhatsApp 🚀
+                    Send Order & Payment Screenshot on WhatsApp 🚀
                 </button>
             </div>
         </div>
@@ -223,7 +210,6 @@
     <script>
         let cart = [];
         let currentTotalAmount = 0;
-        let selectedPayment = 'upi'; // Default payment method
 
         function changeQty(productId, amount) {
             let qtyElem = document.getElementById('qty-' + productId);
@@ -240,23 +226,6 @@
 
         function closeCart() {
             document.getElementById('cartDrawer').classList.add('hidden');
-        }
-
-        function setPaymentMethod(method) {
-            selectedPayment = method;
-            let upiTab = document.getElementById('upiTab');
-            let codTab = document.getElementById('codTab');
-            let upiContainer = document.getElementById('upiContainer');
-
-            if (method === 'upi') {
-                upiTab.className = "bg-neutral-950 border gold-border p-2.5 rounded-xl text-center text-xs font-bold cursor-pointer transition border-amber-400 text-amber-300";
-                codTab.className = "bg-neutral-950 border border-neutral-800 p-2.5 rounded-xl text-center text-xs font-bold cursor-pointer transition text-neutral-400";
-                upiContainer.classList.remove('hidden');
-            } else {
-                codTab.className = "bg-neutral-950 border gold-border p-2.5 rounded-xl text-center text-xs font-bold cursor-pointer transition border-amber-400 text-amber-300";
-                upiTab.className = "bg-neutral-950 border border-neutral-800 p-2.5 rounded-xl text-center text-xs font-bold cursor-pointer transition text-neutral-400";
-                upiContainer.classList.add('hidden');
-            }
         }
 
         function addWithQty(name, price, productId) {
@@ -296,8 +265,9 @@
             document.getElementById('cartItemsList').innerHTML = html || '<p class="text-xs text-neutral-500 text-center py-6">Cart is empty</p>';
             document.getElementById('cartTotal').textContent = '₹' + total;
 
-            // Update Direct UPI Link dynamically
-            let myUpiID = "mufiq1820@dbs"; // Yahan apni UPI ID daal dena
+            // Update Direct UPI Link dynamically with total amount
+            // NOTE: Yahan '9876543210@paytm' ki jagah apni asli UPI ID daal dena!
+            let myUpiID = "mufiq1820@dbs"; 
             let upiLink = `upi://pay?pa=${myUpiID}&pn=MR%20Fragrance&am=${total}&cu=INR`;
             document.getElementById('upiPayBtn').setAttribute('href', upiLink);
 
@@ -313,4 +283,28 @@
             updateCart();
         }
 
-   
+        function checkoutWhatsApp() {
+            let name = document.getElementById('custName').value.trim();
+            let phone = document.getElementById('custPhone').value.trim();
+            let address = document.getElementById('custAddress').value.trim();
+
+            if (!name || !phone || !address) {
+                alert("Please fill in Name, Phone, and Address!");
+                return;
+            }
+
+            let msg = `*NEW UPI ORDER - MR FRAGRANCE*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A%0A*Items Ordered:*%0A`;
+            let total = 0;
+            cart.forEach(i => {
+                msg += `- ${i.name} (Qty: ${i.qty}) - ₹${i.price * i.qty}%0A`;
+                total += i.price * i.qty;
+            });
+            msg += `%0A*Total Amount Paid:* ₹${total}%0A*Payment Mode:* UPI (Screenshot Attached Below)`;
+
+            let myWhatsApp = "966561026351"; // Apna WhatsApp number yahan daalein
+            window.open(`https://wa.me/${myWhatsApp}?text=${msg}`, '_blank');
+        }
+    </script>
+</body>
+                        </html>
+                        
