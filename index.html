@@ -816,41 +816,6 @@ function toggleSidebar() {
         }, 300);
     }
 }
-    // Order Tracking Database & Logic
-const ordersDatabase = {
-    "917506569545": {
-        orderId: "MRF-001",
-        name: "Mr Mungi",
-        items: "Noor-e-Oud x 1",
-        status: "📦 Packed & Ready for Dispatch"
-    }
-};
-
-function trackOrder() {
-    let phoneInput = document.getElementById('trackPhone').value.trim();
-    let resultBox = document.getElementById('trackResult');
-    
-    if(!phoneInput) {
-        alert("Please enter your phone number!");
-        return;
-    }
-
-    let order = ordersDatabase[phoneInput];
-
-    if(order) {
-        document.getElementById('resOrderId').innerText = order.orderId;
-        document.getElementById('resName').innerText = order.name;
-        document.getElementById('resItems').innerText = order.items;
-        document.getElementById('resStatus').innerText = order.status;
-        resultBox.classList.remove('hidden');
-    } else {
-        resultBox.classList.remove('hidden');
-        document.getElementById('resOrderId').innerText = "N/A";
-        document.getElementById('resName').innerText = "Not Found";
-        document.getElementById('resItems').innerText = "N/A";
-        document.getElementById('resStatus').innerText = "❌ No active order found for this number.";
-    }
-}
     
 </script>
     
