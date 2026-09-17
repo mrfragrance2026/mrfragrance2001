@@ -656,26 +656,48 @@
         }
 
         function checkoutWhatsApp() {
-            let name = document.getElementById('custName').value.trim();
-            let phone = document.getElementById('custPhone').value.trim();
-            let address = document.getElementById('custAddress').value.trim();
+    let name = document.getElementById('custName').value;
+    let phone = document.getElementById('custPhone').value;
+    let address = document.getElementById('custAddress').value;
 
-            if (!name || !phone || !address) {
-                alert("Please fill in Name, Phone, and Address!");
-                return;
-            }
+    if (!name || !phone || !address) {
+        alert('Kripya apna Naam, Phone Number aur Address bharein!');
+        return;
+    }
 
-            let msg = `*NEW UPI ORDER - MR FRAGRANCE*%0A%0A*Name:* ${name}%0A*Phone:* ${phone}%0A*Address:* ${address}%0A%0A*Items Ordered:*%0A`;
-            let total = 0;
-            cart.forEach(i => {
-                msg += `- ${i.name} (Qty: ${i.qty}) - ₹${i.price * i.qty}%0A`;
-                total += i.price * i.qty;
-            });
-            msg += `%0A*Total Amount Paid:* ₹${total}%0A*Payment Mode:* UPI (Screenshot Attached Below)`;
+    let selectedPayment = document.querySelector('input[name="paymentMethod"]:checked');
+    let paymentMethod = selectedPayment ? selectedPayment.value : 'Cash on Delivery (COD)';
 
-            let myWhatsApp = "966561026351";
-            window.open(`https://wa.me/${myWhatsApp}?text=${msg}`, '_blank');
-        }
+    let cartText = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        cartText += `- ${item.name} (${item.size}) x ${item.qty} = ₹${item.price * item.qty}\n`;
+        total += item.price * item.qty;
+    });
+
+    let paymentStatusMessage = "";
+    if (paymentMethod.includes("COD")) {
+        paymentStatusMessage = `*Payment Method:* Cash on Delivery (COD)\n*Status:* Pay on Delivery`;
+    } else {
+        paymentStatusMessage = `*Payment Method:* ${paymentMethod}\n*Status:* PAID Online (Customer will attach payment screenshot below)`;
+    }
+
+    let message = `*New Order - MR Fragrance*\n\n` +
+                  `*Customer Details:*\n` +
+                  `Name: ${name}\n` +
+                  `Phone: ${phone}\n` +
+                  `Address: ${address}\n\n` +
+                  `${paymentStatusMessage}\n\n` +
+                  `*Order Items:*\n${cartText}\n` +
+                  `*Total Amount:* ₹${total}\n\n` +
+                  `_Note: Please attach your payment screenshot here if paid online!_`;
+
+    let encodedMessage = encodeURIComponent(message);
+    let whatsappNumber = "919665610263"; // Aapka purana number jo screenshot mein tha
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+}
+        
     </script>
 </body>
 </html>
