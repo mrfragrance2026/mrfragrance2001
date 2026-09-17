@@ -693,8 +693,52 @@
     let whatsappNumber = "966561026351"; // Aapka purana number jo screenshot mein tha
     window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
 }
+   function openProductModal(name, price, image, topNotes, heartNotes, baseNotes, desc) {
+    document.getElementById('modalTitle').innerText = name;
+    document.getElementById('modalPrice').innerText = "₹" + price;
+    document.getElementById('modalImg').src = image;
+    document.getElementById('modalTopNotes').innerText = topNotes;
+    document.getElementById('modalHeartNotes').innerText = heartNotes;
+    document.getElementById('modalBaseNotes').innerText = baseNotes;
+    document.getElementById('modalDesc').innerText = desc;
+    
+    document.getElementById('productModal').classList.remove('hidden');
+}
+
+function closeProductModal() {
+    document.getElementById('productModal').classList.add('hidden');
+}
         
-    </script>
+    </script><!-- Product Details Popup Modal -->
+<div id="productModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden p-4">
+    <div class="bg-neutral-900 border gold-border rounded-2xl max-w-md w-full p-6 relative text-left">
+        <!-- Close Button -->
+        <button onclick="closeProductModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-xl font-bold">✕</button>
+        
+        <!-- Product Image -->
+        <img id="modalImg" src="" alt="Perfume" class="w-full h-48 object-cover rounded-xl mb-4 border border-neutral-800">
+        
+        <!-- Product Name & Price -->
+        <h2 id="modalTitle" class="text-xl font-bold text-amber-300 mb-1"></h2>
+        <p id="modalPrice" class="text-lg font-semibold text-white mb-4"></p>
+        
+        <!-- Fragrance Notes Box -->
+        <div class="bg-neutral-800/60 rounded-xl p-3 mb-4 text-sm text-neutral-300 space-y-2">
+            <p><strong>✨ Top Notes:</strong> <span id="modalTopNotes"></span></p>
+            <p><strong>🌹 Heart Notes:</strong> <span id="modalHeartNotes"></span></p>
+            <p><strong>🪵 Base Notes:</strong> <span id="modalBaseNotes"></span></p>
+        </div>
+
+        <!-- Description -->
+        <p id="modalDesc" class="text-xs text-neutral-400 mb-6 leading-relaxed"></p>
+
+        <!-- Close Button Inside Modal -->
+        <button onclick="closeProductModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-neutral-950 font-bold py-3 rounded-xl transition">
+            Close
+        </button>
+    </div>
+</div>
+    
 </body>
 </html>
                     
