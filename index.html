@@ -543,7 +543,31 @@
                     <input type="text" id="custName" placeholder="Full Name" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white">
                     <input type="tel" id="custPhone" placeholder="Phone Number" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white">
                     <textarea id="custAddress" placeholder="Full Delivery Address & Pincode" rows="3" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white"></textarea>
-                </div>
+                </div> <!-- Payment Methods Selection Box -->
+<div class="bg-neutral-900 border gold-border rounded-xl p-4 my-4">
+    <h3 class="text-amber-300 font-semibold mb-3 text-sm uppercase tracking-wider">Select Payment Method</h3>
+    
+    <div class="space-y-2 text-left">
+        <!-- Option 1: COD -->
+        <label class="flex items-center space-x-3 text-neutral-300 cursor-pointer p-2 rounded bg-neutral-800 hover:bg-neutral-700 transition">
+            <input type="radio" name="paymentMethod" value="Cash on Delivery (COD)" checked class="text-amber-500 focus:ring-amber-400">
+            <span class="text-sm font-medium">💵 Cash on Delivery (COD)</span>
+        </label>
+
+        <!-- Option 2: Online / UPI -->
+        <label class="flex items-center space-x-3 text-neutral-300 cursor-pointer p-2 rounded bg-neutral-800 hover:bg-neutral-700 transition">
+            <input type="radio" name="paymentMethod" value="Online UPI (GPay/PhonePe)" class="text-amber-500 focus:ring-amber-400">
+            <span class="text-sm font-medium">📱 Online UPI (GPay / PhonePe / Paytm)</span>
+        </label>
+
+        <!-- Option 3: Card -->
+        <label class="flex items-center space-x-3 text-neutral-300 cursor-pointer p-2 rounded bg-neutral-800 hover:bg-neutral-700 transition">
+            <input type="radio" name="paymentMethod" value="Credit / Debit Card" class="text-amber-500 focus:ring-amber-400">
+            <span class="text-sm font-medium">💳 Credit / Debit Card</span>
+        </label>
+    </div>
+</div>
+                
                 <button onclick="checkoutWhatsApp()" class="w-full gold-bg py-3 rounded-xl font-bold text-xs uppercase tracking-wider cursor-pointer hover:opacity-95 transition">
                     Send Order & Payment Screenshot on WhatsApp 🚀
                 </button>
