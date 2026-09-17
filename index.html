@@ -515,24 +515,6 @@
     <input type="text" id="searchInput" placeholder="Search your favourite fragrance..." class="w-full bg-neutral-900 border gold-border rounded-xl px-4 py-3 text-white text-sm focus:outline-none">
 </div>
 
-<!-- Order Tracking Section -->
-<section id="track-section" class="py-8 px-4 max-w-xl mx-auto text-center border-t border-neutral-800 mt-6">
-    <h2 class="text-2xl font-bold text-amber-300 mb-2">Track Your Order</h2>
-    <p class="text-xs text-neutral-400 mb-6">Enter your WhatsApp phone number used during checkout to check your order status.</p>
-    
-    <div class="flex gap-2">
-        <input type="text" id="trackPhone" placeholder="Enter Phone Number (e.g. 9876543210)" class="flex-1 bg-neutral-900 border gold-border rounded-xl px-4 py-3 text-white text-sm focus:outline-none">
-        <button onclick="trackOrder()" class="bg-amber-500 hover:bg-amber-600 text-neutral-950 font-bold px-6 py-3 rounded-xl transition text-sm">Track</button>
-    </div>
-
-    <!-- Tracking Result Box -->
-    <div id="trackResult" class="hidden mt-6 bg-neutral-900 border border-neutral-800 rounded-xl p-4 text-left text-sm">
-        <p class="text-neutral-400 mb-1"><strong>Order ID:</strong> <span id="resOrderId" class="text-white"></span></p>
-        <p class="text-neutral-400 mb-1"><strong>Customer:</strong> <span id="resName" class="text-white"></span></p>
-        <p class="text-neutral-400 mb-1"><strong>Items:</strong> <span id="resItems" class="text-white"></span></p>
-        <p class="text-neutral-400"><strong>Current Status:</strong> <span id="resStatus" class="font-bold text-amber-400"></span></p>
-    </div>
-</section>
     
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/966561026351?text=Hi%20MR%20Fragrance,%20I%20want%20to%20know%20more." target="_blank" class="fixed bottom-6 right-6 z-30 bg-green-600 text-white p-3.5 rounded-full shadow-2xl flex items-center justify-center cursor-pointer hover:bg-green-500 transition transform hover:scale-110">
