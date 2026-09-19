@@ -55,84 +55,7 @@
     <!-- Main Content -->
     <main class="w-full max-w-6xl mx-auto px-4 py-8 flex-grow">
         <!-- === LUXURY PERFUME BRAND ADDITIONS === -->
-
-<!-- 1. Why Choose Us / Our Promise Badges -->
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap; background: #161616; padding: 20px; border-radius: 12px; margin: 20px auto; max-width: 800px; border: 1px solid #333; text-align: center; color: #fff;">
-    <div style="flex: 1; min-width: 200px; padding: 10px;">
-        <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">👑</div>
-        <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">100% Premium Oils</h4>
-        <p style="font-size: 12px; color: #aaa; margin: 0;">High concentration formulation for long-lasting fragrance.</p>
-    </div>
-    <div style="flex: 1; min-width: 200px; padding: 10px;">
-        <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">🚚</div>
-        <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">Fast & Safe Delivery</h4>
-        <p style="font-size: 12px; color: #aaa; margin: 0;">COD available in Mumbai & fast shipping across India.</p>
-    </div>
-    <div style="flex: 1; min-width: 200px; padding: 10px;">
-        <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">🤝</div>
-        <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">Direct From Maker</h4>
-        <p style="font-size: 12px; color: #aaa; margin: 0;">Handcrafted artisan perfumes with zero middlemen.</p>
-    </div>
-</div>
-
-<!-- 2. Notes Pyramid Example (Khushboo ke Layers) -->
-<div style="background: #111; border: 1px solid #444; border-radius: 12px; padding: 25px; margin: 20px auto; max-width: 800px; color: #fff;">
-    <h3 style="color: #f59e0b; text-align: center; margin-bottom: 15px;">🌟 The Fragrance Pyramid</h3>
-    <p style="text-align: center; font-size: 13px; color: #aaa; margin-bottom: 20px;">Hamare har perfume ko ekkhas layers ke sath design kiya jata hai jo waqt ke sath khilti hain:</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center;">
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #f59e0b;">
-            <h4 style="color: #f59e0b; font-size: 14px; margin: 0 0 5px 0;">Top Notes</h4>
-            <p style="font-size: 12px; color: #ccc; margin: 0;">Pehli mehak (Citrus, Bergamot, Fresh Spices)</p>
-        </div>
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #d97706;">
-            <h4 style="color: #fbbf24; font-size: 14px; margin: 0 0 5px 0;">Heart Notes</h4>
-            <p style="font-size: 12px; color: #ccc; margin: 0;">Asli jaan (Floral, Woody, Rich Accords)</p>
-        </div>
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #b45309;">
-            <h4 style="color: #f59e0b; font-size: 14px; margin: 0 0 5px 0;">Base Notes</h4>
-            <p style="font-size: 12px; color: #ccc; margin: 0;">Lambe samay tak tikne wali (Oud, Musk, Amber)</p>
-        </div>
-    </div>
-</div>
-
-<!-- 3. Customer Reviews / WhatsApp Review Section -->
-<div style="background: #111; border: 1px solid #333; border-radius: 12px; padding: 25px; margin: 20px auto; max-width: 800px; color: #fff;">
-    <h3 style="color: #f59e0b; text-align: center; margin-bottom: 10px;">💬 Share Your Experience</h3>
-    <p style="text-align: center; font-size: 13px; color: #aaa; margin-bottom: 20px;">Apna keemti review seedha humare WhatsApp par bhejein:</p>
     
-    <!-- WhatsApp Review Form -->
-    <form onsubmit="sendReviewToWhatsApp(event)" style="display: flex; flex-direction: column; gap: 12px; max-width: 500px; margin: 0 auto;">
-        <input type="text" id="reviewName" placeholder="Aapka Naam" required style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px;">
-        <textarea id="reviewText" placeholder="Apna review yahan likhein (Jaise: Fragrance bohot long-lasting hai!)..." required rows="3" style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px; resize: none;"></textarea>
-        <button type="submit" style="background: #25D366; color: #fff; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
-            <span>📱</span> Send Review on WhatsApp
-        </button>
-    </form>
-
-    
-
-<!-- JavaScript for WhatsApp Redirect -->
-<script>
-function sendReviewToWhatsApp(event) {
-    event.preventDefault();
-    
-    var name = document.getElementById('reviewName').value;
-    var text = document.getElementById('reviewText').value;
-    
-    // Yahan apna WhatsApp number dal dein (country code ke sath, jaise 91XXXXXXXXXX)
-    var phoneNumber = "966561026351"; 
-    
-    var whatsappMessage = "New Customer Review:\n\nName: " + name + "\nReview: " + text;
-    var encodedMessage = encodeURIComponent(whatsappMessage);
-    
-    var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
-    window.open(whatsappURL, '_blank');
-}
-</script>
-
-
-    
-        
         <!-- Coming Soon Banner -->
         <!-- Bismillah Header -->
 <div class="text-center mb-6">
@@ -884,7 +807,79 @@ function toggleSidebar() {
         }, 300);
     }
 }
+    <!-- 1. Why Choose Us / Our Promise Badges -->
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap; background: #161616; padding: 20px; border-radius: 12px; margin: 20px auto; max-width: 800px; border: 1px solid #333; text-align: center; color: #fff;">
+    <div style="flex: 1; min-width: 200px; padding: 10px;">
+        <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">👑</div>
+        <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">100% Premium Oils</h4>
+        <p style="font-size: 12px; color: #aaa; margin: 0;">High concentration formulation for long-lasting fragrance.</p>
+    </div>
+    <div style="flex: 1; min-width: 200px; padding: 10px;">
+        <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">🚚</div>
+        <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">Fast & Safe Delivery</h4>
+        <p style="font-size: 12px; color: #aaa; margin: 0;">COD available in Mumbai & fast shipping across India.</p>
+    </div>
+    <div style="flex: 1; min-width: 200px; padding: 10px;">
+        <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">🤝</div>
+        <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">Direct From Maker</h4>
+        <p style="font-size: 12px; color: #aaa; margin: 0;">Handcrafted artisan perfumes with zero middlemen.</p>
+    </div>
+</div>
+
+<!-- 2. Notes Pyramid Example (Khushboo ke Layers) -->
+<div style="background: #111; border: 1px solid #444; border-radius: 12px; padding: 25px; margin: 20px auto; max-width: 800px; color: #fff;">
+    <h3 style="color: #f59e0b; text-align: center; margin-bottom: 15px;">🌟 The Fragrance Pyramid</h3>
+    <p style="text-align: center; font-size: 13px; color: #aaa; margin-bottom: 20px;">Hamare har perfume ko ekkhas layers ke sath design kiya jata hai jo waqt ke sath khilti hain:</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center;">
+        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #f59e0b;">
+            <h4 style="color: #f59e0b; font-size: 14px; margin: 0 0 5px 0;">Top Notes</h4>
+            <p style="font-size: 12px; color: #ccc; margin: 0;">Pehli mehak (Citrus, Bergamot, Fresh Spices)</p>
+        </div>
+        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #d97706;">
+            <h4 style="color: #fbbf24; font-size: 14px; margin: 0 0 5px 0;">Heart Notes</h4>
+            <p style="font-size: 12px; color: #ccc; margin: 0;">Asli jaan (Floral, Woody, Rich Accords)</p>
+        </div>
+        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #b45309;">
+            <h4 style="color: #f59e0b; font-size: 14px; margin: 0 0 5px 0;">Base Notes</h4>
+            <p style="font-size: 12px; color: #ccc; margin: 0;">Lambe samay tak tikne wali (Oud, Musk, Amber)</p>
+        </div>
+    </div>
+</div>
+
+<!-- 3. Customer Reviews / WhatsApp Review Section -->
+<div style="background: #111; border: 1px solid #333; border-radius: 12px; padding: 25px; margin: 20px auto; max-width: 800px; color: #fff;">
+    <h3 style="color: #f59e0b; text-align: center; margin-bottom: 10px;">💬 Share Your Experience</h3>
+    <p style="text-align: center; font-size: 13px; color: #aaa; margin-bottom: 20px;">Apna keemti review seedha humare WhatsApp par bhejein:</p>
     
+    <!-- WhatsApp Review Form -->
+    <form onsubmit="sendReviewToWhatsApp(event)" style="display: flex; flex-direction: column; gap: 12px; max-width: 500px; margin: 0 auto;">
+        <input type="text" id="reviewName" placeholder="Aapka Naam" required style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px;">
+        <textarea id="reviewText" placeholder="Apna review yahan likhein (Jaise: Fragrance bohot long-lasting hai!)..." required rows="3" style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px; resize: none;"></textarea>
+        <button type="submit" style="background: #25D366; color: #fff; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <span>📱</span> Send Review on WhatsApp
+        </button>
+    </form>
+
+    
+
+<!-- JavaScript for WhatsApp Redirect -->
+<script>
+function sendReviewToWhatsApp(event) {
+    event.preventDefault();
+    
+    var name = document.getElementById('reviewName').value;
+    var text = document.getElementById('reviewText').value;
+    
+    // Yahan apna WhatsApp number dal dein (country code ke sath, jaise 91XXXXXXXXXX)
+    var phoneNumber = "966561026351"; 
+    
+    var whatsappMessage = "New Customer Review:\n\nName: " + name + "\nReview: " + text;
+    var encodedMessage = encodeURIComponent(whatsappMessage);
+    
+    var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+    window.open(whatsappURL, '_blank');
+}
+</script>
 </script>
     <!-- ABOUT US SECTION -->
 <div id="about-section" style="text-align: center; padding: 30px; background: #111; color: #fff; border-radius: 10px; margin: 20px auto; max-width: 600px;">
