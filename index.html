@@ -40,8 +40,8 @@
                 <p class="text-[8px] text-amber-200/70 uppercase tracking-widest">Scents That Speak You</p>
             </div>
         </div>
-                <!-- Hamburger Menu Button -->
-        <button onclick="toggleSidebar()" class="text-neutral-300 hover:text-white focus:outline-none p-2 mr-2">
+        <!-- Hamburger Menu Button -->
+        <button onclick="toggleSidebar()" class="text-neutral-300 hover:text-white focus:outline-none p-2 mr-2 cursor-pointer">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
@@ -54,22 +54,19 @@
 
     <!-- Main Content -->
     <main class="w-full max-w-6xl mx-auto px-4 py-8 flex-grow">
-        <!-- === LUXURY PERFUME BRAND ADDITIONS === -->
     
-        <!-- Coming Soon Banner -->
-        <!-- Bismillah Header -->
-<div class="text-center mb-6">
-    <span class="text-amber-300 font-serif text-5xl md:text-6xl tracking-widest gold-gradient">
-        ﷽
-    </span>
-    <p class="text-xs text-neutral-400 mt-2 uppercase tracking-wider">Shuru Allah ke naam se jo bada meherbaan aur nihayat rahem wala hai</p>
-</div>
+        <!-- Bismillah Header (Sabse Upar) -->
+        <div class="text-center mb-6">
+            <span class="text-amber-300 font-serif text-5xl md:text-6xl tracking-widest gold-gradient">
+                ﷽
+            </span>
+            <p class="text-xs text-neutral-400 mt-2 uppercase tracking-wider">Shuru Allah ke naam se jo bada meherbaan aur nihayat rahem wala hai</p>
+        </div>
 
-        
+        <!-- Coming Soon Banner -->
         <div class="relative rounded-3xl overflow-hidden border gold-border mb-12 bg-neutral-900 shadow-2xl">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10"></div>
             <img src="coming-soon.jpg" alt="Opening Soon" class="w-full h-72 md:h-96 object-cover opacity-90">
-            
             <div class="absolute inset-0 z-20 flex flex-col justify-end p-6 md:p-8 text-center">
                 <span class="inline-block bg-amber-500/20 border gold-border text-amber-300 text-[10px] uppercase tracking-widest px-3 py-1 rounded-full mb-2 mx-auto backdrop-blur-md">
                     ✨ Coming Soon ✨
@@ -89,434 +86,487 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             
             <!-- 1. Noor-e-Oud -->
-            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition" onclick="openProductModal('Noor-e-Oud', '899', 'noor-e-oud.jpg', 'Rich Saffron, Spices', 'Deep Rose, Woody Notes', 'Pure Oud, Amber, Musk', 'A majestic oriental fragrance featuring rich smoky oud and warm spices that leave an unforgettable signature trail.')">
-
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Noor-e-Oud', '899', 'noor-e-oud.jpg', 'Rich Saffron, Spices', 'Deep Rose, Woody Notes', 'Pure Oud, Amber, Musk', 'A majestic oriental fragrance featuring rich smoky oud and warm spices that leave an unforgettable signature trail.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="noor-e-oud.jpg" alt="Noor-e-Oud" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">NOOR-E-OUD</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Rich Damask Rose, Taif Rose, Smoky Oud, Amber, Musk</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">NOOR-E-OUD</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Rich Damask Rose, Taif Rose, Smoky Oud, Amber, Musk</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p1', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p1" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p1', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p1', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p1" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p1', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹899</span>
-                            <button onclick="addWithQty('NOOR-E-OUD', 899, 'p1')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹899</span>
+                        <button onclick="event.stopPropagation(); addWithQty('NOOR-E-OUD', 899, 'p1')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 2. Sultan-e-Khas -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Sultan-e-Khas', '1299', 'sultan-e-khas.jpg', 'Spicy Saffron, Woody notes', 'Traditional Majestic Accord', 'Amber, Oudh', 'A majestic oriental perfume designed for royalty.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="sultan-e-khas.jpg" alt="Sultan-e-Khas" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">SULTAN-E-KHAS</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Traditional Majestic | Woody notes, Amber, Spicy Saffron, Oudh</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">SULTAN-E-KHAS</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Woody notes, Amber, Spicy Saffron, Oudh</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p2', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p2" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p2', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p2', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p2" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p2', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹1,299</span>
-                            <button onclick="addWithQty('SULTAN-E-KHAS', 1299, 'p2')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹1,299</span>
+                        <button onclick="event.stopPropagation(); addWithQty('SULTAN-E-KHAS', 1299, 'p2')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 3. Amber-e-Dil -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div style="display: none;" class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Amber-e-Dil', '1199', 'amber-e-dil.jpg', 'Sweet fruity top notes', 'Rich Amber, Spices', 'Vanilla, Woods', 'A warm inviting fragrance that captures the heart.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="amber-e-dil.jpg" alt="Amber-e-Dil" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">AMBER-E-DIL</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Warm Inviting | Sweet fruity top notes, Rich Amber, Vanilla, Spices</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">AMBER-E-DIL</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Sweet fruity top notes, Rich Amber, Vanilla, Spices</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p3', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p3" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p3', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p3', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p3" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p3', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹1,199</span>
-                            <button onclick="addWithQty('AMBER-E-DIL', 1199, 'p3')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹1,199</span>
+                        <button onclick="event.stopPropagation(); addWithQty('AMBER-E-DIL', 1199, 'p3')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 4. Saba-e-Oud -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Saba-e-Oud', '999', 'saba-e-oud.jpg', 'Bergamot, Lemon, Mint', 'Aquatic notes', 'Clean Oud', 'A fresh summer breeze with clean oud undertones.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="saba-e-oud.jpg" alt="Saba-e-Oud" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">SABA-E-OUD</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Fresh Summer | Bergamot, Lemon, Mint, Aquatic notes, Clean Oud</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">SABA-E-OUD</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Bergamot, Lemon, Mint, Aquatic notes, Clean Oud</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p4', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p4" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p4', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p4', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p4" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p4', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹999</span>
-                            <button onclick="addWithQty('SABA-E-OUD', 999, 'p4')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹999</span>
+                        <button onclick="event.stopPropagation(); addWithQty('SABA-E-OUD', 999, 'p4')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 5. Safa-e-Gul -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Safa-e-Gul', '899', 'safa-e-gul.jpg', 'Crisp Green Apple', 'Fresh floral notes', 'White Musk', 'A bright energetic fragrance filled with lively floral notes.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="safa-e-gul.jpg" alt="Safa-e-Gul" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">SAFA-E-GUL</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Bright Energetic | Crisp Green Apple, Fresh floral notes, White Musk</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">SAFA-E-GUL</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Crisp Green Apple, Fresh floral notes, White Musk</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p5', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p5" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p5', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p5', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p5" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p5', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹899</span>
-                            <button onclick="addWithQty('SAFA-E-GUL', 899, 'p5')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹899</span>
+                        <button onclick="event.stopPropagation(); addWithQty('SAFA-E-GUL', 899, 'p5')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 6. Shab-e-Tanha -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Shab-e-Tanha', '1299', 'shab-e-tanha.jpg', 'Dark berries', 'Dark Velvet Rose', 'Patchouli', 'A mysterious romantic scent for quiet, elegant nights.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="shab-e-tanha.jpg" alt="Shab-e-Tanha" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">SHAB-E-TANHA</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Romantic Mysterious | Dark Velvet Rose, Patchouli, Dark berries</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">SHAB-E-TANHA</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Dark Velvet Rose, Patchouli, Dark berries</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p6', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p6" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p6', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p6', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p6" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p6', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹1,299</span>
-                            <button onclick="addWithQty('SHAB-E-TANHA', 1299, 'p6')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹1,299</span>
+                        <button onclick="event.stopPropagation(); addWithQty('SHAB-E-TANHA', 1299, 'p6')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 7. Sukoon-e-Dil -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Sukoon-e-Dil', '799', 'sukoon-e-dil.jpg', 'White florals', 'Jasmine', 'Sandalwood, Musk', 'A calming and soothing fragrance bringing inner peace.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="sukoon-e-dil.jpg" alt="Sukoon-e-Dil" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">SUKOON-E-DIL</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Calming Refreshing | White florals, Jasmine, Sandalwood, Musk</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">SUKOON-E-DIL</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">White florals, Jasmine, Sandalwood, Musk</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p7', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p7" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p7', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p7', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p7" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p7', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹799</span>
-                            <button onclick="addWithQty('SUKOON-E-DIL', 799, 'p7')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹799</span>
+                        <button onclick="event.stopPropagation(); addWithQty('SUKOON-E-DIL', 799, 'p7')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 8. Gulab-e-Khas -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Gulab-e-Khas', '899', 'gulab-e-khas.jpg', 'Pink rose petals', 'Soft White Musk', 'Powdery vanilla', 'An elegant clean rose formulation with soft powdery vanilla.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="gulab-e-khas.jpg" alt="Gulab-e-Khas" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">GULAB-E-KHAS</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Clean Elegant | Soft White Musk, Pink rose petals, Powdery vanilla</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">GULAB-E-KHAS</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Soft White Musk, Pink rose petals, Powdery vanilla</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p8', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p8" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p8', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p8', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p8" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p8', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹899</span>
-                            <button onclick="addWithQty('GULAB-E-KHAS', 899, 'p8')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹899</span>
+                        <button onclick="event.stopPropagation(); addWithQty('GULAB-E-KHAS', 899, 'p8')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 9. Attar-e-Fiza -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Attar-e-Fiza', '1099', 'attar-e-fiza.jpg', 'French Lavender', 'Herbs', 'Cedarwood, Oudh', 'An aromatic woody fusion of fine lavender and rich woods.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="attar-e-fiza.jpg" alt="Attar-e-Fiza" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">ATTAR-E-FIZA</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Aromatic Woody | French Lavender, Herbs, Cedarwood, Oudh</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">ATTAR-E-FIZA</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">French Lavender, Herbs, Cedarwood, Oudh</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p9', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p9" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p9', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p9', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p9" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p9', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹1,099</span>
-                            <button onclick="addWithQty('ATTAR-E-FIZA', 1099, 'p9')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹1,099</span>
+                        <button onclick="event.stopPropagation(); addWithQty('ATTAR-E-FIZA', 1099, 'p9')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 10. Wafa-e-Khas -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Wafa-e-Khas', '999', 'wafa-e-khas.jpg', 'Sweet floral bouquet', 'Caramel', 'Amber, Musk', 'An everyday pleasant sweet floral harmony with caramel notes.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="wafa-e-khas.jpg" alt="Wafa-e-Khas" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">WAFA-E-KHAS</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Everyday Pleasant | Sweet floral bouquet, Caramel, Amber, Musk</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">WAFA-E-KHAS</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Sweet floral bouquet, Caramel, Amber, Musk</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p10', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p10" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p10', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p10', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p10" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p10', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹999</span>
-                            <button onclick="addWithQty('WAFA-E-KHAS', 999, 'p10')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹999</span>
+                        <button onclick="event.stopPropagation(); addWithQty('WAFA-E-KHAS', 999, 'p10')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 11. Aftab-e-Hind -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Aftab-e-Hind', '1499', 'aftab-e-hind.jpg', 'Oriental spices', 'Exotic florals', 'Precious woods', 'A grand statement perfume crafted with exotic oriental notes.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="aftab-e-hind.jpg" alt="Aftab-e-Hind" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">AFTAB-E-HIND</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Grand Statement | Oriental spices, Exotic florals, Precious woods</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">AFTAB-E-HIND</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Oriental spices, Exotic florals, Precious woods</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p11', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p11" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p11', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p11', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p11" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p11', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹1,499</span>
-                            <button onclick="addWithQty('AFTAB-E-HIND', 1499, 'p11')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹1,499</span>
+                        <button onclick="event.stopPropagation(); addWithQty('AFTAB-E-HIND', 1499, 'p11')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 12. Mehfil-e-Khas -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Mehfil-e-Khas', '1399', 'mehfil-e-khas.jpg', 'Fruity sweetness', 'Leather undertones', 'Amber, Woods', 'A bold party fragrance featuring rich leather and fruity accents.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="mehfil-e-khas.jpg" alt="Mehfil-e-Khas" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">MEHFIL-E-KHAS</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Party Bold | Fruity sweetness, Leather undertones, Amber, Woods</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">MEHFIL-E-KHAS</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Fruity sweetness, Leather undertones, Amber, Woods</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p12', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p12" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p12', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p12', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p12" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p12', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹1,399</span>
-                            <button onclick="addWithQty('MEHFIL-E-KHAS', 1399, 'p12')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹1,399</span>
+                        <button onclick="event.stopPropagation(); addWithQty('MEHFIL-E-KHAS', 1399, 'p12')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 13. Rooh-e-Aziz -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Rooh-e-Aziz', '799', 'rooh-e-aziz.jpg', 'Citrus freshness', 'Floral heart', 'Musky base', 'A versatile subtle scent offering bright citrus and clean musk.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="rooh-e-aziz.jpg" alt="Rooh-e-Aziz" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">ROOH-E-AZIZ</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Versatile Subtle | Citrus freshness, Floral heart, Musky base</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">ROOH-E-AZIZ</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Citrus freshness, Floral heart, Musky base</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p13', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p13" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p13', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p13', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p13" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p13', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹799</span>
-                            <button onclick="addWithQty('ROOH-E-AZIZ', 799, 'p13')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹799</span>
+                        <button onclick="event.stopPropagation(); addWithQty('ROOH-E-AZIZ', 799, 'p13')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 14. Aab-e-Zalal -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Aab-e-Zalal', '999', 'aab-e-zalal.jpg', 'Watermelon, Citrus', 'Marine notes', 'Mint', 'An aquatic refreshing formulation with crisp watermelon and mint.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="aab-e-zalal.jpg" alt="Aab-e-Zalal" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">AAB-E-ZALAL</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Aquatic Refreshing | Watermelon, Marine notes, Citrus, Mint</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">AAB-E-ZALAL</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Watermelon, Marine notes, Citrus, Mint</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p14', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p14" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p14', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p14', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p14" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p14', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹999</span>
-                            <button onclick="addWithQty('AAB-E-ZALAL', 999, 'p14')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹999</span>
+                        <button onclick="event.stopPropagation(); addWithQty('AAB-E-ZALAL', 999, 'p14')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
             <!-- 15. Shola-e-Ishq -->
-            <div style="display: none;" class="bg-neutral-900 border gold-border rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl">
-                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden">
+            <div class="bg-neutral-900 border gold-border rounded-xl p-4 text-center cursor-pointer hover:scale-105 transition flex flex-col justify-between" onclick="openProductModal('Shola-e-Ishq', '1499', 'shola-e-ishq.jpg', 'Spicy black pepper', 'Leather', 'Smoky oud', 'A fierce powerful scent driven by black pepper and smoky oud.')">
+                <div class="h-48 bg-neutral-950 border-b gold-border overflow-hidden rounded-lg mb-3">
                     <img src="shola-e-ishq.jpg" alt="Shola-e-Ishq" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-4 flex flex-col flex-grow justify-between">
-                    <div>
-                        <h4 class="text-sm font-bold text-amber-100 mb-1">SHOLA-E-ISHQ</h4>
-                        <p class="text-[11px] text-neutral-400 mb-2">Fierce Powerful | Spicy black pepper, Leather, Smoky oud</p>
-                        <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                <div>
+                    <h4 class="text-sm font-bold text-amber-100 mb-1">SHOLA-E-ISHQ</h4>
+                    <p class="text-[11px] text-neutral-400 mb-2">Spicy black pepper, Leather, Smoky oud</p>
+                    <p class="text-[10px] text-amber-300/80 mb-4">📦 Volume: 50ml | EDP</p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3" onclick="event.stopPropagation()">
+                        <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('p15', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
+                            <span id="qty-p15" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
+                            <button onclick="changeQty('p15', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
+                        </div>
                     </div>
-                    <div>
-                        <div class="flex items-center justify-between bg-neutral-950 border gold-border rounded-xl p-1.5 mb-3">
-                            <span class="text-[11px] text-neutral-400 pl-2">Quantity:</span>
-                            <div class="flex items-center gap-2">
-                                <button onclick="changeQty('p15', -1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">-</button>
-                                <span id="qty-p15" class="text-xs font-bold text-amber-100 w-4 text-center">1</span>
-                                <button onclick="changeQty('p15', 1)" class="w-6 h-6 bg-neutral-800 text-white rounded-lg font-bold text-xs flex items-center justify-center cursor-pointer">+</button>
-                            </div>
-                        </div>
-                        <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
-                            <span class="font-bold gold-gradient text-sm">₹1,499</span>
-                            <button onclick="addWithQty('SHOLA-E-ISHQ', 1499, 'p15')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
-                        </div>
+                    <div class="flex justify-between items-center border-t border-neutral-800 pt-3">
+                        <span class="font-bold gold-gradient text-sm">₹1,499</span>
+                        <button onclick="event.stopPropagation(); addWithQty('SHOLA-E-ISHQ', 1499, 'p15')" class="gold-bg px-3 py-2 rounded-xl font-bold text-[10px] uppercase cursor-pointer hover:opacity-90 transition">Add to Cart</button>
                     </div>
                 </div>
             </div>
 
         </div>
-    </main>
-<!-- Search Section -->
-<div id="search-section" class="py-6 px-4 max-w-xl mx-auto text-center">
-    <input type="text" id="searchInput" placeholder="Search your favourite fragrance..." class="w-full bg-neutral-900 border gold-border rounded-xl px-4 py-3 text-white text-sm focus:outline-none">
-</div>
 
-    
+        <!-- Search Section -->
+        <div id="search-section" class="py-8 px-4 max-w-xl mx-auto text-center">
+            <input type="text" id="searchInput" placeholder="Search your favourite fragrance..." class="w-full bg-neutral-900 border gold-border rounded-xl px-4 py-3 text-white text-sm focus:outline-none">
+        </div>
+
+        <!-- === SABSE NICHE WALE LUXURY FEATURES (Why Choose Us, Notes Pyramid, Reviews, About Us) === -->
+        
+        <!-- 1. Why Choose Us / Our Promise Badges -->
+        <div style="display: flex; justify-content: space-around; flex-wrap: wrap; background: #161616; padding: 20px; border-radius: 12px; margin: 30px auto; max-width: 800px; border: 1px solid #333; text-align: center; color: #fff;">
+            <div style="flex: 1; min-width: 200px; padding: 10px;">
+                <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">👑</div>
+                <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">100% Premium Oils</h4>
+                <p style="font-size: 12px; color: #aaa; margin: 0;">High concentration formulation for long-lasting fragrance.</p>
+            </div>
+            <div style="flex: 1; min-width: 200px; padding: 10px;">
+                <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">🚚</div>
+                <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">Fast & Safe Delivery</h4>
+                <p style="font-size: 12px; color: #aaa; margin: 0;">COD available in Mumbai & fast shipping across India.</p>
+            </div>
+            <div style="flex: 1; min-width: 200px; padding: 10px;">
+                <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">🤝</div>
+                <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">Direct From Maker</h4>
+                <p style="font-size: 12px; color: #aaa; margin: 0;">Handcrafted artisan perfumes with zero middlemen.</p>
+            </div>
+        </div>
+
+        <!-- 2. Notes Pyramid (Khushboo ke Layers) -->
+        <div style="background: #111; border: 1px solid #444; border-radius: 12px; padding: 25px; margin: 30px auto; max-width: 800px; color: #fff;">
+            <h3 style="color: #f59e0b; text-align: center; margin-bottom: 15px;">🌟 The Fragrance Pyramid</h3>
+            <p style="text-align: center; font-size: 13px; color: #aaa; margin-bottom: 20px;">Hamare har perfume ko khas layers ke sath design kiya jata hai jo waqt ke sath khilti hain:</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center;">
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #f59e0b;">
+                    <h4 style="color: #f59e0b; font-size: 14px; margin: 0 0 5px 0;">Top Notes</h4>
+                    <p style="font-size: 12px; color: #ccc; margin: 0;">Pehli mehak (Citrus, Bergamot, Fresh Spices)</p>
+                </div>
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #d97706;">
+                    <h4 style="color: #fbbf24; font-size: 14px; margin: 0 0 5px 0;">Heart Notes</h4>
+                    <p style="font-size: 12px; color: #ccc; margin: 0;">Asli jaan (Floral, Woody, Rich Accords)</p>
+                </div>
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #b45309;">
+                    <h4 style="color: #f59e0b; font-size: 14px; margin: 0 0 5px 0;">Base Notes</h4>
+                    <p style="font-size: 12px; color: #ccc; margin: 0;">Lambe samay tak tikne wali (Oud, Musk, Amber)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. WhatsApp Review Section -->
+        <div style="background: #111; border: 1px solid #333; border-radius: 12px; padding: 25px; margin: 30px auto; max-width: 800px; color: #fff;">
+            <h3 style="color: #f59e0b; text-align: center; margin-bottom: 10px;">💬 Share Your Experience</h3>
+            <p style="text-align: center; font-size: 13px; color: #aaa; margin-bottom: 20px;">Apna keemti review seedha humare WhatsApp par bhejein:</p>
+            
+            <form onsubmit="sendReviewToWhatsApp(event)" style="display: flex; flex-direction: column; gap: 12px; max-width: 500px; margin: 0 auto;">
+                <input type="text" id="reviewName" placeholder="Aapka Naam" required style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px;">
+                <textarea id="reviewText" placeholder="Apna review yahan likhein (Jaise: Fragrance bohot long-lasting hai!)..." required rows="3" style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px; resize: none;"></textarea>
+                <button type="submit" style="background: #25D366; color: #fff; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <span>📱</span> Send Review on WhatsApp
+                </button>
+            </form>
+
+            <div style="margin-top: 25px; border-top: 1px solid #222; padding-top: 20px;">
+                <div style="background: #181818; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <p style="font-size: 13px; font-style: italic; color: #ddd; margin: 0 0 8px 0;">"Bhai, perfume ki fragrance sach mein bohot premium aur long-lasting hai!"</p>
+                    <p style="font-size: 11px; color: #f59e0b; margin: 0; font-weight: bold;">— Aman Shaikh, Mumbai</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. ABOUT US SECTION -->
+        <div id="about-section" style="text-align: center; padding: 30px; background: #111; color: #fff; border-radius: 12px; margin: 30px auto; max-width: 800px; border: 1px solid #333;">
+            <h2 style="color: #f59e0b; margin-bottom: 20px;" class="brand-font text-xl">About Us</h2>
+            
+            <!-- Founder Details -->
+            <div style="margin-bottom: 30px;">
+                <img src="me.jpg" alt="Founder" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #f59e0b; margin: 0 auto 10px auto;">
+                <h3 style="margin: 10px 0 5px 0; font-weight: bold; color: #fef08a;">Mufiq Mukhtar Mungi</h3>
+                <p style="color: #bbb; font-size: 14px; margin: 0;">Founder & Online Management</p>
+                <p style="color: #888; font-size: 12px; margin: 5px 0;">DOB: 18/09/2001</p>
+            </div>
+
+            <!-- Co-Founder Details -->
+            <div>
+                <img src="brother.jpg" alt="Co-Founder" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #888; margin: 0 auto 10px auto;">
+                <h3 style="margin: 10px 0 5px 0; font-weight: bold; color: #e5e5e5;">Rafhak Mukhtar Mungi</h3>
+                <p style="color: #bbb; font-size: 14px; margin: 0;">Co-Founder & Production</p>
+                <p style="color: #888; font-size: 12px; margin: 5px 0;">DOB: 06/06/2003</p>
+            </div>
+        </div>
+
+    </main>
+
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/966561026351?text=Hi%20MR%20Fragrance,%20I%20want%20to%20know%20more." target="_blank" class="fixed bottom-6 right-6 z-30 bg-green-600 text-white p-3.5 rounded-full shadow-2xl flex items-center justify-center cursor-pointer hover:bg-green-500 transition transform hover:scale-110">
         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
@@ -547,7 +597,6 @@
                     <img src="upi-qr.jpg" alt="UPI QR Code" class="w-32 h-32 mx-auto rounded-lg border gold-border mb-2 object-contain bg-white">
                     <p class="text-[10px] text-neutral-400 mb-3">Payment karke screenshot WhatsApp par bhejein.</p>
                     
-                    <!-- Direct UPI App Pay Button -->
                     <a id="upiPayBtn" href="#" target="_blank" class="w-full bg-blue-600 hover:bg-blue-500 text-white text-center py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider block transition">
                         Pay via UPI App ⚡
                     </a>
@@ -557,35 +606,31 @@
                     <input type="text" id="custName" placeholder="Full Name" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white">
                     <input type="tel" id="custPhone" placeholder="Phone Number" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white">
                     <textarea id="custAddress" placeholder="Full Delivery Address & Pincode" rows="3" class="w-full bg-neutral-950 border gold-border rounded-xl p-3 text-xs text-white"></textarea>
-                    <!-- Payment & Shipping Policy Notice -->
-<div class="bg-neutral-900 border border-amber-500/30 rounded-xl p-3 my-3 text-xs text-neutral-300">
-    <p class="font-bold text-amber-400 mb-1">📌 Shipping & Payment Rules:</p>
-    <ul class="list-disc list-inside space-y-1 text-neutral-300">
-        <li><strong>Cash on Delivery (COD):</strong> Sirf aur sirf <strong>Mumbai</strong> ke liye available hai.</li>
-        <li><strong>Outside Mumbai:</strong> Mumbai ke baahar ke orders ke liye <strong>UPI / Online Payment</strong> hai, aur location ke hisab se <strong>Shipping Charges</strong> alag se lagenge.</li>
-    </ul>
-</div>
                     
-                </div> <!-- Payment Methods Selection Box -->
-<div class="bg-neutral-900 border gold-border rounded-xl p-4 my-4">
-    <h3 class="text-amber-300 font-semibold mb-3 text-sm uppercase tracking-wider">Select Payment Method</h3>
-    
-    <div class="space-y-2 text-left">
-        <!-- Option 1: COD -->
-        <label class="flex items-center space-x-3 text-neutral-300 cursor-pointer p-2 rounded bg-neutral-800 hover:bg-neutral-700 transition">
-            <input type="radio" name="paymentMethod" value="Cash on Delivery (COD)" checked class="text-amber-500 focus:ring-amber-400">
-            <span class="text-sm font-medium">💵 Cash on Delivery (COD)</span>
-        </label>
+                    <!-- Payment & Shipping Policy Notice -->
+                    <div class="bg-neutral-900 border border-amber-500/30 rounded-xl p-3 my-3 text-xs text-neutral-300">
+                        <p class="font-bold text-amber-400 mb-1">📌 Shipping & Payment Rules:</p>
+                        <ul class="list-disc list-inside space-y-1 text-neutral-300">
+                            <li><strong>Cash on Delivery (COD):</strong> Sirf aur sirf <strong>Mumbai</strong> ke liye available hai.</li>
+                            <li><strong>Outside Mumbai:</strong> Mumbai ke baahar ke orders ke liye <strong>UPI / Online Payment</strong> hai, aur location ke hisab se <strong>Shipping Charges</strong> alag se lagenge.</li>
+                        </ul>
+                    </div>
+                </div>
 
-        <!-- Option 2: Online / UPI -->
-        <label class="flex items-center space-x-3 text-neutral-300 cursor-pointer p-2 rounded bg-neutral-800 hover:bg-neutral-700 transition">
-            <input type="radio" name="paymentMethod" value="Online UPI (GPay/PhonePe)" class="text-amber-500 focus:ring-amber-400">
-            <span class="text-sm font-medium">📱 Online UPI (GPay / PhonePe / Paytm)</span>
-        </label>
-
-
-    </div>
-</div>
+                <!-- Payment Methods Selection Box -->
+                <div class="bg-neutral-900 border gold-border rounded-xl p-4 my-4">
+                    <h3 class="text-amber-300 font-semibold mb-3 text-sm uppercase tracking-wider">Select Payment Method</h3>
+                    <div class="space-y-2 text-left">
+                        <label class="flex items-center space-x-3 text-neutral-300 cursor-pointer p-2 rounded bg-neutral-800 hover:bg-neutral-700 transition">
+                            <input type="radio" name="paymentMethod" value="Cash on Delivery (COD)" checked class="text-amber-500 focus:ring-amber-400">
+                            <span class="text-sm font-medium">💵 Cash on Delivery (COD)</span>
+                        </label>
+                        <label class="flex items-center space-x-3 text-neutral-300 cursor-pointer p-2 rounded bg-neutral-800 hover:bg-neutral-700 transition">
+                            <input type="radio" name="paymentMethod" value="Online UPI (GPay/PhonePe)" class="text-amber-500 focus:ring-amber-400">
+                            <span class="text-sm font-medium">📱 Online UPI (GPay / PhonePe / Paytm)</span>
+                        </label>
+                    </div>
+                </div>
                 
                 <button onclick="checkoutWhatsApp()" class="w-full gold-bg py-3 rounded-xl font-bold text-xs uppercase tracking-wider cursor-pointer hover:opacity-95 transition">
                     Send Order & Payment Screenshot on WhatsApp 🚀
@@ -599,7 +644,46 @@
         <p>&copy; 2026 MR Fragrance. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Product Details Popup Modal -->
+    <div id="productModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-neutral-900 border gold-border rounded-2xl max-w-md w-full p-6 relative text-left">
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-xl font-bold cursor-pointer">✕</button>
+            <img id="modalImg" src="" alt="Perfume" class="w-full h-48 object-cover rounded-xl mb-4 border border-neutral-800">
+            <h2 id="modalTitle" class="text-xl font-bold text-amber-300 mb-1"></h2>
+            <p id="modalPrice" class="text-lg font-semibold text-white mb-4"></p>
+            <div class="bg-neutral-800/60 rounded-xl p-3 mb-4 text-sm text-neutral-300 space-y-2">
+                <p><strong>✨ Top Notes:</strong> <span id="modalTopNotes"></span></p>
+                <p><strong>🌹 Heart Notes:</strong> <span id="modalHeartNotes"></span></p>
+                <p><strong>🪵 Base Notes:</strong> <span id="modalBaseNotes"></span></p>
+            </div>
+            <p id="modalDesc" class="text-xs text-neutral-400 mb-6 leading-relaxed"></p>
+            <button onclick="closeProductModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-neutral-950 font-bold py-3 rounded-xl transition cursor-pointer">
+                Close
+            </button>
+        </div>
+                        </div><!-- Side Drawer Menu -->
+    <div id="sideMenu" class="fixed inset-0 bg-black/70 z-50 hidden transition-opacity">
+        <div class="fixed top-0 left-0 w-72 h-full bg-neutral-950 border-r border-neutral-800 p-6 flex flex-col justify-between shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out" id="menuDrawer">
+            <div>
+                <div class="flex justify-between items-center mb-8 border-b border-neutral-800 pb-4">
+                    <h2 class="text-amber-300 font-bold text-lg brand-font">MR Fragrance</h2>
+                    <button onclick="toggleSidebar()" class="text-neutral-400 hover:text-white text-xl font-bold cursor-pointer">✕</button>
+                </div>
+                <nav class="space-y-3 text-left">
+                    <a href="index.html" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">🏠 Home</a>
+                    <a href="#search-section" onclick="toggleSidebar()" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">🔍 Search Products</a>
+                    <a href="https://wa.me/966561026351" target="_blank" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">💬 WhatsApp Support</a>
+                    <a href="https://instagram.com/mrfragrance2026" target="_blank" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">📸 Instagram</a>
+                    <a href="#about-section" onclick="toggleSidebar()" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">ℹ️ About Us</a>
+                </nav>
+            </div>
+            <div class="text-xs text-neutral-500 text-center pt-4 border-t border-neutral-900">
+                © 2026 MR Fragrance Store<br>All Rights Reserved.
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Functions -->
     <script>
         let cart = [];
         let currentTotalAmount = 0;
@@ -675,234 +759,89 @@
         }
 
         function checkoutWhatsApp() {
-    let name = document.getElementById('custName').value;
-    let phone = document.getElementById('custPhone').value;
-    let address = document.getElementById('custAddress').value;
+            let name = document.getElementById('custName').value;
+            let phone = document.getElementById('custPhone').value;
+            let address = document.getElementById('custAddress').value;
 
-    if (!name || !phone || !address) {
-        alert('Kripya apna Naam, Phone Number aur Address bharein!');
-        return;
-    }
+            if (!name || !phone || !address) {
+                alert('Kripya apna Naam, Phone Number aur Address bharein!');
+                return;
+            }
 
-    let selectedPayment = document.querySelector('input[name="paymentMethod"]:checked');
-    let paymentMethod = selectedPayment ? selectedPayment.value : 'Cash on Delivery (COD)';
+            let selectedPayment = document.querySelector('input[name="paymentMethod"]:checked');
+            let paymentMethod = selectedPayment ? selectedPayment.value : 'Cash on Delivery (COD)';
 
-    let cartText = "";
-    let total = 0;
+            let cartText = "";
+            let total = 0;
 
-    cart.forEach(item => {
-        cartText += `- ${item.name} (${item.size}) x ${item.qty} = ₹${item.price * item.qty}\n`;
-        total += item.price * item.qty;
-    });
+            cart.forEach(item => {
+                cartText += `- ${item.name} x ${item.qty} = ₹${item.price * item.qty}\n`;
+                total += item.price * item.qty;
+            });
 
-    let paymentStatusMessage = "";
-    if (paymentMethod.includes("COD")) {
-        paymentStatusMessage = `*Payment Method:* Cash on Delivery (COD)\n*Status:* Pay on Delivery`;
-    } else {
-        paymentStatusMessage = `*Payment Method:* ${paymentMethod}\n*Status:* PAID Online (Customer will attach payment screenshot below)`;
-    }
+            let paymentStatusMessage = "";
+            if (paymentMethod.includes("COD")) {
+                paymentStatusMessage = `*Payment Method:* Cash on Delivery (COD)\n*Status:* Pay on Delivery`;
+            } else {
+                paymentStatusMessage = `*Payment Method:* ${paymentMethod}\n*Status:* PAID Online (Customer will attach payment screenshot below)`;
+            }
 
-    let message = `*New Order - MR Fragrance*\n\n` +
-                  `*Customer Details:*\n` +
-                  `Name: ${name}\n` +
-                  `Phone: ${phone}\n` +
-                  `Address: ${address}\n\n` +
-                  `${paymentStatusMessage}\n\n` +
-                  `*Order Items:*\n${cartText}\n` +
-                  `*Total Amount:* ₹${total}\n\n` +
-                  `_Note: Please attach your payment screenshot here if paid online!_`;
+            let message = `*New Order - MR Fragrance*\n\n` +
+                          `*Customer Details:*\n` +
+                          `Name: ${name}\n` +
+                          `Phone: ${phone}\n` +
+                          `Address: ${address}\n\n` +
+                          `${paymentStatusMessage}\n\n` +
+                          `*Order Items:*\n${cartText}\n` +
+                          `*Total Amount:* ₹${total}\n\n` +
+                          `_Note: Please attach your payment screenshot here if paid online!_`;
 
-    let encodedMessage = encodeURIComponent(message);
-    let whatsappNumber = "966561026351"; // Aapka purana number jo screenshot mein tha
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-}
-   function openProductModal(name, price, image, topNotes, heartNotes, baseNotes, desc) {
-    document.getElementById('modalTitle').innerText = name;
-    document.getElementById('modalPrice').innerText = "₹" + price;
-    document.getElementById('modalImg').src = image;
-    document.getElementById('modalTopNotes').innerText = topNotes;
-    document.getElementById('modalHeartNotes').innerText = heartNotes;
-    document.getElementById('modalBaseNotes').innerText = baseNotes;
-    document.getElementById('modalDesc').innerText = desc;
-    
-    document.getElementById('productModal').classList.remove('hidden');
-}
+            let encodedMessage = encodeURIComponent(message);
+            let whatsappNumber = "966561026351";
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        }
 
-function closeProductModal() {
-    document.getElementById('productModal').classList.add('hidden');
-}
-        
-    </script><!-- Product Details Popup Modal -->
-<div id="productModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden p-4">
-    <div class="bg-neutral-900 border gold-border rounded-2xl max-w-md w-full p-6 relative text-left">
-        <!-- Close Button -->
-        <button onclick="closeProductModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-xl font-bold">✕</button>
-        
-        <!-- Product Image -->
-        <img id="modalImg" src="" alt="Perfume" class="w-full h-48 object-cover rounded-xl mb-4 border border-neutral-800">
-        
-        <!-- Product Name & Price -->
-        <h2 id="modalTitle" class="text-xl font-bold text-amber-300 mb-1"></h2>
-        <p id="modalPrice" class="text-lg font-semibold text-white mb-4"></p>
-        
-        <!-- Fragrance Notes Box -->
-        <div class="bg-neutral-800/60 rounded-xl p-3 mb-4 text-sm text-neutral-300 space-y-2">
-            <p><strong>✨ Top Notes:</strong> <span id="modalTopNotes"></span></p>
-            <p><strong>🌹 Heart Notes:</strong> <span id="modalHeartNotes"></span></p>
-            <p><strong>🪵 Base Notes:</strong> <span id="modalBaseNotes"></span></p>
-        </div>
+        function openProductModal(name, price, image, topNotes, heartNotes, baseNotes, desc) {
+            document.getElementById('modalTitle').innerText = name;
+            document.getElementById('modalPrice').innerText = "₹" + price;
+            document.getElementById('modalImg').src = image;
+            document.getElementById('modalTopNotes').innerText = topNotes;
+            document.getElementById('modalHeartNotes').innerText = heartNotes;
+            document.getElementById('modalBaseNotes').innerText = baseNotes;
+            document.getElementById('modalDesc').innerText = desc;
+            document.getElementById('productModal').classList.remove('hidden');
+        }
 
-        <!-- Description -->
-        <p id="modalDesc" class="text-xs text-neutral-400 mb-6 leading-relaxed"></p>
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
 
-        <!-- Close Button Inside Modal -->
-        <button onclick="closeProductModal()" class="w-full bg-amber-500 hover:bg-amber-600 text-neutral-950 font-bold py-3 rounded-xl transition">
-            Close
-        </button>
-    </div>
-</div>
-    <!-- Side Drawer Menu -->
-<div id="sideMenu" class="fixed inset-0 bg-black/70 z-50 hidden transition-opacity">
-    <div class="fixed top-0 left-0 w-72 h-full bg-neutral-950 border-r border-neutral-800 p-6 flex flex-col justify-between shadow-2xl transform -translate-x-full transition-transform duration-300 ease-in-out" id="menuDrawer">
-        <div>
-            <div class="flex justify-between items-center mb-8 border-b border-neutral-800 pb-4">
-                <h2 class="text-amber-300 font-bold text-lg brand-font">MR Fragrance</h2>
-                <button onclick="toggleSidebar()" class="text-neutral-400 hover:text-white text-xl font-bold">✕</button>
-            </div>
-                        <nav class="space-y-3 text-left">
-                <a href="index.html" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">🏠 Home</a>
-                
-                <a href="#products-section" onclick="toggleSidebar()" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">✨ Explore Perfumes</a>
-                
-                <a href="#search-section" onclick="toggleSidebar()" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">🔍 Search Products</a>
-                
-                <a href="https://wa.me/966561026351" target="_blank" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">💬 WhatsApp Support</a>
-                
-                <a href="https://instagram.com/mrfragrance2026" target="_blank" class="block text-neutral-300 hover:text-amber-400 py-2.5 px-3 rounded-lg hover:bg-neutral-900 transition">📸 Instagram</a>
-                <a href="#about-section" onclick="toggleMenu()" class="block py-2 text-neutral-300 hover:text-amber-400">About Us</a>
-          </nav>
+        function toggleSidebar() {
+            let menu = document.getElementById('sideMenu');
+            let drawer = document.getElementById('menuDrawer');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                setTimeout(() => {
+                    drawer.classList.remove('-translate-x-full');
+                }, 10);
+            } else {
+                drawer.classList.add('-translate-x-full');
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                }, 300);
+            }
+        }
 
-        </div>
-        <div class="text-xs text-neutral-500 text-center pt-4 border-t border-neutral-900">
-            © 2026 MR Fragrance Store<br>All Rights Reserved.
-        </div>
-    </div>
-</div>
-
-<script>
-// Side Menu Toggle Function
-function toggleSidebar() {
-    let menu = document.getElementById('sideMenu');
-    let drawer = document.getElementById('menuDrawer');
-    
-    if (menu.classList.contains('hidden')) {
-        menu.classList.remove('hidden');
-        setTimeout(() => {
-            drawer.classList.remove('-translate-x-full');
-        }, 10);
-    } else {
-        drawer.classList.add('-translate-x-full');
-        setTimeout(() => {
-            menu.classList.add('hidden');
-        }, 300);
-    }
-}
-    <!-- 1. Why Choose Us / Our Promise Badges -->
-<div style="display: flex; justify-content: space-around; flex-wrap: wrap; background: #161616; padding: 20px; border-radius: 12px; margin: 20px auto; max-width: 800px; border: 1px solid #333; text-align: center; color: #fff;">
-    <div style="flex: 1; min-width: 200px; padding: 10px;">
-        <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">👑</div>
-        <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">100% Premium Oils</h4>
-        <p style="font-size: 12px; color: #aaa; margin: 0;">High concentration formulation for long-lasting fragrance.</p>
-    </div>
-    <div style="flex: 1; min-width: 200px; padding: 10px;">
-        <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">🚚</div>
-        <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">Fast & Safe Delivery</h4>
-        <p style="font-size: 12px; color: #aaa; margin: 0;">COD available in Mumbai & fast shipping across India.</p>
-    </div>
-    <div style="flex: 1; min-width: 200px; padding: 10px;">
-        <div style="font-size: 24px; color: #f59e0b; margin-bottom: 5px;">🤝</div>
-        <h4 style="font-size: 15px; margin: 5px 0; color: #f59e0b;">Direct From Maker</h4>
-        <p style="font-size: 12px; color: #aaa; margin: 0;">Handcrafted artisan perfumes with zero middlemen.</p>
-    </div>
-</div>
-
-<!-- 2. Notes Pyramid Example (Khushboo ke Layers) -->
-<div style="background: #111; border: 1px solid #444; border-radius: 12px; padding: 25px; margin: 20px auto; max-width: 800px; color: #fff;">
-    <h3 style="color: #f59e0b; text-align: center; margin-bottom: 15px;">🌟 The Fragrance Pyramid</h3>
-    <p style="text-align: center; font-size: 13px; color: #aaa; margin-bottom: 20px;">Hamare har perfume ko ekkhas layers ke sath design kiya jata hai jo waqt ke sath khilti hain:</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; text-align: center;">
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #f59e0b;">
-            <h4 style="color: #f59e0b; font-size: 14px; margin: 0 0 5px 0;">Top Notes</h4>
-            <p style="font-size: 12px; color: #ccc; margin: 0;">Pehli mehak (Citrus, Bergamot, Fresh Spices)</p>
-        </div>
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #d97706;">
-            <h4 style="color: #fbbf24; font-size: 14px; margin: 0 0 5px 0;">Heart Notes</h4>
-            <p style="font-size: 12px; color: #ccc; margin: 0;">Asli jaan (Floral, Woody, Rich Accords)</p>
-        </div>
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; border-top: 3px solid #b45309;">
-            <h4 style="color: #f59e0b; font-size: 14px; margin: 0 0 5px 0;">Base Notes</h4>
-            <p style="font-size: 12px; color: #ccc; margin: 0;">Lambe samay tak tikne wali (Oud, Musk, Amber)</p>
-        </div>
-    </div>
-</div>
-
-<!-- 3. Customer Reviews / WhatsApp Review Section -->
-<div style="background: #111; border: 1px solid #333; border-radius: 12px; padding: 25px; margin: 20px auto; max-width: 800px; color: #fff;">
-    <h3 style="color: #f59e0b; text-align: center; margin-bottom: 10px;">💬 Share Your Experience</h3>
-    <p style="text-align: center; font-size: 13px; color: #aaa; margin-bottom: 20px;">Apna keemti review seedha humare WhatsApp par bhejein:</p>
-    
-    <!-- WhatsApp Review Form -->
-    <form onsubmit="sendReviewToWhatsApp(event)" style="display: flex; flex-direction: column; gap: 12px; max-width: 500px; margin: 0 auto;">
-        <input type="text" id="reviewName" placeholder="Aapka Naam" required style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px;">
-        <textarea id="reviewText" placeholder="Apna review yahan likhein (Jaise: Fragrance bohot long-lasting hai!)..." required rows="3" style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px; resize: none;"></textarea>
-        <button type="submit" style="background: #25D366; color: #fff; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
-            <span>📱</span> Send Review on WhatsApp
-        </button>
-    </form>
-
-    
-
-<!-- JavaScript for WhatsApp Redirect -->
-<script>
-function sendReviewToWhatsApp(event) {
-    event.preventDefault();
-    
-    var name = document.getElementById('reviewName').value;
-    var text = document.getElementById('reviewText').value;
-    
-    // Yahan apna WhatsApp number dal dein (country code ke sath, jaise 91XXXXXXXXXX)
-    var phoneNumber = "966561026351"; 
-    
-    var whatsappMessage = "New Customer Review:\n\nName: " + name + "\nReview: " + text;
-    var encodedMessage = encodeURIComponent(whatsappMessage);
-    
-    var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
-    window.open(whatsappURL, '_blank');
-}
-</script>
-</script>
-    <!-- ABOUT US SECTION -->
-<div id="about-section" style="text-align: center; padding: 30px; background: #111; color: #fff; border-radius: 10px; margin: 20px auto; max-width: 600px;">
-    <h2 style="color: #f59e0b; margin-bottom: 20px;">About Us</h2>
-    
-    <!-- Aapki Details (Founder) -->
-    <div style="margin-bottom: 30px;">
-        <img src="me.jpg" alt="Founder" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #f59e0b;">
-        <h3 style="margin: 10px 0 5px 0;">Mufiq Mukhtar Mungi</h3>
-        <p style="color: #bbb; font-size: 14px; margin: 0;">Founder & Online Management</p>
-        <p style="color: #888; font-size: 12px; margin: 5px 0;">DOB: 18/09/2001</p>
-    </div>
-
-    <!-- Bhai ki Details (Co-Founder) -->
-    <div>
-        <img src="brother.jpg" alt="Co-Founder" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 2px solid #888;">
-        <h3 style="margin: 10px 0 5px 0;">Rafhak Mukhtar Mungi</h3>
-        <p style="color: #bbb; font-size: 14px; margin: 0;">Co-Founder & Production</p>
-        <p style="color: #888; font-size: 12px; margin: 5px 0;">DOB: 06/06/2003</p>
-    </div>
-</div>
-    
+        function sendReviewToWhatsApp(event) {
+            event.preventDefault();
+            var name = document.getElementById('reviewName').value;
+            var text = document.getElementById('reviewText').value;
+            var phoneNumber = "966561026351"; 
+            var whatsappMessage = "New Customer Review:\n\nName: " + name + "\nReview: " + text;
+            var encodedMessage = encodeURIComponent(whatsappMessage);
+            window.open("https://wa.me/" + phoneNumber + "?text=" + encodedMessage, '_blank');
+        }
+    </script>
 </body>
 </html>
-                    
-    
