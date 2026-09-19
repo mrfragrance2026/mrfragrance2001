@@ -95,48 +95,45 @@
     </div>
 </div>
 
-<!-- Interactive Live Review Section -->
+<!-- 3. Customer Reviews / WhatsApp Review Section -->
 <div style="background: #111; border: 1px solid #333; border-radius: 12px; padding: 25px; margin: 20px auto; max-width: 800px; color: #fff;">
-    <h3 style="color: #f59e0b; text-align: center; margin-bottom: 20px;">⭐ Apni Rai Dein (Leave a Review)</h3>
+    <h3 style="color: #f59e0b; text-align: center; margin-bottom: 10px;">💬 Share Your Experience</h3>
+    <p style="text-align: center; font-size: 13px; color: #aaa; margin-bottom: 20px;">Apna keemti review seedha humare WhatsApp par bhejein:</p>
     
-    <!-- Review Form -->
-    <form id="reviewForm" onsubmit="addReview(event)" style="margin-bottom: 25px; display: flex; flex-direction: column; gap: 10px;">
-        <input type="text" id="reviewerName" placeholder="Aapka Naam" required style="padding: 10px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px;">
-        <textarea id="reviewerText" placeholder="Apna review yahan likhein..." required rows="3" style="padding: 10px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px; resize: none;"></textarea>
-        <button type="submit" style="background: #f59e0b; color: #000; border: none; padding: 10px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px;">Submit Review</button>
+    <!-- WhatsApp Review Form -->
+    <form onsubmit="sendReviewToWhatsApp(event)" style="display: flex; flex-direction: column; gap: 12px; max-width: 500px; margin: 0 auto;">
+        <input type="text" id="reviewName" placeholder="Aapka Naam" required style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px;">
+        <textarea id="reviewText" placeholder="Apna review yahan likhein (Jaise: Fragrance bohot long-lasting hai!)..." required rows="3" style="padding: 12px; background: #1a1a1a; border: 1px solid #444; color: #fff; border-radius: 6px; font-size: 13px; resize: none;"></textarea>
+        <button type="submit" style="background: #25D366; color: #fff; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+            <span>📱</span> Send Review on WhatsApp
+        </button>
     </form>
 
-    <!-- Reviews List Container -->
-    <div id="reviewsList" style="display: flex; flex-direction: column; gap: 15px;">
+    <!-- Sample Review Display -->
+    <div style="margin-top: 25px; border-top: 1px solid #222; padding-top: 20px;">
         <div style="background: #181818; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b;">
-            <p style="font-size: 13px; font-style: italic; color: #ddd; margin: 0 0 8px 0;">"Bhai, perfume ki fragrance sach mein bohot premium aur long-lasting hai!"</p>
+            <p style="font-size: 13px; font-style: italic; color: #ddd; margin: 0 0 8px 0;">"Bhai, perfume ki fragrance sach mein bohot premium aur long-lasting hai. Subah lagakar nikalta hoon toh shaam tak mehak rehti hai!"</p>
             <p style="font-size: 11px; color: #f59e0b; margin: 0; font-weight: bold;">— Aman Shaikh, Mumbai</p>
         </div>
     </div>
 </div>
 
-<!-- JavaScript for Live Review Adding -->
+<!-- JavaScript for WhatsApp Redirect -->
 <script>
-function addReview(event) {
+function sendReviewToWhatsApp(event) {
     event.preventDefault();
     
-    var name = document.getElementById('reviewerName').value;
-    var text = document.getElementById('reviewerText').value;
-    var list = document.getElementById('reviewsList');
+    var name = document.getElementById('reviewName').value;
+    var text = document.getElementById('reviewText').value;
     
-    var newDiv = document.createElement('div');
-    newDiv.style.background = '#181818';
-    newDiv.style.padding = '15px';
-    newDiv.style.borderRadius = '8px';
-    newDiv.style.borderLeft = '4px solid #f59e0b';
+    // Yahan apna WhatsApp number dal dein (country code ke sath, jaise 91XXXXXXXXXX)
+    var phoneNumber = "966561026351"; 
     
-    newDiv.innerHTML = '<p style="font-size: 13px; font-style: italic; color: #ddd; margin: 0 0 8px 0;">"' + text + '"</p>' +
-                       '<p style="font-size: 11px; color: #f59e0b; margin: 0; font-weight: bold;">— ' + name + '</p>';
+    var whatsappMessage = "New Customer Review:\n\nName: " + name + "\nReview: " + text;
+    var encodedMessage = encodeURIComponent(whatsappMessage);
     
-    list.prepend(newDiv);
-    
-    document.getElementById('reviewForm').reset();
-    alert('Shukriya! Aapka review successfully add ho gaya hai.');
+    var whatsappURL = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+    window.open(whatsappURL, '_blank');
 }
 </script>
 
