@@ -246,12 +246,10 @@ function renderCart() {
   if (cartButtonEl) cartButtonEl.setAttribute('aria-label', `Bag with ${count} items`);
   if (cartTotalEl) cartTotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
 
-  const list = document.querySelector('#cartItems') || document.querySelector('.cart-items');
+    const list = document.querySelector('#cartItems') || document.querySelector('.cart-items') || document.querySelector('#cartList') || document.querySelector('.drawer-items') || document.querySelector('.cart-body');
   if (list) {
     list.replaceChildren(...entries.map(e => cartItem(e.prod, e.qty)));
   }
-}
-
 function submitOrder(event) {
   event.preventDefault();
   const form = event.currentTarget;
