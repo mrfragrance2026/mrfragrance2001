@@ -17,7 +17,13 @@
 @media(max-width:620px){.wrap{width:min(100% - 32px,1220px)}.announcement{font-size:.62rem;letter-spacing:.1em;padding:8px}.header-inner{min-height:67px;gap:8px}.brand{gap:8px}.brand-mark{width:35px;height:35px;font-size:.68rem}.brand strong{font-size:.76rem}.brand small{font-size:.44rem;letter-spacing:.1em}.cart-button{padding:7px 9px;min-height:39px}.menu-button{width:39px;padding:9px}.header-actions{gap:3px}.hero{min-height:475px;align-items:end}.hero-image{background-position:61% center}.hero-shade{background:linear-gradient(0deg,#050505f2 0%,#050505ba 55%,#05050538 100%)}.hero-content{padding-block:110px 75px}.hero h1{font-size:clamp(2.55rem,12vw,4.2rem);margin:18px 0}.hero p{font-size:.96rem;max-width:340px}.hero-index{right:16px;bottom:14px;font-size:.55rem}.collection{padding-block:65px 75px}.section-head{display:block}.section-head h2{font-size:2rem}.search-field{margin-top:25px;width:100%}.product-grid{grid-template-columns:1fr;gap:16px}.product-art{min-height:210px}.product-body{padding:20px}.promise-grid{grid-template-columns:1fr}.promise-grid>div,.promise-grid>div:first-child{padding:25px 0;border-right:0;border-bottom:1px solid var(--line)}.promise-grid>div:last-child{border-bottom:0}.promise h3{margin:10px 0 5px}.story{grid-template-columns:1fr;gap:12px;padding-block:70px}.founders{grid-template-columns:1fr}.contact-inner{padding-block:45px;display:block}.contact .primary-button{margin-top:25px}.footer-inner{padding-block:33px;min-height:unset;display:grid;gap:24px}.cart-drawer{padding:20px}.product-modal{padding:20px}.modal-art{height:140px}.modal-bottom .primary-button{padding:11px 13px;gap:7px}}
 @media(max-width:360px){.brand small{display:none}.brand strong{font-size:.7rem}.cart-button{font-size:.74rem}.modal-bottom{align-items:stretch;flex-direction:column}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
-
+    .card-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-bottom: 1px solid var(--line);
+  }
+    
   </style>
 
 </head>
@@ -123,6 +129,9 @@ function closeLayers(restore = true) {
 function productCard(product, index) {
   const card = node('article','product-card');
   const art = node('button','product-art');
+  const img = node('img', 'card-image');
+img.src = product.image || `product${index + 1}.jpg`;
+img.alt = product.name;
   art.type = 'button';
   art.style.setProperty('--tone', tones[index % tones.length]);
   art.setAttribute('aria-label', `View ${product.name} details`);
@@ -138,7 +147,7 @@ function productCard(product, index) {
   add.type = 'button';
   add.setAttribute('aria-label',`Add ${product.name} to bag`);
   add.addEventListener('click', () => addToCart(product));
-  bottom.append(price, add); body.append(meta,title,notes,bottom);card.append(art,body);
+  bottom.append(price, add); body.append(meta,title,notes,bottom);card.append(img,body);
   return card;
 }
 function renderProducts() {
