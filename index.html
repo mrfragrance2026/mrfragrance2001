@@ -272,7 +272,40 @@ mobileNav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobil
 products = [{"name":"Velvet Rose","notes":"Rich Damask Rose, Taif Rose, Smoky Oud, Amber, Musk","quote":"Raat ki khamoshi aur phoolon ki woh mehak, jo dil ko chhoo le.","price":1500,"image":"product1.jpg"},{"name":"The Crown","notes":"Woody notes, Amber, Spicy Saffron, Oudh","quote":"Jahan tu jaye, wahan teri ek alag hi dabdaba aur shaan dikhe.","price":1800,"image":"product2.jpg"},{"name":"Alpha","notes":"Sweet fruity top notes, Rich Amber, Vanilla, Spices","quote":"Dhoop ki sunehri garmahat aur ek alag hi glow.","price":1400,"image":"product3.jpg"},{"name":"Chill","notes":"Bergamot, Lemon, Mint, Aquatic notes, Clean Oud","quote":"Thandi hawa ka woh jhonka jo garmi mein bhi sukoon de.","price":1600,"image":"product4.jpg"},{"name":"Phantom","notes":"Crisp Green Apple, Fresh floral notes, White Musk","quote":"Ek aisi rahasyamayi mehak jo jaane ke baad bhi yahin reh jaati hai.","price":1600,"image":"product5.jpg"},{"name":"Dark Rose","notes":"Dark Velvet Rose, Patchouli, Dark berries","quote":"Thodi alag, thodi bold aur ekdum hatke mehak.","price":1800,"image":"product6.jpg"},{"name":"Peace","notes":"White florals, Jasmine, Sandalwood, Musk","quote":"Subah-subah baaghon mein aane wali taazi aur dewy khushboo.","price":1700,"image":"product7.jpg"},{"name":"Rose Musk","notes":"Soft White Musk, Pink rose petals, Powdery vanilla","quote":"Gulab ki narmi aur musk ka gehra nasha.","price":1800,"image":"product8.jpg"},{"name":"Lavender Woods","notes":"French Lavender, Herbs, Cedarwood, Oudh","quote":"Jangal ki thandi hawa aur lavender ka sukoon.","price":1800,"image":"product9.jpg"},{"name":"Pure Touch","notes":"Sweet floral bouquet, Caramel, Amber, Musk","quote":"Ekdum halki, soft aur pure mehak jo skin se jud jaye.","price":1900,"image":"product10.jpg"},{"name":"Moonlight","notes":"Oriental spices, Exotic florals, Precious woods","quote":"Chandni raat ki thandak aur sukoon bhara ehsaas.","price":1600,"image":"product11.jpg"},{"name":"Luxury Gold","notes":"Fruity sweetness, Leather undertones, Amber, Woods","quote":"Asli shaan aur ameer wali feeling, ek hi bottle mein.","price":1600,"image":"product12.jpg"},{"name":"Signature","notes":"Citrus freshness, Floral heart, Musky base","quote":"Teri apni pehchan, jo koi aur copy na kar sake.","price":1800,"image":"product13.jpg"},{"name":"Crystal","notes":"Watermelon, Marine notes, Citrus, Mint","quote":"Ekdum crystal clear, taazi aur chamakdaar energy.","price":1500,"image":"product14.jpg"},{"name":"Wild Spark","notes":"Spicy black pepper, Leather, Smoky oud","quote":"Andhere mein chamakne wali aag jaisa dumdaar aur shandar.","price":1700,"image":"product15.jpg"}];
 renderProducts();
 renderCart();
+    // Custom MR, Festive and Special Discount Codes (5% to 30% range)
+    const validCoupons = {
+        "MRSPECIAL": 0.05,
+        "MRDEAL08": 0.08,
+        "MRFRAG10": 0.10,
+        "MRVIP12": 0.12,
+        "MRPERFUME15": 0.15,
+        "MRLUXURY18": 0.18,
+        "NEWYEAR20": 0.20,
+        "MRROYAL22": 0.22,
+        "DIWALI25": 0.25,
+        "EID30": 0.30
+    };
 
+    function applyCustomCoupon() {
+        let codeInput = document.getElementById('coupon-input').value.trim().toUpperCase();
+        let msgDiv = document.getElementById('coupon-msg');
+
+        if (codeInput === "") {
+            msgDiv.style.color = "#ff4d4d";
+            msgDiv.innerText = "Please enter a coupon code.";
+            return;
+        }
+
+        if (validCoupons.hasOwnProperty(codeInput)) {
+            let discountRate = validCoupons[codeInput];
+            msgDiv.style.color = "#4bb543";
+            msgDiv.innerText = `Success! ${(discountRate * 100)}% extra discount applied.`;
+        } else {
+            msgDiv.style.color = "#ff4d4d";
+            msgDiv.innerText = "Invalid or expired coupon code.";
+        }
+  }
+  
 </script>
 </body>
 </html>
