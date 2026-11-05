@@ -330,9 +330,11 @@ function productCard(product, index) {
       return card;
     }
 function renderProducts() {
+        const grid = document.getElementById('product-list');
+      if (!grid) return;
   const query = document.querySelector('#searchInput').value.trim().toLocaleLowerCase();
   const matching = products.filter(p => `${p.name} ${p.notes}`.toLocaleLowerCase().includes(query));
-  grid.replaceChildren(...matching.map(p => productCard(p,products.indexOf(p))));
+  grid.replaceChildren(...matching.map((p, idx) => productCard(p, idx)));
   document.querySelector('#resultCount').textContent = query ? `${matching.length} fragrance${matching.length === 1 ? '' : 's'} found` : `${products.length} fragrances`;
   document.querySelector('#noResults').hidden = matching.length !== 0;
 }
