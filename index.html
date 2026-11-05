@@ -147,6 +147,30 @@ img.alt = product.name;
   add.type = 'button';
   add.setAttribute('aria-label',`Add ${product.name} to bag`);
   add.addEventListener('click', () => addToCart(product));
+        const couponContainer = document.createElement('div');
+      couponContainer.className = 'coupon-container';
+      couponContainer.innerHTML = `
+        <input type="text" class="coupon-input" placeholder="Enter coupon code">
+        <button type="button" class="apply-coupon-btn">Apply</button>
+      `;
+        const inputEl = couponContainer.querySelector('.coupon-input');
+      const applyBtn = couponContainer.querySelector('.apply-coupon-btn');
+
+      applyBtn.addEventListener('click', () => {
+        const code = inputEl.value.trim().toUpperCase();
+        if (code.startsWith('MR') || code === 'SPECIAL' || code === 'DISCOUNT') {
+          const randomPercent = Math.floor(Math.random() * (30 - 5 + 1)) + 5;
+          const rawNum = parseInt(product.price.replace(/[^\d]/g, ''));
+          const discountAmount = Math.round(rawNum * (randomPercent / 100));
+          const finalPrice = rawNum - discountAmount;
+          
+          price.innerHTML = `<span style="text-decoration:line-through; color:var(--muted); font-size:0.9rem; margin-right:8px;">${product.price}</span> ₹${finalPrice.toLocaleString('en-IN')}`;
+          alert(`Badhai ho! Aapko ${randomPercent}% ka discount mil gaya hai.`);
+        } else {
+          alert('Galat coupon code hai. Kripya sahi code dalein.');
+        }
+      });
+                                
   bottom.append(price, add); body.append(meta,title,notes,bottom);card.append(img,body);
   return card;
 }
