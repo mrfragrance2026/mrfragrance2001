@@ -142,6 +142,20 @@ function productCard(product, index) {
   art.append(img);
 
   art.addEventListener('click', () => openProduct(product, index));
+function productCard(product, index) {
+  const card = node('article', 'product-card');
+  const art = node('button', 'product-art');
+  
+  const img = node('img', 'card-image');
+  img.src = product.image || `product${index + 1}.jpg`;
+  img.alt = product.name;
+
+  art.type = 'button';
+  art.style.setProperty('--tone', tones[index % tones.length]);
+  art.setAttribute('aria-label', `View ${product.name}`);
+  art.append(img);
+
+  art.addEventListener('click', () => openProduct(product, index));
 
   const body = node('div', 'product-body');
   const meta = node('span', 'product-meta', '50 ML · EAU DE PARFUM');
@@ -151,7 +165,7 @@ function productCard(product, index) {
   
   const bottom = node('div', 'product-bottom');
   
-  // Har perfume par pehle se default 30% discount rahega
+  // हर परफ्यूम पर पहले से default 30% डिस्काउंट रहेगा
   const defaultDiscountPrice = Math.round(product.price * 0.70); 
   const priceEl = node('strong', 'product-price', `${money(defaultDiscountPrice)} <span style="font-size:0.75rem; text-decoration:line-through; color:var(--muted);">${money(product.price)}</span>`);
 
@@ -161,7 +175,7 @@ function productCard(product, index) {
   
   const couponInput = node('input', '');
   couponInput.type = 'text';
-  couponInput.placeholder = 'Enter Coupon (e.g. MR20, MR50)';
+  couponInput.placeholder = 'Enter Coupon Code';
   couponInput.style.cssText = 'width: 100%; padding: 6px; font-size: 0.85rem; background: var(--surface2); border: 1px solid var(--line); color: var(--cream); border-radius: 4px; margin-bottom: 6px;';
 
   const applyBtn = node('button', '', 'Apply Coupon');
@@ -175,39 +189,67 @@ function productCard(product, index) {
     let code = couponInput.value.trim().toUpperCase();
     
     if (!code) {
-      alert("Please enter a coupon code.");
+      alert("Kripya coupon code dalein.");
       return;
     }
 
-    // Ek user ke liye one-time use check (Device localStorage ke zariye)
+    // एक यूजर के लिए वन-टाइम यूसेज चेक (Device localStorage के जरिए)
     const usedKey = "used_coupon_" + code;
     if (localStorage.getItem(usedKey)) {
-      alert("Yeh one-time coupon code is device se pehle hi use ho chuka hai!");
+      alert("Yeh coupon code is device se pehle hi use ho chuka hai!");
       return;
     }
 
-    // Automatic Percentage Finder: Jaise MR20 likhenge toh 20% extra, MR50 likhenge toh 50% extra nikal aayega
-    if (code.startsWith("MR")) {
-      let percentStr = code.replace("MR", ""); // 'MR' hata kar sirf number nikal lega (jaise 20 ya 50)
-      let percentNum = parseInt(percentStr);
+    // 5% से 30% के बीच के 20 अलग-अलग कूपन कोड्स की लिस्ट
+    const validCoupons = {
+      // 1. M3 से स्टार्ट होने वाले कोड्स (5% से 25% के बीच)
+      "M3START5": 5,
+      "M3SPECIAL10": 10,
+      "M3LUXURY15": 15,
+      "M3ROYAL20": 20,
+      "M3ELITE25": 25,
 
-      if (!isNaN(percentNum) && percentNum > 0 && percentNum <= 100) {
-        // Base price par extra percentage discount calculate hoga
-        let extraDiscountAmount = Math.round(product.price * (percentNum / 100));
-        finalPrice = defaultDiscountPrice - extraDiscountAmount;
-        if(finalPrice < 50) finalPrice = 50; // Safety limit taaki price zero na ho jaye
+      // 2. भाई-दोस्त वाले कोड्स (8% से 22% के बीच)
+      "BHAIDOST8": 8,
+      "HOMIE12": 12,
+      "BESTY18": 18,
+      "BROTHERHOOD22": 22,
 
-        appliedMsg = `(30% General + ${percentNum}% Extra Off)`;
-        priceEl.innerHTML = `${money(finalPrice)} <span style="font-size:0.75rem; color:var(--gold);">[${code} Applied]</span>`;
-        
-        // Is code ko is device par lock kar dena taaki dobara use na ho sake
-        localStorage.setItem(usedKey, "true");
-        alert(`Badhai ho! ${percentNum}% extra discount successfully lag gaya hai.`);
-      } else {
-        alert("Ghalat Code! Kripya sahi code dalein (Jaise MR20, MR50).");
-      }
+      // 3. स्पेशल वाले कोड्स (10% से 30% के बीच)
+      "SPECIAL10": 10,
+      "VIP15": 15,
+      "EXCLUSIVE20": 20,
+      "PREMIUM30": 30,
+
+      // 4. दिवाली वाले कोड्स (15% से 30% के बीच)
+      "DIWALI15": 15,
+      "FESTIVAL20": 20,
+      "DIWALIOFFER30": 30,
+
+      // 5. फैंस वाले कोड्स (5% से 15% के बीच)
+      "MRFANS5": 5,
+      "LOVER10": 10,
+      "SUPPORTER15": 15,
+
+      // 6. न्यू लॉन्च वाले कोड्स (25% और 28%)
+      "NEWLAUNCH25": 25,
+      "NEWSCENT28": 28
+    };
+
+    if (validCoupons[code] !== undefined) {
+      let percentNum = validCoupons[code];
+      let extraDiscountAmount = Math.round(product.price * (percentNum / 100));
+      finalPrice = defaultDiscountPrice - extraDiscountAmount;
+      if(finalPrice < 50) finalPrice = 50;
+
+      appliedMsg = `(30% General + ${percentNum}% Extra Off)`;
+      priceEl.innerHTML = `${money(finalPrice)} <span style="font-size:0.75rem; color:var(--gold);">[${code} Applied]</span>`;
+      
+      // इस कोड को इस डिवाइस पर लॉक कर देना ताकि दोबारा इस्तेमाल न हो सके
+      localStorage.setItem(usedKey, "true");
+      alert(`Badhai ho! ${code} apply ho gaya hai aur ${percentNum}% extra discount mil gaya.`);
     } else {
-      alert("Invalid Coupon Code");
+      alert("Ghalat ya Invalid Coupon Code!");
     }
   });
 
@@ -227,6 +269,8 @@ function productCard(product, index) {
   body.append(meta, title, notes, quote, couponContainer, bottom);
   card.append(art, body);
   return card;
+}
+
 }
 
 }
