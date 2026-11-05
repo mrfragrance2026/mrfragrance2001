@@ -169,9 +169,7 @@ img.alt = product.name;
       const add = node('button', 'add-button', 'Add to bag +');
       add.type = 'button';
       add.setAttribute('aria-label', `Add ${product.name} to bag`);
-      add.addEventListener('click', () => addToCart(product));
-
-                                
+      add.addEventListener('click', () => addToCart(product));               
   bottom.append(price, add); body.append(meta,title,notes,bottom);card.append(img,body);
   return card;
 }
