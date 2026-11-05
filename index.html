@@ -126,6 +126,27 @@ function closeLayers(restore = true) {
   document.body.classList.remove('dialog-open');
   if (restore) activeTrigger?.focus();
 }
+  function getAutoDiscount(priceStr) {
+  const rawNum = parseInt(String(priceStr).replace(/[^\d]/g, ''));
+  if (isNaN(rawNum)) return { original: priceStr, final: priceStr, percent: 0 };
+
+  let percent = 15;
+  if (rawNum >= 1600) {
+    percent = 30;
+  } else if (rawNum >= 1400) {
+    percent = 20;
+  } else {
+    percent = 15;
+  }
+
+  const finalPrice = Math.round(rawNum * (1 - percent / 100));
+  return {
+    original: priceStr,
+    final: `₹${finalPrice.toLocaleString('en-IN')}`,
+    percent: percent
+  };
+  }
+  
 function productCard(product, index) {
   const card = node('article','product-card');
   const art = node('button','product-art');
@@ -142,34 +163,14 @@ img.alt = product.name;
   const title = node('h3','',product.name);
   const notes = node('p','product-notes',product.notes);
   const bottom = node('div','product-bottom');
-  const price = node('strong','price',money(product.price));
-  const add = node('button','add-button','Add to bag +');
-  add.type = 'button';
-  add.setAttribute('aria-label',`Add ${product.name} to bag`);
-  add.addEventListener('click', () => addToCart(product));
-        const couponContainer = document.createElement('div');
-      couponContainer.className = 'coupon-container';
-      couponContainer.innerHTML = `
-        <input type="text" class="coupon-input" placeholder="Enter coupon code">
-        <button type="button" class="apply-coupon-btn">Apply</button>
-      `;
-        const inputEl = couponContainer.querySelector('.coupon-input');
-      const applyBtn = couponContainer.querySelector('.apply-coupon-btn');
+        const discountInfo = getAutoDiscount(product.price);
+      const price = node('strong', 'price', '');
+      price.innerHTML = `<span style="text-decoration:line-through; color:var(--muted); font-size:0.85rem; margin-right:6px;">${discountInfo.original}</span> ${discountInfo.final}`;
+      const add = node('button', 'add-button', 'Add to bag +');
+      add.type = 'button';
+      add.setAttribute('aria-label', `Add ${product.name} to bag`);
+      add.addEventListener('click', () => addToCart(product));
 
-      applyBtn.addEventListener('click', () => {
-        const code = inputEl.value.trim().toUpperCase();
-        if (code.startsWith('MR') || code === 'SPECIAL' || code === 'DISCOUNT') {
-          const randomPercent = Math.floor(Math.random() * (30 - 5 + 1)) + 5;
-          const rawNum = parseInt(product.price.replace(/[^\d]/g, ''));
-          const discountAmount = Math.round(rawNum * (randomPercent / 100));
-          const finalPrice = rawNum - discountAmount;
-          
-          price.innerHTML = `<span style="text-decoration:line-through; color:var(--muted); font-size:0.9rem; margin-right:8px;">${product.price}</span> ₹${finalPrice.toLocaleString('en-IN')}`;
-          alert(`Badhai ho! Aapko ${randomPercent}% ka discount mil gaya hai.`);
-        } else {
-          alert('Galat coupon code hai. Kripya sahi code dalein.');
-        }
-      });
                                 
   bottom.append(price, add); body.append(meta,title,notes,bottom);card.append(img,body);
   return card;
