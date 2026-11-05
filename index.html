@@ -197,35 +197,60 @@ function addToCart(product) {
   showToast(`${product.name} added to your bag`);
 }
 function cartItem(product, quantity) {
-  const row = node('div','cart-row');
+  const disc = getAutoDiscount(product.price);
+  const row = node('div', 'cart-row');
   const info = node('div');
-  info.append(node('strong','',product.name),node('small','',`${money(product.price)} × ${quantity}`));
-  const end = node('div','cart-row-end');
-  end.append(node('strong','',money(product.price*quantity)));
-  const controls = node('div','qty-controls');
-  const minus = node('button','','−');minus.type='button';minus.setAttribute('aria-label',`Remove one ${product.name}`);
-  const count = node('span','',String(quantity));
-  const plus = node('button','','+');plus.type='button';plus.setAttribute('aria-label',`Add one ${product.name}`);
-  minus.addEventListener('click',()=>setQuantity(product.name,quantity-1));
-  plus.addEventListener('click',()=>setQuantity(product.name,quantity+1));
-  controls.append(minus,count,plus);
-  const remove = node('button','remove','Remove');remove.type='button';remove.setAttribute('aria-label',`Remove ${product.name} from bag`);
-  remove.addEventListener('click',()=>setQuantity(product.name,0));
-  end.append(controls,remove);row.append(info,end);return row;
+  info.append(node('strong', '', product.name));
+  const end = node('div', 'cart-row-end');
+  const itemPrice = node('strong', '', '');
+  itemPrice.innerHTML = `<span style="text-decoration:line-through; color:var(--muted); font-size:0.8rem; margin-right:4px;">${disc.original}</span> ${disc.final}`;
+  end.append(itemPrice);
+  const controls = node('div', 'qty-controls');
+  const minus = node('button', '', '-');
+  const count = node('span', '', String(quantity));
+  const plus = node('button', '', '+');
+  minus.addEventListener('click', () => setQuantity(product.name, quantity - 1));
+  plus.addEventListener('click', () => setQuantity(product.name, quantity + 1));
+  controls.append(minus, count, plus);
+  const remove = node('button', 'remove-button', 'Remove');
+  remove.addEventListener('click', () => setQuantity(product.name, 0));
+  end.append(controls, remove);
+  row.append(info, end);
+  return row;
 }
-function setQuantity(name,quantity) {
-  if (quantity <= 0) cart.delete(name); else cart.set(name,quantity);
+
+function setQuantity(name, quantity) {
+  if (quantity <= 0) cart.delete(name);
+  else cart.set(name, quantity);
   renderCart();
 }
+
 function renderCart() {
-  const entries = [...cart].map(([name,quantity])=>[products.find(p=>p.name===name),quantity]).filter(([p])=>p);
-  const count = entries.reduce((sum,[,qty])=>sum+qty,0);
-  const subtotal = entries.reduce((sum,[p,qty])=>sum+p.price*qty,0);
-  document.querySelector('#cartCount').textContent = count;
-  document.querySelector('#cartButton').setAttribute('aria-label',`Open cart, ${count} item${count===1?'':'s'}`);
-  document.querySelector('#cartTotal').textContent = money(subtotal);
-  document.querySelector('#cartCheckout').hidden = !count;
-  document.querySelector('#cartItems').replaceChildren(...(count ? entries.map(([p,q])=>cartItem(p,q)) : [node('p','empty-cart','Your bag is empty. Explore the collection and add a fragrance you like.')]));
+  const entries = [...cart].map(([name, qty]) => {
+    const prod = products.find(p => p.name === name);
+    return { prod, qty };
+  }).filter(e => e.prod);
+
+  const count = entries.reduce((sum, e) => sum + e.qty, 0);
+  const subtotal = entries.reduce((sum, e) => {
+    const d = getAutoDiscount(e.prod.price);
+    const num = parseInt(d.final.replace(/[^\d]/g, '')) || 0;
+    return sum + (num * e.qty);
+  }, 0);
+
+  const cartCountEl = document.querySelector('#cartCount');
+  const cartButtonEl = document.querySelector('#cartButton');
+  const cartTotalEl = document.querySelector('#cartTotal');
+  const cartCheckoutEl = document.querySelector('#cartCheckout');
+
+  if (cartCountEl) cartCountEl.textContent = count;
+  if (cartButtonEl) cartButtonEl.setAttribute('aria-label', `Bag with ${count} items`);
+  if (cartTotalEl) cartTotalEl.textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+
+  const list = document.querySelector('#cartItems');
+  if (list) {
+    list.replaceChildren(...entries.map(e => cartItem(e.prod, e.qty)));
+  }
 }
 function submitOrder(event) {
   event.preventDefault();
