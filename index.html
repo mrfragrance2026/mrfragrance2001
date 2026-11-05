@@ -214,66 +214,121 @@ function productCard(product, index) {
       "HOMIE12": 12,
       "BESTY18": 18,
       "BROTHERHOOD22": 22,
-
-      // 3. स्पेशल वाले कोड्स (10% से 30% के बीच)
-      "SPECIAL10": 10,
-      "VIP15": 15,
-      "EXCLUSIVE20": 20,
-      "PREMIUM30": 30,
-
-      // 4. दिवाली वाले कोड्स (15% से 30% के बीच)
-      "DIWALI15": 15,
-      "FESTIVAL20": 20,
-      "DIWALIOFFER30": 30,
-
-      // 5. फैंस वाले कोड्स (5% से 15% के बीच)
-      "MRFANS5": 5,
-      "LOVER10": 10,
-      "SUPPORTER15": 15,
-
-      // 6. न्यू लॉन्च वाले कोड्स (25% और 28%)
-      "NEWLAUNCH25": 25,
-      "NEWSCENT28": 28
-    };
-
-    if (validCoupons[code] !== undefined) {
-      let percentNum = validCoupons[code];
-      let extraDiscountAmount = Math.round(product.price * (percentNum / 100));
-      finalPrice = defaultDiscountPrice - extraDiscountAmount;
-      if(finalPrice < 50) finalPrice = 50;
-
-      appliedMsg = `(30% General + ${percentNum}% Extra Off)`;
-      priceEl.innerHTML = `${money(finalPrice)} <span style="font-size:0.75rem; color:var(--gold);">[${code} Applied]</span>`;
-      
-      // इस कोड को इस डिवाइस पर लॉक कर देना ताकि दोबारा इस्तेमाल न हो सके
-      localStorage.setItem(usedKey, "true");
-      alert(`Badhai ho! ${code} apply ho gaya hai aur ${percentNum}% extra discount mil gaya.`);
-    } else {
-      alert("Ghalat ya Invalid Coupon Code!");
+    function node(tag, className, text) {
+      const el = document.createElement(tag);
+      if (className) el.className = className;
+      if (text) el.textContent = text;
+      return el;
     }
-  });
 
-  couponContainer.append(couponInput, applyBtn);
+    function money(amount) {
+      return '₹' + amount.toLocaleString('en-IN');
+    }
 
-  const add = node('button', 'add-button', 'Order on WhatsApp');
-  add.type = 'button';
-  add.setAttribute('aria-label', `Order ${product.name}`);
-  
-  add.addEventListener('click', () => {
-    let orderText = `Hi MR Fragrance, Main ${product.name} (50ml) order karna chahta hoon. Final Price: ₹${finalPrice} ${appliedMsg}`;
-    const msg = encodeURIComponent(orderText);
-    window.open(`https://wa.me/918169571810?text=${msg}`, '_blank');
-  });
+    function productCard(product, index) {
+      const card = node('article', 'product-card');
+      
+      const img = node('img', 'card-image');
+      img.src = product.image || `product${index + 1}.jpg`;
+      img.alt = product.name;
 
-  bottom.append(priceEl, add);
-  body.append(meta, title, notes, quote, couponContainer, bottom);
-  card.append(art, body);
-  return card;
-}
+      const body = node('div', 'product-body');
+      const meta = node('span', 'product-meta', '50 ML · EAU DE PARFUM');
+      const title = node('h3', 'product-title', product.name);
+      const notes = node('p', 'product-notes', product.notes);
+      const quote = node('p', 'product-quote', `"${product.quote}"`);
+      
+      const bottom = node('div', 'product-bottom');
+      
+      const defaultDiscountPrice = Math.round(product.price * 0.70); 
+      const priceEl = node('strong', 'product-price');
+      priceEl.innerHTML = `${money(defaultDiscountPrice)} <span style="font-size:0.75rem; text-decoration:line-through; color:var(--muted);">${money(product.price)}</span>`;
 
-}
+      const couponContainer = node('div', '', '');
+      couponContainer.style.margin = "10px 0";
+      
+      const couponInput = node('input', '');
+      couponInput.type = 'text';
+      couponInput.placeholder = 'Enter Coupon Code';
+      couponInput.style.cssText = 'width: 100%; padding: 6px; font-size: 0.85rem; background: var(--surface2); border: 1px solid var(--line); color: var(--cream); border-radius: 4px; margin-bottom: 6px;';
 
-}
+      const applyBtn = node('button', '', 'Apply Coupon');
+      applyBtn.type = 'button';
+      applyBtn.style.cssText = 'background: var(--line); color: var(--gold); border: none; padding: 5px 10px; border-radius: 3px; font-size: 0.75rem; cursor: pointer;';
+
+      let finalPrice = defaultDiscountPrice;
+      let appliedMsg = "(30% Off Applied)";
+
+      applyBtn.addEventListener('click', () => {
+        let code = couponInput.value.trim().toUpperCase();
+        
+        if (!code) {
+          alert("Kripya coupon code dalein.");
+          return;
+        }
+
+        const usedKey = "used_coupon_" + code;
+        if (localStorage.getItem(usedKey)) {
+          alert("Yeh coupon code is device se pehle hi use ho chuka hai!");
+          return;
+        }
+
+        const validCoupons = {
+          "M3START5": 5,
+          "M3SPECIAL8": 8,
+          "M3LUXURY10": 10,
+          "M3ROYAL12": 12,
+          "M3ELITE15": 15,
+          "BHAIDOST6": 6,
+          "HOMIE9": 9,
+          "BESTY14": 14,
+          "BROTHER18": 18,
+          "SPECIAL10": 10,
+          "VIP15": 15,
+          "EXCLUSIVE20": 20,
+          "PREMIUM25": 25,
+          "DIWALI12": 12,
+          "FESTIVAL16": 16,
+          "DIWALI22": 22,
+          "MRFANS5": 5,
+          "LOVER11": 11,
+          "SUPPORTER20": 20,
+          "NEWLAUNCH30": 30
+        };
+
+        if (validCoupons[code] !== undefined) {
+          let percentNum = validCoupons[code];
+          let extraDiscountAmount = Math.round(product.price * (percentNum / 100));
+          finalPrice = defaultDiscountPrice - extraDiscountAmount;
+          if(finalPrice < 50) finalPrice = 50;
+
+          appliedMsg = `(30% General + ${percentNum}% Extra Off)`;
+          priceEl.innerHTML = `${money(finalPrice)} <span style="font-size:0.75rem; color:var(--gold);">[${code} Applied]</span>`;
+          
+          localStorage.setItem(usedKey, "true");
+          alert(`Badhai ho! ${code} apply ho gaya hai aur ${percentNum}% extra discount mil gaya.`);
+        } else {
+          alert("Ghalat ya Invalid Coupon Code!");
+        }
+      });
+
+      couponContainer.append(couponInput, applyBtn);
+
+      const add = node('button', 'add-button', 'Order on WhatsApp');
+      add.type = 'button';
+      add.setAttribute('aria-label', `Order ${product.name}`);
+      
+      add.addEventListener('click', () => {
+        let orderText = `Hi MR Fragrance, Main ${product.name} (50ml) order karna chahta hoon. Final Price: ₹${finalPrice} ${appliedMsg}`;
+        const msg = encodeURIComponent(orderText);
+        window.open(`https://wa.me/918169571810?text=${msg}`, '_blank');
+      });
+
+      bottom.append(priceEl, add);
+      body.append(meta, title, notes, quote, couponContainer, bottom);
+      card.append(img, body);
+      return card;
+    }
 function renderProducts() {
   const query = document.querySelector('#searchInput').value.trim().toLocaleLowerCase();
   const matching = products.filter(p => `${p.name} ${p.notes}`.toLocaleLowerCase().includes(query));
