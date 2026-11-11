@@ -509,9 +509,123 @@ loadDeviceOffer();renderProducts();renderCart();loadExchangeRates();
   
 <script>
 (function () {
-  const style = document.createElement('style');
+  const css = document.createElement('style');
 
-  style.textContent = `
+  css.textContent = `
+    /* M R FRAGRANCE - COMPLETE LUXURY ANIMATIONS */
+
+    /* 1. GOLDEN OPENING EFFECT */
+    .hero-content {
+      animation: mrOpening 1.5s ease both;
+    }
+
+    .brand-mark {
+      animation: mrLogoGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes mrOpening {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes mrLogoGlow {
+      from { filter: drop-shadow(0 0 2px #d8b973); }
+      to { filter: drop-shadow(0 0 12px #d8b973); }
+    }
+
+    /* 2. GOLDEN PARTICLES */
+    .mr-particle {
+      position: absolute;
+      z-index: 2;
+      pointer-events: none;
+      color: #e7c477;
+      font-size: 13px;
+      animation: mrFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes mrFloat {
+      0%,100% { opacity: .15; transform: translateY(15px) scale(.6); }
+      50% { opacity: 1; transform: translateY(-35px) scale(1.2); }
+    }
+
+    /* 3. PRODUCT REVEAL */
+    .product-card {
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: opacity .8s ease, transform .8s ease,
+                  box-shadow .4s ease;
+    }
+
+    .product-card.mr-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-card:hover {
+      box-shadow: 0 10px 35px #d8b97330;
+    }
+
+    /* 4. BOTTLE SHINE + GOLDEN HALO */
+    .product-card .card-image {
+      transition: filter .5s ease, transform .6s ease;
+      filter: drop-shadow(0 0 5px #d8b97330);
+      animation: mrBottleGlow 4s ease-in-out infinite alternate;
+    }
+
+    .product-card:hover .card-image {
+      transform: scale(1.035);
+      filter: drop-shadow(0 0 17px #d8b97390);
+    }
+
+    @keyframes mrBottleGlow {
+      from { filter: drop-shadow(0 0 3px #d8b97320); }
+      to { filter: drop-shadow(0 0 12px #d8b97370); }
+    }
+
+    .product-card::after {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: -130%;
+      width: 65%;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(
+        110deg,
+        transparent,
+        #d8b97318,
+        transparent
+      );
+      animation: mrCardShine 7s ease-in-out infinite;
+    }
+
+    @keyframes mrCardShine {
+      0%,65% { left: -130%; }
+      100% { left: 150%; }
+    }
+
+    /* 5. FALLING ROSE PETALS */
+    .mr-petal {
+      position: absolute;
+      z-index: 2;
+      top: -35px;
+      pointer-events: none;
+      color: #a81735;
+      font-size: 20px;
+      animation: mrPetalFall 8s linear infinite;
+    }
+
+    @keyframes mrPetalFall {
+      0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      15% { opacity: .9; }
+      85% { opacity: .8; }
+      100% { transform: translateY(600px) rotate(300deg); opacity: 0; }
+    }
+
+    /* 6. ANIMATED FRAGRANCE NOTES */
     .product-notes {
       display: flex !important;
       flex-wrap: wrap;
@@ -528,15 +642,9 @@ loadDeviceOffer();renderProducts();renderCart();loadExchangeRates();
       color: #e5c98c;
       font-size: 13px;
       line-height: 1.3;
-      animation: fragranceReveal .7s ease both;
+      animation: mrNoteReveal .7s ease both;
       transition: .35s ease;
     }
-
-    .fragrance-note:nth-child(2) { animation-delay: .12s; }
-    .fragrance-note:nth-child(3) { animation-delay: .24s; }
-    .fragrance-note:nth-child(4) { animation-delay: .36s; }
-    .fragrance-note:nth-child(5) { animation-delay: .48s; }
-    .fragrance-note:nth-child(6) { animation-delay: .60s; }
 
     .fragrance-note:hover {
       background: #a9874d;
@@ -545,29 +653,89 @@ loadDeviceOffer();renderProducts();renderCart();loadExchangeRates();
       transform: translateY(-3px);
     }
 
-    @keyframes fragranceReveal {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes mrNoteReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 7. ADD TO BAG SUCCESS EFFECT */
+    .add-button.mr-added {
+      animation: mrBagSuccess .65s ease;
+      background: #d8b973 !important;
+      color: #111 !important;
+      box-shadow: 0 0 20px #d8b97380;
+    }
+
+    @keyframes mrBagSuccess {
+      50% { transform: scale(1.08); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .fragrance-note {
-        animation: none;
+      .mr-particle, .mr-petal, .product-card::after,
+      .brand-mark, .product-card .card-image {
+        animation: none !important;
+      }
+      .product-card, .hero-content, .fragrance-note {
+        transition: none !important;
       }
     }
   `;
 
-  document.head.appendChild(style);
+  document.head.appendChild(css);
 
-  function animateNotes() {
+  /* CREATE HERO PARTICLES AND PETALS */
+  const hero = document.querySelector('.hero');
+
+  if (hero && !hero.dataset.mrDecorated) {
+    hero.dataset.mrDecorated = 'true';
+
+    for (let i = 0; i < 18; i++) {
+      const particle = document.createElement('span');
+      particle.className = 'mr-particle';
+      particle.textContent = '✦';
+      particle.style.left = (i * 37 % 100) + '%';
+      particle.style.top = (i * 23 % 90) + '%';
+      particle.style.animationDelay = (i * .4) + 's';
+      hero.appendChild(particle);
+    }
+
+    for (let i = 0; i < 9; i++) {
+      const petal = document.createElement('span');
+      petal.className = 'mr-petal';
+      petal.textContent = '❀';
+      petal.style.left = (i * 13 % 100) + '%';
+      petal.style.animationDelay = (i * 1.1) + 's';
+      petal.style.animationDuration = (7 + i % 4) + 's';
+      hero.appendChild(petal);
+    }
+  }
+
+  /* ANIMATE EVERY PRODUCT, INCLUDING NEWLY RENDERED PRODUCTS */
+  const cardObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mr-visible');
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 })
+    : null;
+
+  function scanProducts() {
+    document.querySelectorAll('.product-card').forEach(card => {
+      if (card.dataset.mrReveal) return;
+      card.dataset.mrReveal = 'true';
+
+      if (cardObserver) {
+        cardObserver.observe(card);
+      } else {
+        card.classList.add('mr-visible');
+      }
+    });
+
     document.querySelectorAll('.product-notes').forEach(el => {
-      if (el.dataset.animated === 'true') return;
+      if (el.dataset.mrNotes) return;
 
       const notes = el.textContent
         .split(',')
@@ -577,23 +745,39 @@ loadDeviceOffer();renderProducts();renderCart();loadExchangeRates();
       if (!notes.length) return;
 
       el.textContent = '';
-      notes.forEach(note => {
+
+      notes.forEach((note, index) => {
         const chip = document.createElement('span');
         chip.className = 'fragrance-note';
         chip.textContent = note;
+        chip.style.animationDelay = (index * .12) + 's';
         el.appendChild(chip);
       });
 
-      el.dataset.animated = 'true';
+      el.dataset.mrNotes = 'true';
     });
   }
 
-  animateNotes();
+  scanProducts();
 
-  new MutationObserver(animateNotes).observe(
+  new MutationObserver(scanProducts).observe(
     document.body,
     { childList: true, subtree: true }
   );
+
+  /* ADD TO BAG ANIMATION */
+  document.addEventListener('click', function(event) {
+    const button = event.target.closest('.add-button');
+    if (!button) return;
+
+    button.classList.remove('mr-added');
+    void button.offsetWidth;
+    button.classList.add('mr-added');
+
+    setTimeout(() => {
+      button.classList.remove('mr-added');
+    }, 900);
+  });
 })();
 </script>
   
