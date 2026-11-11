@@ -383,7 +383,28 @@ function applyCoupon() {
     return;
   }
 
-  if (!Object.prototype.hasOwnProperty.call(promoCodes, code)) {
+  const specialOffer = specialOffers[code];
+
+  if (specialOffer) {
+    if (!specialOffer.active) {
+      appliedCoupon = '';
+      $('#couponStatus').textContent = 'This offer is currently inactive.';
+      renderCart();
+      return;
+    }
+
+    const paidPerfumeCount = [...cart.values()]
+      .reduce((sum, item) =>
+        sum + (item.type === 'perfume' ? item.quantity : 0), 0);
+
+    if (paidPerfumeCount < 3) {
+      appliedCoupon = '';
+      $('#couponStatus').textContent =
+        'Add at least 3 perfumes to use this offer.';
+      renderCart();
+      return;
+    }
+  } else if (!Object.prototype.hasOwnProperty.call(promoCodes, code)) {
     appliedCoupon = '';
     $('#couponStatus').textContent = 'Invalid promo code.';
     renderCart();
@@ -399,8 +420,14 @@ function applyCoupon() {
   }
 
   appliedCoupon = code;
-  $('#couponStatus').textContent =
-    `${code} applied successfully! ${promoCodes[code]}% OFF`;
+
+  if (specialOffer) {
+    $('#couponStatus').textContent =
+      `${code} applied! Buy 3 Get 1 Free offer unlocked.`;
+  } else {
+    $('#couponStatus').textContent =
+      `${code} applied successfully! ${promoCodes[code]}% OFF`;
+  }
 
   renderCart();
 }
