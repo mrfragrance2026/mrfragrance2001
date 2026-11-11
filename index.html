@@ -163,7 +163,13 @@ const promoCodes = {
   CRYSTAL10:10, PHANTOM20:20, OILLOVE5:5, ELITE25:25, MRFAMILY15:15,
   THANKYOU10:10, EXCLUSIVE30:30, FESTIVE20:20, LUXURY25:25, LOYALMR15:15
 };
-  
+  // Special offers - manually controlled coupon codes
+const specialOffers = {
+  "MRF-BUY3-XXXX": {
+    type: "buy3get1",
+    active: true
+  }
+};
 function getUsedCoupons() {
   return JSON.parse(localStorage.getItem('mrf_used_coupons') || '[]');
 }
