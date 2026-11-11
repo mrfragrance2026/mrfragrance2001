@@ -597,5 +597,303 @@ loadDeviceOffer();renderProducts();renderCart();loadExchangeRates();
 })();
 </script>
   
+<script>
+(function () {
+  if (document.getElementById('mr-luxury-effects')) return;
+
+  const css = document.createElement('style');
+  css.id = 'mr-luxury-effects';
+
+  css.textContent = `
+    /* M R FRAGRANCE - COMPLETE LUXURY EXPERIENCE */
+
+    body {
+      animation: mrPageFade 1.2s ease both;
+    }
+
+    @keyframes mrPageFade {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .hero-content {
+      animation: mrOpening 1.5s ease both;
+    }
+
+    @keyframes mrOpening {
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .brand-mark {
+      animation: mrLogoGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes mrLogoGlow {
+      from { filter: drop-shadow(0 0 2px #d8b973); }
+      to { filter: drop-shadow(0 0 12px #d8b973); }
+    }
+
+    /* GOLDEN PARTICLES */
+
+    .mr-particle {
+      position: absolute;
+      z-index: 2;
+      pointer-events: none;
+      color: #e7c477;
+      font-size: 13px;
+      animation: mrFloat 5s ease-in-out infinite;
+    }
+
+    @keyframes mrFloat {
+      0%,100% {
+        opacity: .15;
+        transform: translateY(15px) scale(.6);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-35px) scale(1.2);
+      }
+    }
+
+    /* PRODUCT CARDS */
+
+    .product-card {
+      transition: transform .4s ease, box-shadow .4s ease;
+    }
+
+    .product-card.mr-animated {
+      animation: mrCardReveal .8s ease both;
+    }
+
+    @keyframes mrCardReveal {
+      from {
+        opacity: .65;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .product-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 10px 35px #d8b97330;
+    }
+
+    /* PERFUME BOTTLE GOLDEN SHINE */
+
+    .product-card .card-image {
+      transition: filter .5s ease, transform .6s ease;
+      filter: drop-shadow(0 0 5px #d8b97330);
+      animation: mrBottleGlow 4s ease-in-out infinite alternate;
+    }
+
+    .product-card:hover .card-image {
+      transform: scale(1.035);
+      filter: drop-shadow(0 0 15px #d8b97390);
+    }
+
+    @keyframes mrBottleGlow {
+      from { filter: drop-shadow(0 0 3px #d8b97320); }
+      to { filter: drop-shadow(0 0 12px #d8b97370); }
+    }
+
+    .product-card::after {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: -130%;
+      width: 65%;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(
+        110deg,
+        transparent,
+        #d8b97318,
+        transparent
+      );
+      animation: mrCardShine 7s ease-in-out infinite;
+    }
+
+    @keyframes mrCardShine {
+      0%,65% { left: -130%; }
+      100% { left: 150%; }
+    }
+
+    /* ROSE PETALS */
+
+    .mr-petal {
+      position: absolute;
+      z-index: 2;
+      top: -35px;
+      pointer-events: none;
+      color: #a81735;
+      font-size: 20px;
+      animation: mrPetalFall 8s linear infinite;
+    }
+
+    @keyframes mrPetalFall {
+      0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+      }
+      15% { opacity: .9; }
+      85% { opacity: .8; }
+      100% {
+        transform: translateY(600px) rotate(300deg);
+        opacity: 0;
+      }
+    }
+
+    /* FRAGRANCE NOTES */
+
+    .product-notes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin: 16px 0 24px;
+    }
+
+    .product-notes span,
+    .fragrance-note {
+      display: inline-block;
+      padding: 8px 13px;
+      border: 1px solid #a9874d;
+      border-radius: 30px;
+      background: linear-gradient(135deg,#29231b,#171515);
+      color: #e5c98c;
+      font-size: 13px;
+      line-height: 1.3;
+      transition: .35s ease;
+    }
+
+    .product-notes span:hover,
+    .fragrance-note:hover {
+      background: #a9874d;
+      color: #111;
+      box-shadow: 0 0 16px #d8b97370;
+      transform: translateY(-3px);
+    }
+
+    /* ADD TO BAG */
+
+    .add-button.mr-added {
+      animation: mrBagSuccess .65s ease;
+      background: #d8b973 !important;
+      color: #111 !important;
+      box-shadow: 0 0 20px #d8b97380;
+    }
+
+    @keyframes mrBagSuccess {
+      50% { transform: scale(1.08); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  `;
+
+  document.head.appendChild(css);
+
+  /* HERO DECORATIONS */
+
+  function decorateHero() {
+    const hero = document.querySelector('.hero');
+
+    if (!hero || hero.dataset.mrDecorated) return;
+
+    hero.dataset.mrDecorated = 'true';
+
+    if (getComputedStyle(hero).position === 'static') {
+      hero.style.position = 'relative';
+    }
+
+    for (let i = 0; i < 18; i++) {
+      const particle = document.createElement('span');
+      particle.className = 'mr-particle';
+      particle.textContent = '✦';
+      particle.style.left = (i * 37 % 100) + '%';
+      particle.style.top = (i * 23 % 90) + '%';
+      particle.style.animationDelay = (i * .4) + 's';
+      hero.appendChild(particle);
+    }
+
+    for (let i = 0; i < 9; i++) {
+      const petal = document.createElement('span');
+      petal.className = 'mr-petal';
+      petal.textContent = '❀';
+      petal.style.left = (i * 13 % 100) + '%';
+      petal.style.animationDelay = (i * 1.1) + 's';
+      petal.style.animationDuration = (7 + i % 4) + 's';
+      hero.appendChild(petal);
+    }
+  }
+
+  /* PRODUCT ANIMATIONS */
+
+  function scanProducts() {
+    decorateHero();
+
+    document.querySelectorAll('.product-card').forEach(card => {
+      if (card.dataset.mrAnimated) return;
+
+      card.dataset.mrAnimated = 'true';
+
+      if ('IntersectionObserver' in window) {
+        observer.observe(card);
+      } else {
+        card.classList.add('mr-animated');
+      }
+    });
+  }
+
+  const observer = 'IntersectionObserver' in window
+    ? new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('mr-animated');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 })
+    : null;
+
+  scanProducts();
+
+  if ('MutationObserver' in window) {
+    new MutationObserver(scanProducts).observe(
+      document.body,
+      { childList: true, subtree: true }
+    );
+  }
+
+  /* ADD TO BAG ANIMATION */
+
+  document.addEventListener('click', function(event) {
+    const target = event.target;
+    if (!target || !target.closest) return;
+
+    const button = target.closest('.add-button');
+    if (!button) return;
+
+    button.classList.remove('mr-added');
+    void button.offsetWidth;
+    button.classList.add('mr-added');
+
+    setTimeout(() => {
+      button.classList.remove('mr-added');
+    }, 900);
+  });
+
+})();
+</script>
+  
 </body>
 </html>
