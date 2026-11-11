@@ -364,14 +364,34 @@ function addToCart(product,type,isFree=false){
       isFree:false
     });
   }
-
+  
   renderCart();
   showToast(`${product.name} ${isFree?'added as FREE gift':type==='oil'?'oil':'perfume'} added to your bag`);
 }
 function setQuantity(id,quantity){
   const entry=cart.get(id);
   if(!entry)return;
-  if(quantity<=0)cart.delete(id);else entry.quantity=quantity;
+
+  if(quantity<=0){
+    cart.delete(id);
+  }else{
+    entry.quantity=quantity;
+  }
+
+  const paidPerfumes=[...cart.values()].filter(
+    e=>e.type==='perfume'&&!e.isFree
+  );
+
+  const paidCount=paidPerfumes.reduce(
+    (sum,e)=>sum+e.quantity,0
+  );
+
+  if(paidCount<3){
+    cart.forEach((item,key)=>{
+      if(item.isFree)cart.delete(key);
+    });
+  }
+
   renderCart();
 }
 
@@ -380,7 +400,7 @@ function cartItem(id,entry){
   const row=node('div','cart-row');
   const info=node('div');
 
-  const isFree = entry.isFreeGift === true;
+  const isFree = entry.isFree === true;
 
   info.append(
     node('strong','',`${product.name} · ${type==='oil'?'Oil':'Perfume'}${isFree?' · FREE GIFT':''}`),
@@ -395,7 +415,10 @@ function cartItem(id,entry){
   minus.type='button';
   minus.setAttribute('aria-label',`Remove one ${product.name}`);
 
-  const count=node('span','',String(quantity));
+  const 
+count=node('span','',String(quantity));
+  minus.disabled=isFree;
+plus.disabled=isFree;
   const plus=node('button','','+');
   plus.type='button';
   plus.setAttribute('aria-label',`Add one ${product.name}`);
@@ -437,7 +460,62 @@ function renderCart(){
   $('#cartCheckout').hidden=!count;
   $('#cartItems').replaceChildren(...(count?entries.map(([id,e])=>cartItem(id,e)):[node('p','empty-cart','Your bag is empty. Explore the collection and add a fragrance you like.')]));updateFreeGiftSection();
 }
+function updateFreeGiftSection(){
+  const section=$('#freeGiftSection');
+  const select=$('#freeGiftSelect');
+  const status=$('#freeGiftStatus');
 
+  const offer=specialOffers[appliedCoupon];
+  const paidPerfumes=[...cart.values()]
+    .filter(e=>e.type==='perfume'&&!e.isFree);
+
+  const paidCount=paidPerfumes.reduce((sum,e)=>sum+e.quantity,0);
+
+  if(!offer||offer.type!=='buy3get1'||!offer.active||paidCount<3){
+    section.hidden=true;
+    cart.forEach((entry,id)=>{
+      if(entry.isFree)cart.delete(id);
+    });
+    return;
+  }
+
+  section.hidden=false;
+
+  const cheapestPrice=Math.min(...paidPerfumes.map(e=>e.product.price));
+  const currentGift=select.value;
+
+  select.replaceChildren(new Option('Select your free perfume',''));
+
+  baseProducts
+    .filter(p=>p.price<=cheapestPrice)
+    .forEach(p=>{
+      select.add(new Option(`${p.name} — FREE`,p.name));
+    });
+
+  const existingGift=[...cart.entries()].find(([,e])=>e.isFree);
+
+  if(existingGift){
+    select.value=existingGift[1].product.name;
+  }else if(currentGift){
+    select.value=currentGift;
+  }
+
+  status.textContent='Choose one perfume equal to or cheaper than your cheapest purchased perfume.';
+
+  select.onchange=()=>{
+    cart.forEach((entry,id)=>{
+      if(entry.isFree)cart.delete(id);
+    });
+
+    const product=baseProducts.find(p=>p.name===select.value);
+
+    if(product){
+      addToCart(product,'perfume',true);
+    }else{
+      renderCart();
+    }
+  };
+  }
 function applyCoupon() {
   const code = $('#couponInput').value.trim().toUpperCase();
 
