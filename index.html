@@ -65,7 +65,7 @@
     <div class="header-inner wrap">
       <a class="brand" href="#top" aria-label="MR Fragrance home"><span class="brand-mark">MR</span><span><strong>M R FRAGRANCE</strong><small>SCENTS THAT SPEAK YOU</small></span></a>
       <nav class="desktop-nav" aria-label="Main navigation"><a href="#collection">Collection</a><a href="#our-story">Our story</a><a href="#contact">Contact</a></nav>
-      <div class="header-actions"><label class="currency-wrap" aria-label="Display currency"><span>Currency</span><select id="currencySelect"><option value="SAR">SAR ﷼</option><option value="AED">AED د.إ</option><option value="USD">USD $</option><option value="EUR">EUR €</option><option value="INR">INR ₹</option></select></label><button id="cartButton" class="cart-button" type="button" aria-label="Open cart, 0 items"><span aria-hidden="true">Bag</span> <span id="cartCount" class="cart-count">0</span></button><button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"><span></span><span></span><span></span></button></div>
+      <div class="header-actions"><label class="currency-wrap" aria-label="Display currency"><span>Currency</span><select id="currencySelect"><option value="INR">INR ₹</option><option value="AED">AED د.إ</option><option value="USD">USD $</option><option value="EUR">EUR €</option><option value="SAR">SAR ﷼</option></select></label><button id="cartButton" class="cart-button" type="button" aria-label="Open cart, 0 items"><span aria-hidden="true">Bag</span> <span id="cartCount" class="cart-count">0</span></button><button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu"><span></span><span></span><span></span></button></div>
     </div>
     <nav id="mobileNav" class="mobile-nav" aria-label="Mobile navigation" hidden><a href="#collection">Collection</a><a href="#our-story">Our story</a><a href="#contact">Contact</a></nav>
   </header>
@@ -172,7 +172,7 @@ const overlay = $('#overlay');
 const cart = new Map();
 let activeTrigger = null;
 let activeProduct = null;
-let selectedCurrency = 'SAR';
+let selectedCurrency = 'INR';
 let exchangeRates = {...fallbackRates};
 let appliedCoupon = '';
 let activeTab = 'perfume';
