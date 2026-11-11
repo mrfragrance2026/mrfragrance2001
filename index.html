@@ -137,17 +137,16 @@
   </main>
   <footer class="footer"><div class="wrap footer-inner"><div><strong>M R FRAGRANCE</strong><span>Scents That Speak You</span></div><div class="footer-links"><a href="https://www.instagram.com/mrfragrance.store/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://wa.me/918169571810" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a></div><small>© 2026 M R Fragrance</small></div></footer>
   <div id="overlay" class="overlay" hidden></div>
-  <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden><div class="drawer-head"><div><span class="eyebrow">YOUR SELECTION</span><h2 id="cartTitle">Your bag</h2></div><button class="icon-button" id="closeCart" type="button" aria-label="Close cart">×</button></div><div id="cartItems" class="cart-items"></div><div id="cartCheckout" class="checkout" hidden><div class="cart-discount">
+  <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden><div class="drawer-head"><div><span class="eyebrow">YOUR SELECTION</span><h2 id="cartTitle">Your bag</h2></div><button class="icon-button" id="closeCart" type="button" aria-label="Close cart">×</button></div><div id="cartItems" class="cart-items"></div><div id="cartCheckout" class="checkout" hidden><div id="freeGiftSection" hidden>
+  <label for="freeGiftSelect">Choose Your FREE Perfume</label>
+  <select id="freeGiftSelect">
+    <option value="">Select your free perfume</option>
+  </select>
+  <p id="freeGiftStatus">Choose a perfume for your free gift.</p>
+  </div><div class="cart-discount">
       <label for="couponInput">Promo code</label>
       <div class="coupon-row"><input id="couponInput" type="text" placeholder="Enter promo code" autocomplete="off" maxlength="24"><button id="applyCoupon" type="button">Apply</button></div>
-      <p id="couponStatus" class="coupon-status" aria-live="polite">20 exclusive promo codes available.</p>
-    </div>
-    <div class="total-line"><span>Subtotal</span><strong id="cartSubtotal">—</strong></div>
-    <div class="total-line"><span>Customer offer</span><strong id="customerDiscountAmount">—</strong></div>
-    <div class="total-line"><span>Promo code discount</span><strong id="promoDiscountAmount">—</strong></div>
-    <div class="total-line"><span>Total savings</span><strong id="cartDiscount">—</strong></div>
-    <div class="total-line final"><span>Estimated total</span><strong id="cartTotal">—</strong></div>
-    <p id="rateNote" class="rate-note">Currency conversion is an estimate; final amount is confirmed on WhatsApp.</p><p class="shipping-note">Shipping charges and final order details will be confirmed personally on WhatsApp.</p><form id="checkoutForm"><label>Full name<input name="name" autocomplete="name" required></label><label>Phone number<input name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[+0-9 ()-]{8,20}" required></label><label>Delivery address and PIN code<textarea name="address" autocomplete="street-address" rows="3" required></textarea></label><button class="primary-button full-width" type="submit">Send order on WhatsApp ↗</button><p class="checkout-help">WhatsApp will open with your order details. Send the message to M R Fragrance; our team will contact you to confirm your order.</p></form></div></aside>
+      <p id="couponStatus" class="coupon-status" aria-live="polite"></p><p class="shipping-note">Shipping charges and final order details will be confirmed personally on WhatsApp.</p><form id="checkoutForm"><label>Full name<input name="name" autocomplete="name" required></label><label>Phone number<input name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[+0-9 ()-]{8,20}" required></label><label>Delivery address and PIN code<textarea name="address" autocomplete="street-address" rows="3" required></textarea></label><button class="primary-button full-width" type="submit">Send order on WhatsApp ↗</button><p class="checkout-help">WhatsApp will open with your order details. Send the message to M R Fragrance; our team will contact you to confirm your order.</p></form></div></aside>
   <div id="productModal" class="product-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden><button id="closeModal" class="icon-button modal-close" type="button" aria-label="Close product details">×</button><span class="eyebrow">50 ML · EAU DE PARFUM</span><div id="modalArt" class="modal-art"></div><h2 id="modalTitle"></h2><p id="modalNotes"></p><blockquote id="modalQuote"></blockquote><div class="modal-bottom"><strong id="modalPrice"></strong><button id="modalAdd" class="primary-button" type="button">Add to bag <span aria-hidden="true">↗</span></button></div></div>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 <script>
@@ -318,12 +317,56 @@ function openProduct(product,index,type,trigger){
   $('#modalPrice').textContent=type==='oil'?'Price confirmed on WhatsApp':(customerDiscount>0?`${money(Math.round(product.price*(100-customerDiscount)/100))} · ${customerDiscount}% off (was ${money(product.price)})`:money(product.price));
   showLayer(productModal,trigger);
 }
-function addToCart(product,type){
-  const id=`${type}:${product.name}`;
-  const existing=cart.get(id);
-  cart.set(id,{product,type,quantity:(existing?.quantity||0)+1});
+function addToCart(product,type,isFree=false){
+  const id=`${type}:${product.name}${isFree?':free':''}`;
+
+  if(isFree){
+    if(type!=='perfume'){
+      showToast('Free gift must be a perfume.');
+      return;
+    }
+
+    const paidPerfumes=[...cart.values()].filter(
+      e=>e.type==='perfume'&&!e.isFree
+    );
+
+    const paidCount=paidPerfumes.reduce(
+      (sum,e)=>sum+e.quantity,0
+    );
+
+    if(paidCount<3){
+      showToast('Add 3 paid perfumes first to unlock your free gift.');
+      return;
+    }
+
+    if([...cart.values()].some(e=>e.isFree)){
+      showToast('Only one free perfume is allowed.');
+      return;
+    }
+
+    const cheapestPrice=Math.min(
+      ...paidPerfumes.map(e=>e.product.price)
+    );
+
+    if(product.price>cheapestPrice){
+      showToast('Choose a perfume equal to or cheaper than your cheapest purchased perfume.');
+      return;
+    }
+
+    cart.set(id,{product,type,quantity:1,isFree:true});
+  }else{
+    const existing=cart.get(id);
+
+    cart.set(id,{
+      product,
+      type,
+      quantity:(existing?.quantity||0)+1,
+      isFree:false
+    });
+  }
+
   renderCart();
-  showToast(`${product.name} ${type==='oil'?'oil':'perfume'} added to your bag`);
+  showToast(`${product.name} ${isFree?'added as FREE gift':type==='oil'?'oil':'perfume'} added to your bag`);
 }
 function setQuantity(id,quantity){
   const entry=cart.get(id);
@@ -331,26 +374,48 @@ function setQuantity(id,quantity){
   if(quantity<=0)cart.delete(id);else entry.quantity=quantity;
   renderCart();
 }
+
 function cartItem(id,entry){
   const {product,type,quantity}=entry;
   const row=node('div','cart-row');
   const info=node('div');
-  info.append(node('strong','',`${product.name} · ${type==='oil'?'Oil':'Perfume'}`),node('small','',type==='oil'?`Price to be confirmed × ${quantity}`:`${money(product.price)} × ${quantity}`));
+
+  const isFree = entry.isFreeGift === true;
+
+  info.append(
+    node('strong','',`${product.name} · ${type==='oil'?'Oil':'Perfume'}${isFree?' · FREE GIFT':''}`),
+    node('small','',isFree?'FREE · ₹0':type==='oil'?`Price to be confirmed × ${quantity}`:`${money(product.price)} × ${quantity}`)
+  );
+
   const end=node('div','cart-row-end');
-  end.append(node('strong','',type==='oil'?'To confirm':money(product.price*quantity)));
+  end.append(node('strong','',isFree?'FREE':type==='oil'?'To confirm':money(product.price*quantity)));
+
   const controls=node('div','qty-controls');
-  const minus=node('button','','−');minus.type='button';minus.setAttribute('aria-label',`Remove one ${product.name}`);
+  const minus=node('button','','−');
+  minus.type='button';
+  minus.setAttribute('aria-label',`Remove one ${product.name}`);
+
   const count=node('span','',String(quantity));
-  const plus=node('button','','+');plus.type='button';plus.setAttribute('aria-label',`Add one ${product.name}`);
+  const plus=node('button','','+');
+  plus.type='button';
+  plus.setAttribute('aria-label',`Add one ${product.name}`);
+
   minus.addEventListener('click',()=>setQuantity(id,quantity-1));
   plus.addEventListener('click',()=>setQuantity(id,quantity+1));
+
   controls.append(minus,count,plus);
-  const remove=node('button','remove','Remove');remove.type='button';
+
+  const remove=node('button','remove','Remove');
+  remove.type='button';
   remove.addEventListener('click',()=>setQuantity(id,0));
-  end.append(controls,remove);row.append(info,end);return row;
+
+  end.append(controls,remove);
+  row.append(info,end);
+  return row;
 }
+
 function totals(){
-  const subtotal=[...cart.values()].reduce((sum,e)=>sum+(e.type==='perfume'?e.product.price*e.quantity:0),0);
+  const subtotal=[...cart.values()].reduce((sum,e)=>sum+(e.type==='perfume' && !e.isFree?e.product.price*e.quantity:0),0);
   const customerDiscountAmount=Math.round(subtotal*customerDiscount/100);
   const afterCustomer=subtotal-customerDiscountAmount;
   const promoPercent=currentPromoPercent();
@@ -440,7 +505,7 @@ function submitOrder(event){
   const deviceCount=Number(localStorage.getItem(deviceOrderKey)||0);
   customerOrderCount=Math.max(Number(records[normalizedPhone]||0),deviceCount);if(customerOrderCount===0)customerDiscount=30;
   const {subtotal,customerDiscountAmount,promoDiscountAmount,discount,total,customerPercent,promoPercent}=totals();
-  const lines=[...cart.values()].map(({product,type,quantity})=>`• ${product.name} (${type==='oil'?'Fragrance Oil':'Eau de Parfum'}) × ${quantity} = ${type==='oil'?'Price to be confirmed':money(product.price*quantity)}`);
+  const lines=[...cart.values()].map(({product,type,quantity,isFree})=>`• ${product.name} (${type==='oil'?'Fragrance Oil':'Eau de Parfum'}) × ${quantity} = ${isFree?'FREE – ₹0':type==='oil'?'Price to be confirmed':money(product.price*quantity)}`);
   const message=`Hello M R Fragrance, I would like to place an order.\n\n${lines.join('\n')}\n\nSubtotal: ${money(subtotal)}\nCustomer offer: ${customerPercent}% OFF (−${money(customerDiscountAmount)})\nPromo code: ${appliedCoupon||'None'}\nPromo discount: ${promoPercent}% (−${money(promoDiscountAmount)})\nTotal savings: −${money(discount)}\nEstimated total (perfumes only; oil prices pending): ${money(total)}\nCurrency: ${selectedCurrency}\n\nName: ${name}\nPhone: ${phone}\nDelivery address: ${address}\n\nPlease review my order and contact me on WhatsApp to confirm availability, shipping charges and the final order details.`;
   window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
   
