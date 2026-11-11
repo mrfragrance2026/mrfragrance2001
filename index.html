@@ -459,8 +459,8 @@ function applyCoupon() {
     }
 
     const paidPerfumeCount = [...cart.values()]
-      .reduce((sum, item) =>
-        sum + (item.type === 'perfume' ? item.quantity : 0), 0);
+  .reduce((sum, item) =>
+    sum + (item.type === 'perfume' && !item.isFree ? item.quantity : 0), 0);
 
     if (paidPerfumeCount < 3) {
       appliedCoupon = '';
