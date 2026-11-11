@@ -435,7 +435,7 @@ function renderCart(){
   $('#promoDiscountAmount').textContent=promoDiscountAmount?`− ${money(promoDiscountAmount)} (${promoPercent}%)`:money(0);
   $('#cartDiscount').textContent=discount?`− ${money(discount)}`:money(0);
   $('#cartCheckout').hidden=!count;
-  $('#cartItems').replaceChildren(...(count?entries.map(([id,e])=>cartItem(id,e)):[node('p','empty-cart','Your bag is empty. Explore the collection and add a fragrance you like.')]));
+  $('#cartItems').replaceChildren(...(count?entries.map(([id,e])=>cartItem(id,e)):[node('p','empty-cart','Your bag is empty. Explore the collection and add a fragrance you like.')]));updateFreeGiftSection();
 }
 
 function applyCoupon() {
