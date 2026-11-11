@@ -163,6 +163,23 @@ const promoCodes = {
   CRYSTAL10:10, PHANTOM20:20, OILLOVE5:5, ELITE25:25, MRFAMILY15:15,
   THANKYOU10:10, EXCLUSIVE30:30, FESTIVE20:20, LUXURY25:25, LOYALMR15:15
 };
+  
+function getUsedCoupons() {
+  return JSON.parse(localStorage.getItem('mrf_used_coupons') || '[]');
+}
+
+function hasUsedCoupon(code) {
+  return getUsedCoupons().includes(code);
+}
+
+function markCouponUsed(code) {
+  const used = getUsedCoupons();
+  if (!used.includes(code)) {
+    used.push(code);
+    localStorage.setItem('mrf_used_coupons', JSON.stringify(used));
+  }
+}
+  
 const $ = selector => document.querySelector(selector);
 const perfumeGrid = $('#perfumeGrid');
 const oilGrid = $('#oilGrid');
@@ -349,18 +366,39 @@ function renderCart(){
   $('#cartCheckout').hidden=!count;
   $('#cartItems').replaceChildren(...(count?entries.map(([id,e])=>cartItem(id,e)):[node('p','empty-cart','Your bag is empty. Explore the collection and add a fragrance you like.')]));
 }
-function applyCoupon(){
-  const code=$('#couponInput').value.trim().toUpperCase();
-  if(!code){appliedCoupon='';$('#couponStatus').textContent='Enter a promo code to apply your offer.';renderCart();return;}
-  if(!Object.prototype.hasOwnProperty.call(promoCodes,code)){
-    appliedCoupon='';$('#couponStatus').textContent='This promo code is not valid. Please check and try again.';
-    $('#couponStatus').style.color='#e5a09a';renderCart();return;
+
+function applyCoupon() {
+  const code = $('#couponInput').value.trim().toUpperCase();
+
+  if (!code) {
+    appliedCoupon = '';
+    $('#couponStatus').textContent = 'Enter a promo code.';
+    renderCart();
+    return;
   }
-  appliedCoupon=code;
-  $('#couponStatus').style.color='var(--gold)';
-  $('#couponStatus').textContent=`${code} accepted — ${Number(promoCodes[code])}% extra promo discount added after your customer offer.`;
+
+  if (!Object.prototype.hasOwnProperty.call(promoCodes, code)) {
+    appliedCoupon = '';
+    $('#couponStatus').textContent = 'Invalid promo code.';
+    renderCart();
+    return;
+  }
+
+  if (hasUsedCoupon(code)) {
+    appliedCoupon = '';
+    $('#couponStatus').textContent =
+      'This coupon has already been used in this browser!';
+    renderCart();
+    return;
+  }
+
+  appliedCoupon = code;
+  $('#couponStatus').textContent =
+    `${code} applied successfully! ${promoCodes[code]}% OFF`;
+
   renderCart();
 }
+
 function submitOrder(event){
   event.preventDefault();const form=event.currentTarget;if(!form.reportValidity()||!cart.size)return;
   const data=new FormData(form),name=String(data.get('name')).trim(),phone=String(data.get('phone')).trim(),address=String(data.get('address')).trim();
@@ -372,6 +410,11 @@ function submitOrder(event){
   const lines=[...cart.values()].map(({product,type,quantity})=>`• ${product.name} (${type==='oil'?'Fragrance Oil':'Eau de Parfum'}) × ${quantity} = ${type==='oil'?'Price to be confirmed':money(product.price*quantity)}`);
   const message=`Hello M R Fragrance, I would like to place an order.\n\n${lines.join('\n')}\n\nSubtotal: ${money(subtotal)}\nCustomer offer: ${customerPercent}% OFF (−${money(customerDiscountAmount)})\nPromo code: ${appliedCoupon||'None'}\nPromo discount: ${promoPercent}% (−${money(promoDiscountAmount)})\nTotal savings: −${money(discount)}\nEstimated total (perfumes only; oil prices pending): ${money(total)}\nCurrency: ${selectedCurrency}\n\nName: ${name}\nPhone: ${phone}\nDelivery address: ${address}\n\nPlease review my order and contact me on WhatsApp to confirm availability, shipping charges and the final order details.`;
   window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
+  
+if (appliedCoupon) {
+  markCouponUsed(appliedCoupon);
+}
+  
   // Local demo counts WhatsApp handoffs, not verified paid/fulfilled orders.
   try{records[normalizedPhone]=(Number(records[normalizedPhone]||0)+1);localStorage.setItem(loyaltyStorageKey,JSON.stringify(records));localStorage.setItem(deviceOrderKey,String(deviceCount+1));sessionStorage.removeItem(visitOfferKey);}catch(error){}
   customerOrderCount=deviceCount+1;customerDiscount=chooseLoyaltyDiscount(customerOrderCount);updateOfferBanner();renderProducts();renderCart();
